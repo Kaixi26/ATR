@@ -9,7 +9,8 @@ public class Generator {
 
     public static List<Mutator> generateMutators(Expr expr) {
         List<Mutator> ret = new ArrayList<>();
-        ret.addAll(RTO.generate(expr));
+        ret.addAll(RemoveUnaryOperator.generate(expr));
+        ret.addAll(ReplaceUnaryOperator.generate(expr));
         return ret;
     }
 }

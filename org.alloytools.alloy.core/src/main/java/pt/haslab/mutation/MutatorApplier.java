@@ -24,6 +24,16 @@ public class MutatorApplier extends VisitReturn<Expr> {
         return visitThis(x);
     }
 
+    private Optional<Expr> attemptComputeMutation(Expr x){
+        Mutator mut = mutators.getOrDefault(System.identityHashCode(x), null);
+        if(mut != null){
+            mutators.remove(System.identityHashCode(x));
+            return Optional.of(mut.mutant);
+        } else {
+            return Optional.empty();
+        }
+    }
+
     @Override
     public Expr visit(ExprBinary x) throws Err {
         throw new NotImplementedException();
@@ -31,9 +41,9 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprList x) throws Err {
-        Mutator mut = mutators.getOrDefault(System.identityHashCode(x), null);
-        if(mut != null){
-            return mut.mutant;
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
         }
 
         List<Expr> args = new ArrayList<>(x.args.size());
@@ -70,9 +80,9 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprUnary x) throws Err {
-        Mutator mut = mutators.getOrDefault(System.identityHashCode(x), null);
-        if(mut != null){
-            return mut.mutant;
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
         }
 
         return x.op.make(x.pos, visitThis(x.sub));
@@ -85,9 +95,9 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(Sig x) throws Err {
-        Mutator mut = mutators.getOrDefault(System.identityHashCode(x), null);
-        if(mut != null){
-            return mut.mutant;
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
         }
 
         return x;

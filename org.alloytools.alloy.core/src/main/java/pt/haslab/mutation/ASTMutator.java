@@ -8,20 +8,27 @@ import pt.haslab.mutation.mutator.Mutator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
+import java.util.stream.Collectors;
 
 public class ASTMutator {
     Expr root;
     List<Expr> locations = new ArrayList<>();
-    List<Mutator> mutators = new ArrayList<>();
+    ListStack<Mutator> mutators = new ListStack<>();
 
-    int currentMutator = 0;
+    Stack<Integer> current = new Stack<>();
+    MSet<Expr> blacklisted = new MSet<>();
+    int currentDepth = 1;
+    int maxDepth = 0;
 
-    public ASTMutator(Expr expr){
-        this.root = expr;
+    public int numGeneratedMutationCombinations = 0;
+    public int numPrunnedMutationCombinations = 0;
+
+    public ASTMutator(Expr expr, int maxDepth){
         VisitQuery<Object> addLocations = new VisitQuery<Object>() {
             private void add(Expr x){
                 locations.add(x);
-                mutators.addAll(Generator.generateMutators(x));
+                mutators.addBuffered(Generator.generateMutators(x));
             }
             public Void visit(ExprUnary x) throws Err {
                 visitThis(x.sub);
@@ -46,18 +53,87 @@ public class ASTMutator {
                 return null;
             }
         };
-        addLocations.visitThis(this.root);
 
+        this.root = expr;
+        this.maxDepth = maxDepth;
+
+        addLocations.visitThis(this.root);
+        this.mutators.pushBuffered();
+
+        pushCurrent(0);
+        System.out.println(this.mutators);
+    }
+
+    private void pushCurrent(Integer i){
+        current.push(i);
+        blacklisted.union(mutators.get(i).blacklisted);
+    }
+
+    private Integer popCurrent(){
+        blacklisted.difference(mutators.get(current.peek()).blacklisted);
+        return current.pop();
+    }
+
+    private void incCurrent(){
+        pushCurrent(popCurrent() + 1);
+    }
+
+    private boolean isCurrentPrunable(){
+        for(int i = 0; i < current.size(); i++){
+            for(int j = i+1; j < current.size(); j++){
+                boolean blacklisted =
+                        mutators.get(current.get(i)).blacklisted
+                                .contains(mutators.get(current.get(j)).original);
+                if(blacklisted){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     public List<Mutator> getCurrent(){
-        return Collections.singletonList(mutators.get(currentMutator));
+        return current.stream().map(index -> mutators.get(index)).collect(Collectors.toList());
+    }
+
+    private void step(){
+        int popped = 0;
+        while(current.size() > 0
+                && (current.peek() >= mutators.size()-1
+                    || current.peek() + popped >= mutators.size()-1)){
+            popCurrent();
+            popped++;
+        }
+
+        if(popped == currentDepth){
+            currentDepth++;
+            for(int i = 0; i < currentDepth; i++){
+                pushCurrent(i);
+            }
+        } else if(popped > 0){
+            incCurrent();
+            int prev = current.peek();
+            for(int i = 0; i < popped; i++){
+                pushCurrent(prev + i + 1);
+            }
+        } else {
+            incCurrent();
+        }
+
     }
 
     public boolean next(){
-        currentMutator++;
-        return currentMutator < mutators.size();
+        int loops = 0;
+        do {
+            loops++;
+            if (currentDepth > maxDepth) {
+                return false;
+            }
+            step();
+            numGeneratedMutationCombinations++;
+        } while(isCurrentPrunable());
+        numPrunnedMutationCombinations += loops-1;
+        return true;
     }
-
 
 }
