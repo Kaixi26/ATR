@@ -7,8 +7,9 @@ import java.util.*;
 public class Mutator {
     public Expr original;
     public Expr mutant;
+    public Set<Expr> blacklisted = new HashSet<>();
 
-    public static List<Mutator> generate(Expr expr){
+    public static List<Mutator> generate(Expr ignoredExpr){
         return new ArrayList<>();
     }
 }

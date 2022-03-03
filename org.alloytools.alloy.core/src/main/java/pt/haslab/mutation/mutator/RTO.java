@@ -24,6 +24,7 @@ public class RTO extends Mutator {
         this.original = expr;
         this.mutant = expr.sub;
         this.expr = expr;
+        this.blacklisted.add(expr);
         this.originalOp = expr.op;
     }
 
