@@ -22,6 +22,7 @@ public class ReplaceUnaryOperator extends Mutator {
 
     private ReplaceUnaryOperator(ExprUnary expr, Op op){
         this.original = expr;
+        this.name = this.getClass().getSimpleName() + " " + expr.op.name() + "->" + op.name();
         switch (op){
             case NO:
                 this.mutant = expr.sub.no();

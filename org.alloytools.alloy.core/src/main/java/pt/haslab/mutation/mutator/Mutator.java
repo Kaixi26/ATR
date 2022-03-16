@@ -10,6 +10,8 @@ public class Mutator {
     public Expr mutant;
     public Set<Expr> blacklisted = new HashSet<>();
 
+    public String name = "Mutator";
+
     public static List<Mutator> generate(Expr ignoredExpr){
         return new ArrayList<>();
     }
@@ -19,5 +21,10 @@ public class Mutator {
         ret.original = original;
         ret.mutant = mutant;
         return ret;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }

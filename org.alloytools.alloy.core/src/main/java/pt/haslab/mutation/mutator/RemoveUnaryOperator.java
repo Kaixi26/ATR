@@ -11,6 +11,7 @@ public class RemoveUnaryOperator extends Mutator {
         this.original = expr;
         this.mutant = expr.sub;
         this.blacklisted.add(expr);
+        this.name = this.getClass().getSimpleName() + " " + expr.op.name();
     }
 
     public static List<Mutator> generate(Expr expr) {

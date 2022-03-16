@@ -9,15 +9,14 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import java.util.*;
 
 public class MutatorApplier extends VisitReturn<Expr> {
-    Map<Integer, Mutator> mutators = new HashMap<>(4);
+    List<Mutator> mutators;
 
     private MutatorApplier(){}
 
     public static MutatorApplier make(List<Mutator> muts){
         MutatorApplier mut = new MutatorApplier();
-        for (Mutator mutator : muts) {
-            mut.mutators.put(System.identityHashCode(mutator.original), mutator);
-        }
+        mut.mutators = new ArrayList<>(muts.size());
+        mut.mutators.addAll(muts);
         return mut;
     }
 
@@ -26,9 +25,15 @@ public class MutatorApplier extends VisitReturn<Expr> {
     }
 
     private Optional<Expr> attemptComputeMutation(Expr x){
-        Mutator mut = mutators.getOrDefault(System.identityHashCode(x), null);
-        if(mut != null){
-            mutators.remove(System.identityHashCode(x));
+        int mutIndex = -1;
+        for(int i = 0; i < mutators.size(); i++){
+            if(mutators.get(i).original == x){
+                mutIndex = i;
+                break;
+            }
+        }
+        if(mutIndex != -1){
+            Mutator mut = mutators.remove(mutIndex);
             return Optional.of(mut.mutant);
         } else {
             return Optional.empty();
