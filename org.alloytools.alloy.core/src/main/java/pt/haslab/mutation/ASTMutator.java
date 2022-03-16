@@ -80,7 +80,10 @@ public class ASTMutator {
 
     private boolean isCurrentPrunable(){
         for(int i = 0; i < current.size(); i++){
-            for(int j = i+1; j < current.size(); j++){
+            for(int j = 0; j < current.size(); j++){
+                if(i == j){
+                    continue;
+                }
                 boolean blacklisted =
                         mutators.get(current.get(i)).blacklisted
                                 .contains(mutators.get(current.get(j)).original);

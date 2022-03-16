@@ -1,6 +1,7 @@
 package pt.haslab.mutation;
 
 import edu.mit.csail.sdg.alloy4.Err;
+import edu.mit.csail.sdg.alloy4.Pos;
 import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.mutator.Mutator;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -12,7 +13,7 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     private MutatorApplier(){}
 
-    public static MutatorApplier make(Collection<Mutator> muts){
+    public static MutatorApplier make(List<Mutator> muts){
         MutatorApplier mut = new MutatorApplier();
         for (Mutator mutator : muts) {
             mut.mutators.put(System.identityHashCode(mutator.original), mutator);
@@ -36,7 +37,20 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprBinary x) throws Err {
-        throw new NotImplementedException();
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        switch (x.op){
+            case IN:
+                return visitThis(x.left).in(visitThis(x.right));
+            case EQUALS:
+                return visitThis(x.left).equal(visitThis(x.right));
+            case NOT_EQUALS:
+                return visitThis(x.left).equal(visitThis(x.right)).not(); /* check if this has equivalent */
+            default:
+                throw new NotImplementedException();
+        }
     }
 
     @Override
@@ -60,7 +74,11 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprConstant x) throws Err {
-        throw new NotImplementedException();
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        return x;
     }
 
     @Override
@@ -75,7 +93,26 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprQt x) throws Err {
-        throw new NotImplementedException();
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        ArrayList<Decl> moreDecls = new ArrayList<>();
+        for(int i = 1; i < x.decls.size(); i++){
+            moreDecls.add(x.decls.get(i));
+        }
+        switch (x.op){
+            case NO:
+                return visitThis(x.sub).forNo(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+            case SOME:
+                return visitThis(x.sub).forSome(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+            case ALL:
+                return visitThis(x.sub).forAll(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+            case ONE:
+                return visitThis(x.sub).forOne(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+            default:
+                throw new NotImplementedException();
+        }
     }
 
     @Override
@@ -90,7 +127,11 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprVar x) throws Err {
-        throw new NotImplementedException();
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        return x;
     }
 
     @Override
