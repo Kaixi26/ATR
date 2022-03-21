@@ -111,4 +111,16 @@ public class MutationStepper {
         return true;
     }
 
+    public boolean nextLocation() {
+        Expr location = mutators.get(current.get(current.size()-1)).original;
+        boolean hasNext;
+        do {
+            if(!next()){
+                return false;
+            }
+            numPrunnedMutationCombinations++;
+        } while(mutators.get(current.get(current.size()-1)).original == location);
+        return true;
+    }
+
 }

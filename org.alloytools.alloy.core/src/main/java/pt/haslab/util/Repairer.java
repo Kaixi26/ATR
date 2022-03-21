@@ -52,8 +52,17 @@ public class Repairer {
         return ret;
     }
 
+    /* If true it means there might be a solution in the location of the current candidate */
+    public boolean variabilizationResult(Candidate candidate, A4Solution ans){
+        for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
+            e.getKey().setBody(candidate.variabilize(e.getValue()));
+        }
+        return (boolean) ans.eval(command.formula);
+    }
+
     public Optional<Candidate> repair(){
 
+        boolean variRes;
         do {
             Candidate candidate = mutationStepper.getCurrent();
             candidates.add(candidate);
@@ -72,22 +81,11 @@ public class Repairer {
             System.out.println(candidate.toString());
             if(!ans.satisfiable()){
                 System.out.println("Found!");
-            } else {
-                for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
-                    e.getKey().setBody(candidate.variabilize(e.getValue()));
-                }
-
-
-                boolean evalResult = (boolean) ans.eval(command.formula);
-                if(evalResult){
-                    for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
-                        System.out.println(e.getKey().getBody());
-                    }
-                    System.out.println(evalResult);
-                }
             }
 
-        } while(mutationStepper.next());
+            variRes = variabilizationResult(candidate, ans);
+
+        } while(variRes ? mutationStepper.next() : mutationStepper.nextLocation());
 
         return Optional.empty();
     }
