@@ -5,122 +5,79 @@ import pt.haslab.mutation.mutator.Generator;
 import pt.haslab.mutation.mutator.Mutator;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class MutationStepper {
-    ListStack<Mutator> mutators = new ListStack<>();
+    final List<Mutator> baseMutators;
+    final int maxDepth;
 
-    Stack<Integer> current = new Stack<>();
-    MSet<Expr> blacklisted = new MSet<>();
-    int currentDepth = 1;
-    int maxDepth = 0;
+    public final List<Candidate> candidates = new ArrayList<>();
 
-    public int numGeneratedMutationCombinations = 0;
-    public int numPrunnedMutationCombinations = 0;
+    int start = 0;
+    int current = 0;
+    int depth = 0;
 
-    private MutationStepper() {
+    HashMap<String, Candidate> extensionalities = new HashMap<>();
+    HashMap<String, Candidate> variabilizations = new HashMap<>();
 
+    private MutationStepper(List<Mutator> baseMutators, int maxDepth) {
+        this.baseMutators = baseMutators;
+        this.maxDepth = maxDepth;
+        this.candidates.add(new Candidate(new ArrayList<>()));
     }
 
-    public static MutationStepper make(Collection<Expr> repairTargetLocations, int maxDepth){
-        MutationStepper ret = new MutationStepper();
+    public static MutationStepper make(Collection<Expr> repairTargetLocations, int maxDepth) {
+        List<Mutator> baseMutators = new ArrayList<>();
 
-        for(Expr repairTargetLocation : repairTargetLocations){
-            ret.mutators.addBuffered(Generator.generateMutators(repairTargetLocation));
+        for (Expr repairTargetLocation : repairTargetLocations) {
+            baseMutators.addAll(Generator.generateMutators(repairTargetLocation));
         }
-        ret.mutators.pushBuffered();
-        ret.pushCurrent(0);
 
-        ret.maxDepth = maxDepth;
+        System.out.println(baseMutators);
 
-        return ret;
+        return new MutationStepper(baseMutators, maxDepth);
     }
 
-    private void pushCurrent(Integer i){
-        current.push(i);
-        blacklisted.union(mutators.get(i).blacklisted);
+    public Candidate getCurrent() {
+        return candidates.get(current);
     }
 
-    private Integer popCurrent(){
-        blacklisted.difference(mutators.get(current.peek()).blacklisted);
-        return current.pop();
-    }
-
-    private void incCurrent(){
-        pushCurrent(popCurrent() + 1);
-    }
-
-    private boolean isCurrentPrunable(){
-        for(int i = 0; i < current.size(); i++){
-            for(int j = 0; j < current.size(); j++){
-                if(i == j){
-                    continue;
-                }
-                boolean blacklisted =
-                        mutators.get(current.get(i)).blacklisted
-                                .contains(mutators.get(current.get(j)).original);
-                if(blacklisted){
-                    return true;
-                }
+    public boolean step() {
+        int candidateSize = candidates.size();
+        if (current + 1 >= candidateSize) {
+            depth++;
+            if (depth > maxDepth) {
+                return false;
             }
+            for (int i = start; i < candidateSize; i++) {
+                candidates.addAll(candidates.get(i).generateChildren(this.baseMutators));
+            }
+            start = candidateSize;
+            if (candidateSize == candidates.size()) {
+                return false;
+            }
+        }
+        current++;
+        return true;
+    }
+
+    public boolean next() {
+        while (step()) {
+            Candidate curr = getCurrent();
+            String extensionalityID = curr.getExtensionalityID();
+            if (extensionalities.putIfAbsent(extensionalityID, curr) != null) {
+                curr.prunned = Optional.of(PruneReason.EXTENSIONALITY);
+                continue;
+            } else if (variabilizations.containsKey(curr.getVariabilizationID())) {
+               curr.prunned = Optional.of(PruneReason.VARIABILIZATION);
+               continue;
+            }
+            return true;
         }
         return false;
     }
 
-    public Candidate getCurrent(){
-        return new Candidate(current.stream().map(index -> mutators.get(index)).collect(Collectors.toList()));
-    }
-
-    private void step(){
-        int popped = 0;
-        while(current.size() > 0
-                && (current.peek() >= mutators.size()-1
-                    || current.peek() + popped >= mutators.size()-1)){
-            popCurrent();
-            popped++;
-        }
-
-        if(popped == currentDepth){
-            currentDepth++;
-            for(int i = 0; i < currentDepth; i++){
-                pushCurrent(i);
-            }
-        } else if(popped > 0){
-            incCurrent();
-            int prev = current.peek();
-            for(int i = 0; i < popped; i++){
-                pushCurrent(prev + i + 1);
-            }
-        } else {
-            incCurrent();
-        }
-
-    }
-
-    public boolean next(){
-        int loops = 0;
-        do {
-            loops++;
-            if (currentDepth > maxDepth) {
-                return false;
-            }
-            step();
-            numGeneratedMutationCombinations++;
-        } while(isCurrentPrunable());
-        numPrunnedMutationCombinations += loops-1;
-        return true;
-    }
-
-    public boolean nextLocation() {
-        Expr location = mutators.get(current.get(current.size()-1)).original;
-        boolean hasNext;
-        do {
-            if(!next()){
-                return false;
-            }
-            numPrunnedMutationCombinations++;
-        } while(mutators.get(current.get(current.size()-1)).original == location);
-        return true;
+    public void addVariabilization(Candidate candidate) {
+        variabilizations.putIfAbsent(candidate.getVariabilizationID(), candidate);
     }
 
 }

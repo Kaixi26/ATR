@@ -10,6 +10,7 @@ import edu.mit.csail.sdg.translator.A4Solution;
 import edu.mit.csail.sdg.translator.TranslateAlloyToKodkod;
 import pt.haslab.mutation.Candidate;
 import pt.haslab.mutation.MutationStepper;
+import pt.haslab.mutation.PruneReason;
 
 import java.util.*;
 
@@ -25,15 +26,13 @@ public class Repairer {
     Map<Func, Expr> funcOriginalBody = new HashMap<>();
     List<Expr> repairTargetLocations = new ArrayList<>();
 
-    public List<Candidate> candidates = new ArrayList<>();
-
     private Repairer(Module module, Command command, ArrayList<Func> repairTargets) {
         this.module = module;
         this.command = command;
         this.repairTargets = repairTargets;
     }
 
-    public static Repairer make(Module module, Command command, Collection<Func> repairTargets) {
+    public static Repairer make(Module module, Command command, Collection<Func> repairTargets, int maxDepth) {
         Repairer ret = new Repairer(module, command, new ArrayList<>(repairTargets));
 
         for (Func repairTarget : repairTargets) {
@@ -47,46 +46,75 @@ public class Repairer {
             }
         }
 
-        ret.mutationStepper = MutationStepper.make(ret.repairTargetLocations, 3);
+        ret.mutationStepper = MutationStepper.make(ret.repairTargetLocations, maxDepth);
 
         return ret;
     }
 
     /* If true it means there might be a solution in the location of the current candidate */
-    public boolean variabilizationResult(Candidate candidate, A4Solution ans){
+    public boolean canPruneWithVariabilization(Candidate candidate, A4Solution ans){
         for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
             e.getKey().setBody(candidate.variabilize(e.getValue()));
+            //System.out.println(e.getKey().getBody());
         }
         return (boolean) ans.eval(command.formula);
     }
 
     public Optional<Candidate> repair(){
 
-        boolean variRes;
-        do {
+        while(mutationStepper.next()){
             Candidate candidate = mutationStepper.getCurrent();
-            candidates.add(candidate);
 
             for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
                 e.getKey().setBody(candidate.apply(e.getValue()));
-
-                //System.out.println(e.getKey().getBody());
-                //System.out.println(candidate.variabilize(e.getValue()));
             }
 
             A4Solution ans =
                     TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts);
 
-            System.out.println("-------------------------");
-            System.out.println(candidate.toString());
             if(!ans.satisfiable()){
+                System.out.println("---------------");
+                System.out.println(candidate);
+                System.out.println(candidate.variabilizationID);
                 System.out.println("Found!");
+                return Optional.of(candidate);
             }
 
-            variRes = variabilizationResult(candidate, ans);
+            boolean prune = canPruneWithVariabilization(candidate, ans);
+            if(prune){
+                mutationStepper.addVariabilization(candidate);
+            }
 
-        } while(variRes ? mutationStepper.next() : mutationStepper.nextLocation());
+            if(true){
+                System.out.println("---------------");
+                System.out.println(candidate);
+                System.out.println(candidate.variabilizationID);
+                System.out.println(prune);
+                for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
+                    System.out.println(e.getKey().getBody());
+                }
+            }
+
+        }
 
         return Optional.empty();
+    }
+
+    public long getGeneratedTotal(){
+        return mutationStepper.candidates.size();
+    }
+
+    public long getPrunnedTotal(){
+        return mutationStepper.candidates.stream().filter(c -> c.prunned.isPresent()).count();
+    }
+
+    public long getPrunnedBy(PruneReason pruneReason){
+        return mutationStepper.candidates.stream()
+                .filter(c -> c.prunned.isPresent() && c.prunned.get().equals(pruneReason))
+                .count();
+    }
+
+    public String generatedJSON(){
+        return mutationStepper.candidates.get(0).toJSON();
     }
 }

@@ -1,5 +1,6 @@
 package pt.haslab.mutation.mutator;
 
+import edu.mit.csail.sdg.alloy4.Pos;
 import edu.mit.csail.sdg.ast.Expr;
 import org.eclipse.jdt.annotation.NonNull;
 
@@ -25,6 +26,17 @@ public class Mutator {
 
     @Override
     public String toString() {
-        return name;
+        Pos pos = original.pos();
+        return this.getClass().getSimpleName() + "{" +
+                "'" + name + "', " +
+                "pos='(" + pos.x + "," + pos.y + ")-(" + pos.x2 + "," + pos.y2 + ")'," +
+                "}";
+    }
+
+    public String toJSON(){
+        return "{" +
+                "\"mutator\": \"" + this + "\"," +
+                "\"pos\": \"" + this.mutant.pos + "\"" +
+                "}";
     }
 }

@@ -74,15 +74,10 @@ import java.io.ObjectInputStream;
 import java.lang.reflect.Method;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Random;
-import java.util.Scanner;
-import java.util.Set;
+import java.time.Duration;
+import java.time.Instant;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import javax.swing.Action;
 import javax.swing.Box;
@@ -121,6 +116,7 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 
+import edu.mit.csail.sdg.ast.*;
 import org.alloytools.alloy.core.AlloyCore;
 
 //import com.apple.eawt.Application;
@@ -160,12 +156,6 @@ import edu.mit.csail.sdg.alloy4viz.VizGUI;
 import edu.mit.csail.sdg.alloy4whole.SimpleReporter.SimpleCallback1;
 import edu.mit.csail.sdg.alloy4whole.SimpleReporter.SimpleTask1;
 import edu.mit.csail.sdg.alloy4whole.SimpleReporter.SimpleTask2;
-import edu.mit.csail.sdg.ast.Browsable;
-import edu.mit.csail.sdg.ast.Command;
-import edu.mit.csail.sdg.ast.Expr;
-import edu.mit.csail.sdg.ast.ExprVar;
-import edu.mit.csail.sdg.ast.Module;
-import edu.mit.csail.sdg.ast.Sig;
 import edu.mit.csail.sdg.ast.Sig.Field;
 import edu.mit.csail.sdg.parser.CompUtil;
 import edu.mit.csail.sdg.sim.SimInstance;
@@ -178,6 +168,12 @@ import edu.mit.csail.sdg.translator.A4SolutionReader;
 import edu.mit.csail.sdg.translator.A4Tuple;
 import edu.mit.csail.sdg.translator.A4TupleSet;
 import kodkod.engine.fol2sat.HigherOrderDeclException;
+import pt.haslab.mutation.Candidate;
+import pt.haslab.mutation.PruneReason;
+import pt.haslab.mutation.mutator.Mutator;
+import pt.haslab.util.LocationAggregator;
+import pt.haslab.util.ReferencedFunctions;
+import pt.haslab.util.Repairer;
 
 /**
  * Simple graphical interface for accessing various features of the analyzer.
@@ -1081,6 +1077,7 @@ public final class SimpleGUI implements ComponentListener, Listener {
             if (Version.experimental)
                 menuItem(runmenu, "Show Parse Tree", 'P', doShowParseTree());
             menuItem(runmenu, "Open Evaluator", 'V', doLoadEvaluator());
+            menuItem(runmenu, "Run Repair", 'E', doRunRepair());
         } finally {
             wrap = false;
         }
@@ -2446,5 +2443,73 @@ public final class SimpleGUI implements ComponentListener, Listener {
                 r.run();
             }
         };
+    }
+
+    private Runner doRunRepair(){
+        if(wrap){
+            return wrapMe();
+        }
+        try {
+
+            A4Options opt = new A4Options();
+            int resolutionMode = (Version.experimental && ImplicitThis.get()) ? 2 : 1;
+            opt.tempDirectory = alloyHome(frame) + fs + "tmp";
+            opt.solverDirectory = alloyHome(frame) + fs + "binary";
+            opt.originalFilename = Util.canon(text.get().getFilename());
+            Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, text.takeSnapshot(), opt.originalFilename, resolutionMode);
+
+            Optional<Command> cmd = world.getAllCommands().stream()
+                    .filter(c -> (c.label.equals("this/__repair") || c.label.equals("__repair")) && c.check)
+                    .findAny();
+
+            List<Func> funcs = new ArrayList<>();
+            for(Func func : world.getAllFunc()){
+                if(func.label.equals("this/__repair") || func.label.equals("__repair")){
+                    funcs.addAll(ReferencedFunctions.find(func));
+                    break;
+                }
+            }
+
+            if(!cmd.isPresent() || !(funcs.size() > 0)){
+                if(!cmd.isPresent()){
+                    log.logRed("'__repair__' command not defined.\n");
+                }
+                if(!(funcs.size() > 0)){
+                    log.logRed("'__repair__' pred doesn't mention any predicates.\n");
+                }
+            } else {
+                log.log("Attempting to repair check '" + cmd.get().label + "' altering func '" + funcs.stream().map(f -> f.label).collect(Collectors.toList()) + "'.\n");
+                log.flush();
+
+                Repairer rep = Repairer.make(world, cmd.get(), funcs, 2);
+                Optional<Candidate> solution = rep.repair();
+
+                log.log("Total generated " + rep.getGeneratedTotal() + "\n");
+                log.log("Prunned " + rep.getPrunnedTotal() + "\n");
+                log.log("Prunned by extensionality " + rep.getPrunnedBy(PruneReason.EXTENSIONALITY) + "\n");
+                log.log("Prunned by variabilization " + rep.getPrunnedBy(PruneReason.VARIABILIZATION) + "\n");
+                log.log("Tested " + (rep.getGeneratedTotal() - rep.getPrunnedTotal()) + "\n");
+                if(solution.isPresent()){
+                    log.log("Solution found\n");
+                    for(Mutator mut : solution.get().mutators){
+                        log.log("\t" + mut.toString() + "\n");
+                    }
+                    text.shade(
+                            solution.get().mutators.stream().map(mut -> mut.original.pos).collect(Collectors.toList()),
+                            new Color(0.9f, 0.4f, 0.4f),
+                            true
+                    );
+                } else {
+                    log.log("Solution not found.\n");
+                }
+                log.logDivider();
+                log.flush();
+
+            }
+        } catch (Exception e){
+            log.logRed(e.toString());
+        }
+
+        return wrapMe();
     }
 }
