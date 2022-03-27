@@ -55,6 +55,8 @@ public class MutatorApplier extends VisitReturn<Expr> {
                 return visitThis(x.left).equal(visitThis(x.right)).not(); /* check if this has equivalent */
             case UNTIL:
                 return visitThis(x.left).until(visitThis(x.right));
+            case IMPLIES:
+                return visitThis(x.left).implies(visitThis(x.right));
             default:
                 throw new NotImplementedException();
         }

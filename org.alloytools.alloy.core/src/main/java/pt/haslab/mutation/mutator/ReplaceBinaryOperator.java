@@ -26,6 +26,7 @@ public class ReplaceBinaryOperator extends Mutator {
     }
 
     // TODO: Other Operators
+    // TODO: Some way to generate every candidate mutator
     public static List<Mutator> generate(Expr expr) {
         ArrayList<Mutator> ret = new ArrayList<>();
         if(!(expr instanceof ExprBinary)){
@@ -35,6 +36,7 @@ public class ReplaceBinaryOperator extends Mutator {
 
         switch (exprBinary.op){
             case UNTIL:
+            case IMPLIES:
                 ret.add(new ReplaceBinaryOperator(exprBinary, Op.AND));
             default:
                 break;
