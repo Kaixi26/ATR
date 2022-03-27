@@ -2456,7 +2456,8 @@ public final class SimpleGUI implements ComponentListener, Listener {
             opt.tempDirectory = alloyHome(frame) + fs + "tmp";
             opt.solverDirectory = alloyHome(frame) + fs + "binary";
             opt.originalFilename = Util.canon(text.get().getFilename());
-            Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, text.takeSnapshot(), opt.originalFilename, resolutionMode);
+            //Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, text.takeSnapshot(), opt.originalFilename, resolutionMode);
+            Module world = CompUtil.parseEverything_fromString(A4Reporter.NOP, text.get().getText());
 
             Optional<Command> cmd = world.getAllCommands().stream()
                     .filter(c -> (c.label.equals("this/__repair") || c.label.equals("__repair")) && c.check)

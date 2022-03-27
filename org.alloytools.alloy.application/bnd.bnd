@@ -1,4 +1,9 @@
 -includeresource: \
+	@${repo;org.alloytools:pardinus.core}, \
+	@${repo;org.alloytools:pardinus.nativesat}, \
+	@${repo;org.sat4j.core}, \
+	@${repo;org.sat4j.maxsat}, \
+	@${repo;org.sat4j.pb}, \
 	src/main/resources
 
 -buildpath: \

@@ -1,6 +1,7 @@
 package pt.haslab.mutation;
 
 import edu.mit.csail.sdg.ast.Expr;
+import edu.mit.csail.sdg.ast.Module;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.Variabilizer;
 

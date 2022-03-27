@@ -1,6 +1,7 @@
 /*
 	12 cases
-	Replace Unary Operator
+	Replace Binary Operator
+	Add Unary Operator
 */
 
 var sig File {
@@ -23,5 +24,5 @@ pred __repair {
 }
 
 check __repair {
-	prop2 <=> prop1Ok
+	prop2 <=> prop2Ok
 }

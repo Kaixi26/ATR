@@ -14,7 +14,10 @@ public class LocationAggregator {
 
         VisitQuery<Void> visitQuery = new VisitQuery<Void>() {
             public Void visit(ExprBinary x) throws Err {
-                throw new NotImplementedException();
+                visitThis(x.left);
+                visitThis(x.right);
+                ret.add(x);
+                return null;
             }
 
             public Void visit(ExprList x) throws Err {

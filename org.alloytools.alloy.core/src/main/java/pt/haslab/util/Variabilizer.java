@@ -26,12 +26,29 @@ public class Variabilizer {
                 .forSome(decl);
     }
 
+    static Expr varabilizeSig(Expr root, Expr varabilized){
+        String declName = VARIABILIZED_PREFIX + System.identityHashCode(varabilized);
+
+        Expr declExpr = varabilized.deNOP().type().toExpr();
+        ExprVar exprVar = ExprVar.make(null, declName, declExpr.type());
+        Decl decl = new Decl(null, null, null, null, Collections.singletonList(exprVar), declExpr);
+
+        Mutator mutator = Mutator.make(varabilized, exprVar);
+        return MutatorApplier
+                .make(Collections.singletonList(mutator))
+                .apply(root)
+                .forSome(decl);
+    }
+
+
     public static Expr variabilize(Expr root, Expr varabilized){
 
         if(varabilized.type().is_bool){
             return varabilizeBool(root, varabilized);
-        } else {
+        } else if(varabilized.type().is_int()) {
             throw new NotImplementedException();
+        } else {
+            return varabilizeSig(root, varabilized);
         }
         /*
         Expr declExpr = Sig.PrimSig.UNIV.oneOf();
