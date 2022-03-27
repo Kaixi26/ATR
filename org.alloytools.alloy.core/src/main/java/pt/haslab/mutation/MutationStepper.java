@@ -7,8 +7,8 @@ import pt.haslab.mutation.mutator.Mutator;
 import java.util.*;
 
 public class MutationStepper {
-    final List<Mutator> baseMutators;
-    final int maxDepth;
+    public final List<Mutator> baseMutators;
+    public final int maxDepth;
 
     public final List<Candidate> candidates = new ArrayList<>();
 
@@ -31,8 +31,6 @@ public class MutationStepper {
         for (Expr repairTargetLocation : repairTargetLocations) {
             baseMutators.addAll(Generator.generateMutators(repairTargetLocation));
         }
-
-        System.out.println(baseMutators);
 
         return new MutationStepper(baseMutators, maxDepth);
     }

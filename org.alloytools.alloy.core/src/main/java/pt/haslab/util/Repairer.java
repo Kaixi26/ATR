@@ -26,6 +26,8 @@ public class Repairer {
     Map<Func, Expr> funcOriginalBody = new HashMap<>();
     List<Expr> repairTargetLocations = new ArrayList<>();
 
+    public Optional<Candidate> solution = Optional.empty();
+
     private Repairer(Module module, Command command, ArrayList<Func> repairTargets) {
         this.module = module;
         this.command = command;
@@ -73,10 +75,11 @@ public class Repairer {
                     TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts);
 
             if(!ans.satisfiable()){
-                System.out.println("---------------");
-                System.out.println(candidate);
-                System.out.println(candidate.variabilizationID);
-                System.out.println("Found!");
+                //System.out.println("---------------");
+                //System.out.println(candidate);
+                //System.out.println(candidate.variabilizationID);
+                //System.out.println("Found!");
+                solution = Optional.of(candidate);
                 return Optional.of(candidate);
             }
 
@@ -85,15 +88,13 @@ public class Repairer {
                 mutationStepper.addVariabilization(candidate);
             }
 
-            if(true){
-                System.out.println("---------------");
-                System.out.println(candidate);
-                System.out.println(candidate.variabilizationID);
-                System.out.println(prune);
-                for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
-                    System.out.println(e.getKey().getBody());
-                }
-            }
+            //System.out.println("---------------");
+            //System.out.println(candidate);
+            //System.out.println(candidate.variabilizationID);
+            //System.out.println(prune);
+            //for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
+            //    System.out.println(e.getKey().getBody());
+            //}
 
         }
 

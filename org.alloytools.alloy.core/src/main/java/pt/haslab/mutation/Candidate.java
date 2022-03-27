@@ -65,11 +65,12 @@ public class Candidate {
 
     private static String calculateVariabilizationID(List<Mutator> mutators) {
         StringBuilder sb = new StringBuilder();
-        for (int i = 0; i < mutators.size() - 1; i++) {
+        for (int i = 0; i < mutators.size(); i++) {
+            if(i > 0){
+                sb.append(",");
+            }
             sb.append(System.identityHashCode(mutators.get(i)));
-            sb.append(",");
         }
-        sb.append("*");
         return sb.toString();
     }
 
