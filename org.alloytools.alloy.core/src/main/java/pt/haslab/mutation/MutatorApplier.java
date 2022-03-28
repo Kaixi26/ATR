@@ -4,6 +4,7 @@ import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.alloy4.Pos;
 import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.mutator.Mutator;
+import pt.haslab.util.ExprMaker;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.*;
@@ -46,20 +47,7 @@ public class MutatorApplier extends VisitReturn<Expr> {
         if(mutation.isPresent()){
             return visitThis(mutation.get());
         }
-        switch (x.op){
-            case IN:
-                return visitThis(x.left).in(visitThis(x.right));
-            case EQUALS:
-                return visitThis(x.left).equal(visitThis(x.right));
-            case NOT_EQUALS:
-                return visitThis(x.left).equal(visitThis(x.right)).not(); /* check if this has equivalent */
-            case UNTIL:
-                return visitThis(x.left).until(visitThis(x.right));
-            case IMPLIES:
-                return visitThis(x.left).implies(visitThis(x.right));
-            default:
-                throw new NotImplementedException();
-        }
+        return ExprMaker.make(x.left, x.right, x.op);
     }
 
     @Override

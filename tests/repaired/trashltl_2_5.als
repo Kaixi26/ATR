@@ -1,7 +1,6 @@
 /*
 	6 cases
-	Add Unary Operator
-	Requires synthesis
+	Replace Binary Operator
 */
 
 var sig File {

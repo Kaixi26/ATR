@@ -45,7 +45,9 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprQt x) throws Err {
-                throw new NotImplementedException();
+                visitThis(x.sub);
+                ret.add(x);
+                return null;
             }
 
             public Void visit(ExprUnary x) throws Err {
@@ -55,7 +57,8 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprVar x) throws Err {
-                throw new NotImplementedException();
+                ret.add(x);
+                return null;
             }
 
             public Void visit(Sig x) throws Err {
@@ -64,7 +67,8 @@ public class LocationAggregator {
             }
 
             public Void visit(Sig.Field x) throws Err {
-                throw new NotImplementedException();
+                ret.add(x);
+                return null;
             }
 
         };

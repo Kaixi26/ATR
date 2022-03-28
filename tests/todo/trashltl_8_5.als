@@ -1,6 +1,7 @@
 /*
 	9 cases
 	Add Unary operator
+	f1 -> f2
 */
 
 var sig File {

@@ -2,6 +2,7 @@ package pt.haslab.mutation.mutator;
 
 import edu.mit.csail.sdg.ast.Expr;
 import edu.mit.csail.sdg.ast.ExprUnary;
+import pt.haslab.util.ExprMaker;
 
 import javax.naming.OperationNotSupportedException;
 import java.util.*;
@@ -23,23 +24,7 @@ public class ReplaceUnaryOperator extends Mutator {
     private ReplaceUnaryOperator(ExprUnary expr, Op op){
         this.original = expr;
         this.name = expr.op.name() + "->" + op.name();
-        switch (op){
-            case NO:
-                this.mutant = expr.sub.no();
-                break;
-            case SOME:
-                this.mutant = expr.sub.some();
-                break;
-            case LONE:
-                this.mutant = expr.sub.lone();
-                break;
-            case ONE:
-                this.mutant = expr.sub.one();
-                break;
-            default:
-                throw new RuntimeException("Unreachable!");
-        }
-        this.blacklisted.add(expr);
+        this.mutant = ExprMaker.make(expr.sub, op);
     }
 
     public static List<Mutator> generate(Expr expr) {
