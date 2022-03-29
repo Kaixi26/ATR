@@ -14,9 +14,8 @@ import static edu.mit.csail.sdg.ast.ExprBinary.*;
 
 public class ReplaceBinaryOperator extends Mutator {
 
-    private static final Set<ExprBinary.Op> ops_bools = Stream.of(Op.AND, Op.OR, Op.IFF, Op.IMPLIES, Op.UNTIL, Op.RELEASES, Op.SINCE, Op.TRIGGERED
-
-    ).collect(Collectors.toSet());
+    private static final Set<ExprBinary.Op> ops_bools = Stream.of(Op.AND, Op.OR, Op.IFF, Op.IMPLIES, Op.UNTIL, Op.RELEASES, Op.SINCE, Op.TRIGGERED)
+            .collect(Collectors.toSet());
 
     private ReplaceBinaryOperator(ExprBinary original, Op op) {
         this.original = original;
@@ -34,9 +33,9 @@ public class ReplaceBinaryOperator extends Mutator {
         ExprBinary exprBinary = (ExprBinary) expr;
 
         // [bool] <op> [bool]
-        if(ops_bools.contains(exprBinary.op)){
-            for(Op op : ops_bools){
-                if(op != exprBinary.op){
+        if (ops_bools.contains(exprBinary.op)) {
+            for (Op op : ops_bools) {
+                if (op != exprBinary.op) {
                     ret.add(new ReplaceBinaryOperator(exprBinary, op));
                 }
             }

@@ -47,7 +47,7 @@ public class MutatorApplier extends VisitReturn<Expr> {
         if(mutation.isPresent()){
             return visitThis(mutation.get());
         }
-        return ExprMaker.make(x.left, x.right, x.op);
+        return ExprMaker.make(visitThis(x.left), visitThis(x.right), x.op);
     }
 
     @Override
