@@ -1,6 +1,6 @@
 /*
 	6 cases
-	Add Unary Operator
+	(File ...) -> (all f : File | f ...) ? 
 */
 
 var sig File {
