@@ -66,7 +66,11 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprCall x) throws Err {
-        throw new NotImplementedException();
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        return x;
     }
 
     @Override
@@ -137,12 +141,15 @@ public class MutatorApplier extends VisitReturn<Expr> {
         if(mutation.isPresent()){
             return visitThis(mutation.get());
         }
-
         return x;
     }
 
     @Override
     public Expr visit(Sig.Field x) throws Err {
-        throw new NotImplementedException();
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        return x;
     }
 }

@@ -19,9 +19,9 @@ import static edu.mit.csail.sdg.alloy4.A4Preferences.ImplicitThis;
 
 public class RepairChecker {
 
-    public static Repairer attemptRepair(String content, int maxDepth) {
-        A4Options opt = new A4Options();
-        Module world = CompUtil.parseEverything_fromString(A4Reporter.NOP, content);
+    public static Repairer attemptRepair(String filename, int maxDepth) {
+        Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, null, filename);
+        //Module world = CompUtil.parseEverything_fromString(A4Reporter.NOP, content);
 
         Optional<Command> cmd = world.getAllCommands().stream()
                 .filter(c -> (c.label.equals("this/__repair") || c.label.equals("__repair")) && c.check)

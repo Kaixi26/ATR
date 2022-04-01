@@ -28,6 +28,8 @@ public class Repairer {
 
     public Optional<Candidate> solution = Optional.empty();
 
+    List<A4Solution> counterexamples = new ArrayList<>();
+
     private Repairer(Module module, Command command, ArrayList<Func> repairTargets) {
         this.module = module;
         this.command = command;
@@ -56,10 +58,24 @@ public class Repairer {
     /* If true it means there might be a solution in the location of the current candidate */
     public boolean canPruneWithVariabilization(Candidate candidate, A4Solution ans){
         for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
-            e.getKey().setBody(candidate.variabilize(e.getValue()));
+            Optional<Expr> variabilized = candidate.variabilize(e.getValue());
+            if(variabilized.isPresent()){
+                e.getKey().setBody(variabilized.get());
+            } else {
+                return false;
+            }
             //System.out.println(e.getKey().getBody());
         }
-        return (boolean) ans.eval(command.formula);
+        return false;//(boolean) ans.eval(command.formula);
+    }
+
+    public boolean canPruneWithPreviousCounterexample(){
+        for(A4Solution cex : counterexamples){
+            if ((boolean) cex.eval(command.formula)){
+                return true;
+            }
+        }
+        return false;
     }
 
     public Optional<Candidate> repair(){
@@ -69,6 +85,11 @@ public class Repairer {
 
             for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
                 e.getKey().setBody(candidate.apply(e.getValue()));
+            }
+
+            if(canPruneWithPreviousCounterexample()){
+                candidate.prunned = Optional.of(PruneReason.PREVIOUS_CEX);
+                continue;
             }
 
             A4Solution ans =
@@ -83,18 +104,22 @@ public class Repairer {
                 return Optional.of(candidate);
             }
 
+            counterexamples.add(ans);
+
             boolean prune = canPruneWithVariabilization(candidate, ans);
             if(prune){
                 mutationStepper.addVariabilization(candidate);
             }
 
-            //System.out.println("---------------");
             //System.out.println(candidate);
+            //System.out.println("---------------");
             //System.out.println(candidate.variabilizationID);
             //System.out.println(prune);
             //for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
             //    System.out.println(e.getKey().getBody());
             //}
+            //System.out.println(ans);
+            //System.exit(69);
 
         }
 

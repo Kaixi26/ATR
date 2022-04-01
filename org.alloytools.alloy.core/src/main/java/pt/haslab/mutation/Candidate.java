@@ -38,9 +38,9 @@ public class Candidate {
         return MutatorApplier.make(mutators).apply(mutationTarget);
     }
 
-    public Expr variabilize(Expr mutationTarget) {
-        Expr variabilized = Variabilizer.variabilize(mutationTarget, mutators.get(mutators.size() - 1).original);
-        return apply(variabilized);
+    public Optional<Expr> variabilize(Expr mutationTarget) {
+        Optional<Expr> variabilized = Variabilizer.variabilize(mutationTarget, mutators.get(mutators.size() - 1).original);
+        return variabilized.map(this::apply);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class Candidate {
             if(i > 0){
                 sb.append(",");
             }
-            sb.append(System.identityHashCode(mutators.get(i)));
+            sb.append(System.identityHashCode(mutators.get(i).original));
         }
         return sb.toString();
     }

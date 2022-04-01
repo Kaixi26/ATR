@@ -1,6 +1,7 @@
 package pt.haslab.mutation;
 
 import edu.mit.csail.sdg.ast.*;
+import edu.mit.csail.sdg.translator.A4Solution;
 import pt.haslab.mutation.mutator.Generator;
 import pt.haslab.mutation.mutator.Mutator;
 
@@ -18,6 +19,7 @@ public class MutationStepper {
 
     HashMap<String, Candidate> extensionalities = new HashMap<>();
     HashMap<String, Candidate> variabilizations = new HashMap<>();
+
 
     private MutationStepper(List<Mutator> baseMutators, int maxDepth) {
         this.baseMutators = baseMutators;

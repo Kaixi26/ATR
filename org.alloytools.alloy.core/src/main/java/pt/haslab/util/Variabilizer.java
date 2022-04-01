@@ -7,10 +7,12 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
 
 public class Variabilizer {
 
-    static final String VARIABILIZED_PREFIX = "__variabilized_";
+    static final String VARIABILIZED_PREFIX = "variabilization";
 
     static Expr varabilizeBool(Expr root, Expr varabilized){
         String declName = VARIABILIZED_PREFIX + System.identityHashCode(varabilized);
@@ -30,10 +32,17 @@ public class Variabilizer {
         String declName = VARIABILIZED_PREFIX + System.identityHashCode(varabilized);
 
         Expr declExpr = varabilized.deNOP().type().toExpr();
-        ExprVar exprVar = ExprVar.make(null, declName, declExpr.type());
-        Decl decl = new Decl(null, null, null, null, Collections.singletonList(exprVar), declExpr);
+        List<ExprVar> exprVars = new ArrayList<>();
+        for(int i=0; i<3; i++){
+            exprVars.add(ExprVar.make(null, declName + "$x" + i, declExpr.type()));
+        }
+        System.out.println(">>> " + declExpr);
+        Decl decl = new Decl(null, null, null, null, exprVars, declExpr);
 
-        Mutator mutator = Mutator.make(varabilized, exprVar);
+        Optional<Expr> exprVar = exprVars.stream().map(e -> (Expr) e).reduce((l, r) -> ExprMaker.make(l, r, ExprBinary.Op.PLUS));
+
+        Mutator mutator = Mutator.make(varabilized, exprVar.get());
+        Mutator mutatorNONE = Mutator.make(varabilized, Sig.PrimSig.NONE);
         return MutatorApplier
                 .make(Collections.singletonList(mutator))
                 .apply(root)
@@ -41,14 +50,15 @@ public class Variabilizer {
     }
 
 
-    public static Expr variabilize(Expr root, Expr varabilized){
+    public static Optional<Expr> variabilize(Expr root, Expr varabilized){
 
         if(varabilized.type().is_bool){
-            return varabilizeBool(root, varabilized);
+            return Optional.of(varabilizeBool(root, varabilized));
         } else if(varabilized.type().is_int()) {
             throw new NotImplementedException();
         } else {
-            return varabilizeSig(root, varabilized);
+            return Optional.empty();
+            //return varabilizeSig(root, varabilized);
         }
         /*
         Expr declExpr = Sig.PrimSig.UNIV.oneOf();

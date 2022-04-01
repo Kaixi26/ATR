@@ -29,11 +29,13 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprCall x) throws Err {
-                throw new NotImplementedException();
+                ret.add(x);
+                return null;
             }
 
             public Void visit(ExprConstant x) throws Err {
-                throw new NotImplementedException();
+                ret.add(x);
+                return null;
             }
 
             public Void visit(ExprITE x) throws Err {
