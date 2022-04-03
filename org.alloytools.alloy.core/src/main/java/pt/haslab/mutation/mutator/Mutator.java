@@ -1,7 +1,9 @@
 package pt.haslab.mutation.mutator;
 
+import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.alloy4.Pos;
 import edu.mit.csail.sdg.ast.Expr;
+import edu.mit.csail.sdg.ast.Sig;
 import org.eclipse.jdt.annotation.NonNull;
 
 import java.util.*;
@@ -15,6 +17,10 @@ public class Mutator {
 
     public static List<Mutator> generate(Expr ignoredExpr){
         return new ArrayList<>();
+    }
+
+    public static List<Mutator> generate(Expr ignoredExpr, ConstList<Sig> ignoredSigs){
+        return generate(ignoredExpr);
     }
 
     public static Mutator make(@NonNull Expr original, @NonNull Expr mutant){

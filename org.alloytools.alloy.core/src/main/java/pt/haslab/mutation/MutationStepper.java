@@ -1,5 +1,6 @@
 package pt.haslab.mutation;
 
+import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.*;
 import edu.mit.csail.sdg.translator.A4Solution;
 import pt.haslab.mutation.mutator.Generator;
@@ -11,6 +12,8 @@ public class MutationStepper {
     public final List<Mutator> baseMutators;
     public final int maxDepth;
 
+    public final ConstList<Sig> modelSigs;
+
     public final List<Candidate> candidates = new ArrayList<>();
 
     int start = 0;
@@ -21,20 +24,21 @@ public class MutationStepper {
     HashMap<String, Candidate> variabilizations = new HashMap<>();
 
 
-    private MutationStepper(List<Mutator> baseMutators, int maxDepth) {
+    private MutationStepper(List<Mutator> baseMutators, ConstList<Sig> modelSigs, int maxDepth) {
         this.baseMutators = baseMutators;
         this.maxDepth = maxDepth;
         this.candidates.add(new Candidate(new ArrayList<>()));
+        this.modelSigs = modelSigs;
     }
 
-    public static MutationStepper make(Collection<Expr> repairTargetLocations, int maxDepth) {
+    public static MutationStepper make(Collection<Expr> repairTargetLocations, ConstList<Sig> modelSigs, int maxDepth) {
         List<Mutator> baseMutators = new ArrayList<>();
 
         for (Expr repairTargetLocation : repairTargetLocations) {
-            baseMutators.addAll(Generator.generateMutators(repairTargetLocation));
+            baseMutators.addAll(Generator.generateMutators(repairTargetLocation, modelSigs));
         }
 
-        return new MutationStepper(baseMutators, maxDepth);
+        return new MutationStepper(baseMutators, modelSigs, maxDepth);
     }
 
     public Candidate getCurrent() {

@@ -99,18 +99,21 @@ public class MutatorApplier extends VisitReturn<Expr> {
             return visitThis(mutation.get());
         }
         ArrayList<Decl> moreDecls = new ArrayList<>();
-        for(int i = 1; i < x.decls.size(); i++){
-            moreDecls.add(x.decls.get(i));
+        for(int i = 0; i < x.decls.size(); i++){
+            Decl decl = x.decls.get(i);
+            moreDecls.add(new Decl(decl.isPrivate, decl.disjoint, decl.disjoint2, decl.isVar, decl.names, visitThis(decl.expr)));
         }
+
+        Decl head = moreDecls.remove(0);
         switch (x.op){
             case NO:
-                return visitThis(x.sub).forNo(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+                return visitThis(x.sub).forNo(head, moreDecls.toArray(new Decl[0]));
             case SOME:
-                return visitThis(x.sub).forSome(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+                return visitThis(x.sub).forSome(head, moreDecls.toArray(new Decl[0]));
             case ALL:
-                return visitThis(x.sub).forAll(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+                return visitThis(x.sub).forAll(head, moreDecls.toArray(new Decl[0]));
             case ONE:
-                return visitThis(x.sub).forOne(x.decls.get(0), moreDecls.toArray(new Decl[0]));
+                return visitThis(x.sub).forOne(head, moreDecls.toArray(new Decl[0]));
             default:
                 throw new NotImplementedException();
         }

@@ -47,6 +47,9 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprQt x) throws Err {
+                for(Decl decl : x.decls){
+                    visitThis(decl.expr);
+                }
                 visitThis(x.sub);
                 ret.add(x);
                 return null;

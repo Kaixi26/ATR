@@ -50,7 +50,7 @@ public class Repairer {
             }
         }
 
-        ret.mutationStepper = MutationStepper.make(ret.repairTargetLocations, maxDepth);
+        ret.mutationStepper = MutationStepper.make(ret.repairTargetLocations, module.getAllReachableUserDefinedSigs(), maxDepth);
 
         return ret;
     }
