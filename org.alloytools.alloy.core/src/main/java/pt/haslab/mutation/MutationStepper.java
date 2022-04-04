@@ -31,10 +31,10 @@ public class MutationStepper {
         this.modelSigs = modelSigs;
     }
 
-    public static MutationStepper make(Collection<Expr> repairTargetLocations, ConstList<Sig> modelSigs, int maxDepth) {
+    public static MutationStepper make(Collection<Location> repairTargetLocations, ConstList<Sig> modelSigs, int maxDepth) {
         List<Mutator> baseMutators = new ArrayList<>();
 
-        for (Expr repairTargetLocation : repairTargetLocations) {
+        for (Location repairTargetLocation : repairTargetLocations) {
             baseMutators.addAll(Generator.generateMutators(repairTargetLocation, modelSigs));
         }
 

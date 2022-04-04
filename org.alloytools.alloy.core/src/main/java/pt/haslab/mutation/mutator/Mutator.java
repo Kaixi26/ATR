@@ -45,4 +45,11 @@ public class Mutator {
                 "\"pos\": \"" + this.mutant.pos + "\"" +
                 "}";
     }
+
+    public String describe(){
+        return this.getClass().getSimpleName() + "\n"
+                + this.original.pos + "\n"
+                + "<|" + this.original + "\n"
+                + "|>" + this.mutant;
+    }
 }

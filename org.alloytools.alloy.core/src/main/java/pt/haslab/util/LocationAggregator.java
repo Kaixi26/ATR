@@ -2,6 +2,7 @@ package pt.haslab.util;
 
 import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.ast.*;
+import pt.haslab.mutation.Location;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
@@ -9,14 +10,20 @@ import java.util.Collection;
 
 public class LocationAggregator {
 
-    public static Collection<Expr> BreadthBottomUp(Expr root) {
-        ArrayList<Expr> ret = new ArrayList<>();
+    public static Collection<Location> BreadthBottomUp(Expr root) {
+        ArrayList<Location> ret = new ArrayList<>();
 
         VisitQuery<Void> visitQuery = new VisitQuery<Void>() {
+            boolean insideDecl = false;
+
+            private void add(Expr e){
+                ret.add(new Location(e, insideDecl));
+            }
+
             public Void visit(ExprBinary x) throws Err {
                 visitThis(x.left);
                 visitThis(x.right);
-                ret.add(x);
+                add(x);
                 return null;
             }
 
@@ -24,17 +31,17 @@ public class LocationAggregator {
                 for(Expr arg : x.args){
                     visitThis(arg);
                 }
-                ret.add(x);
+                add(x);
                 return null;
             }
 
             public Void visit(ExprCall x) throws Err {
-                ret.add(x);
+                add(x);
                 return null;
             }
 
             public Void visit(ExprConstant x) throws Err {
-                ret.add(x);
+                add(x);
                 return null;
             }
 
@@ -47,32 +54,35 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprQt x) throws Err {
+                boolean currInsideDecl = insideDecl;
+                insideDecl = true;
                 for(Decl decl : x.decls){
                     visitThis(decl.expr);
                 }
+                insideDecl = currInsideDecl;
                 visitThis(x.sub);
-                ret.add(x);
+                add(x);
                 return null;
             }
 
             public Void visit(ExprUnary x) throws Err {
                 visitThis(x.sub);
-                ret.add(x);
+                add(x);
                 return null;
             }
 
             public Void visit(ExprVar x) throws Err {
-                ret.add(x);
+                add(x);
                 return null;
             }
 
             public Void visit(Sig x) throws Err {
-                ret.add(x);
+                add(x);
                 return null;
             }
 
             public Void visit(Sig.Field x) throws Err {
-                ret.add(x);
+                add(x);
                 return null;
             }
 

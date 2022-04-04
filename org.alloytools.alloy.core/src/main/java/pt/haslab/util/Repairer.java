@@ -9,9 +9,12 @@ import edu.mit.csail.sdg.translator.A4Options;
 import edu.mit.csail.sdg.translator.A4Solution;
 import edu.mit.csail.sdg.translator.TranslateAlloyToKodkod;
 import pt.haslab.mutation.Candidate;
+import pt.haslab.mutation.Location;
 import pt.haslab.mutation.MutationStepper;
 import pt.haslab.mutation.PruneReason;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.util.*;
 
 public class Repairer {
@@ -24,7 +27,7 @@ public class Repairer {
 
     Map<Expr, Func> locationCorrespondentFunc = new HashMap<>();
     Map<Func, Expr> funcOriginalBody = new HashMap<>();
-    List<Expr> repairTargetLocations = new ArrayList<>();
+    List<Location> repairTargetLocations = new ArrayList<>();
 
     public Optional<Candidate> solution = Optional.empty();
 
@@ -42,11 +45,11 @@ public class Repairer {
         for (Func repairTarget : repairTargets) {
             ret.funcOriginalBody.put(repairTarget, repairTarget.getBody());
 
-            Collection<Expr> repairTargetLocations = LocationAggregator.BreadthBottomUp(repairTarget.getBody());
+            Collection<Location> repairTargetLocations = LocationAggregator.BreadthBottomUp(repairTarget.getBody());
             ret.repairTargetLocations.addAll(repairTargetLocations);
 
-            for (Expr repairTargetLocation : repairTargetLocations) {
-                ret.locationCorrespondentFunc.put(repairTargetLocation, repairTarget);
+            for (Location repairTargetLocation : repairTargetLocations) {
+                ret.locationCorrespondentFunc.put(repairTargetLocation.expr, repairTarget);
             }
         }
 
@@ -78,9 +81,19 @@ public class Repairer {
         return false;
     }
 
+
     public Optional<Candidate> repair(){
+        return repair(0);
+    }
+
+    public Optional<Candidate> repair(long ms_timeout){
+
+        Instant time_begin = Instant.now();
 
         while(mutationStepper.next()){
+            if(ms_timeout != 0 && Duration.between(time_begin, Instant.now()).toMillis() > ms_timeout){
+                break;
+            }
             Candidate candidate = mutationStepper.getCurrent();
 
             for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){

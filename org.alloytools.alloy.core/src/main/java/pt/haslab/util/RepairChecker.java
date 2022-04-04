@@ -19,7 +19,7 @@ import static edu.mit.csail.sdg.alloy4.A4Preferences.ImplicitThis;
 
 public class RepairChecker {
 
-    public static Repairer attemptRepair(String filename, int maxDepth) {
+    public static Repairer attemptRepair(String filename, int maxDepth, long timeout) {
         Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, null, filename);
         //Module world = CompUtil.parseEverything_fromString(A4Reporter.NOP, content);
 
@@ -36,11 +36,11 @@ public class RepairChecker {
         }
 
         Repairer rep = Repairer.make(world, cmd.get(), funcs, maxDepth);
-        rep.repair();
+        rep.repair(timeout);
 
         return rep;
     }
-    public static Repairer attemptRepair(String content) {
-        return attemptRepair(content, 3);
+    public static Repairer attemptRepair(String content, long timeout) {
+        return attemptRepair(content, 3, timeout);
     }
 }
