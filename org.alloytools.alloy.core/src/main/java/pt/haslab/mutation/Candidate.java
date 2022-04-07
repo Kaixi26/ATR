@@ -5,10 +5,7 @@ import edu.mit.csail.sdg.ast.Module;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.Variabilizer;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Candidate {
@@ -20,18 +17,18 @@ public class Candidate {
     public final String extensionalityID;
     public final String variabilizationID;
 
-    public Candidate(List<Mutator> mutators) {
-        this.parent = null;
+    private final Set<Expr> blacklisted;
+
+    Candidate(Candidate parent, List<Mutator> mutators, Set<Expr> blacklisted) {
+        this.parent = parent;
         this.mutators = mutators;
+        this.blacklisted = blacklisted;
         this.variabilizationID = calculateVariabilizationID(mutators);
         this.extensionalityID = calculateExtensionalityID(mutators);
     }
 
-    Candidate(Candidate parent, List<Mutator> mutators) {
-        this.parent = parent;
-        this.mutators = mutators;
-        this.variabilizationID = calculateVariabilizationID(mutators);
-        this.extensionalityID = calculateExtensionalityID(mutators);
+    public static Candidate empty(){
+        return new Candidate(null, new ArrayList<>(), new HashSet<>());
     }
 
     public Expr apply(Expr mutationTarget) {
@@ -52,13 +49,19 @@ public class Candidate {
         if (this.children == null) {
             this.children = new ArrayList<>();
             for (Mutator mutator : mutators) {
-                if (this.mutators.stream().anyMatch(m -> m.original == mutator.original)) {
+                if(this.blacklisted.contains(mutator.original)){
                     continue;
                 }
+
+                Set<Expr> childBlacklisted = new HashSet<Expr>(this.blacklisted);
+                childBlacklisted.add(mutator.original);
+                childBlacklisted.addAll(mutator.blacklisted);
+
                 List<Mutator> childMutators = new ArrayList<>(this.mutators.size() + 1);
                 childMutators.addAll(this.mutators);
                 childMutators.add(mutator);
-                this.children.add(new Candidate(this, childMutators));
+
+                this.children.add(new Candidate(this, childMutators, childBlacklisted));
             }
         }
         return this.children;

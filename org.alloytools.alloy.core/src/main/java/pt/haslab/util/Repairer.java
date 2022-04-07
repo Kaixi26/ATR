@@ -49,6 +49,15 @@ public class Repairer {
         }
     }
 
+    private RepairStatus repairStatus = RepairStatus.NOT_STARTED;
+
+    public static enum RepairStatus {
+        NOT_STARTED,
+        FAIL,
+        TIMEOUT,
+        SUCCESS
+    }
+
     private Repairer(Module module, Command command, ArrayList<Func> repairTargets) {
         this.module = module;
         this.command = command;
@@ -115,7 +124,8 @@ public class Repairer {
 
         while (mutationStepper.next()) {
             if (ms_timeout != 0 && Duration.between(time_begin, Instant.now()).toMillis() > ms_timeout) {
-                break;
+                this.repairStatus = RepairStatus.TIMEOUT;
+                return Optional.empty();
             }
             Candidate candidate = mutationStepper.getCurrent();
 
@@ -137,6 +147,7 @@ public class Repairer {
                 //System.out.println(candidate.variabilizationID);
                 //System.out.println("Found!");
                 solution = Optional.of(candidate);
+                repairStatus = RepairStatus.SUCCESS;
                 return Optional.of(candidate);
             }
 
@@ -159,6 +170,7 @@ public class Repairer {
 
         }
 
+        repairStatus = RepairStatus.FAIL;
         return Optional.empty();
     }
 
@@ -178,5 +190,9 @@ public class Repairer {
 
     public String generatedJSON() {
         return mutationStepper.candidates.get(0).toJSON();
+    }
+
+    public RepairStatus getRepairStatus() {
+        return repairStatus;
     }
 }

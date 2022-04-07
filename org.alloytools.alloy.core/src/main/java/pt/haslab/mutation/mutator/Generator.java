@@ -24,6 +24,7 @@ public class Generator {
             ret.addAll(InsertUnaryOperator.generate(expr));
             ret.addAll(ReplaceBinaryOperator.generate(expr));
             ret.addAll(RemoveBinaryOperator.generate(expr));
+            ret.addAll(TransmuteBinaryOperator.generate(location));
             ret.addAll(ReplaceSet.generate(location, sigs));
         }
         return ret;

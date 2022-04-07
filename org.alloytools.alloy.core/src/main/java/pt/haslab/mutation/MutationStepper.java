@@ -27,7 +27,7 @@ public class MutationStepper {
     private MutationStepper(List<Mutator> baseMutators, ConstList<Sig> modelSigs, int maxDepth) {
         this.baseMutators = baseMutators;
         this.maxDepth = maxDepth;
-        this.candidates.add(new Candidate(new ArrayList<>()));
+        this.candidates.add(Candidate.empty());
         this.modelSigs = modelSigs;
     }
 
