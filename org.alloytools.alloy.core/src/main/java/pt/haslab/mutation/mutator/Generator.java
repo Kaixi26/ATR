@@ -17,14 +17,14 @@ public class Generator {
         Expr expr = location.expr;
 
         if(location.insideDecl){
-            ret.addAll(ReplaceSet.generate(expr, sigs));
+            ret.addAll(ReplaceSet.generate(location, sigs));
         } else {
             ret.addAll(RemoveUnaryOperator.generate(expr));
             ret.addAll(ReplaceUnaryOperator.generate(expr));
             ret.addAll(InsertUnaryOperator.generate(expr));
             ret.addAll(ReplaceBinaryOperator.generate(expr));
             ret.addAll(RemoveBinaryOperator.generate(expr));
-            ret.addAll(ReplaceSet.generate(expr, sigs));
+            ret.addAll(ReplaceSet.generate(location, sigs));
         }
         return ret;
     }

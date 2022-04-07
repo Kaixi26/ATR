@@ -1,6 +1,7 @@
 package pt.haslab.util;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
+import edu.mit.csail.sdg.alloy4.Pair;
 import edu.mit.csail.sdg.ast.Command;
 import edu.mit.csail.sdg.ast.Expr;
 import edu.mit.csail.sdg.ast.Func;
@@ -31,7 +32,22 @@ public class Repairer {
 
     public Optional<Candidate> solution = Optional.empty();
 
-    List<A4Solution> counterexamples = new ArrayList<>();
+    ArrayList<CounterExample> counterexamples = new ArrayList<>();
+
+    private static class CounterExample {
+        public final A4Solution cex;
+        public int ocurrences;
+
+        CounterExample(A4Solution cex, int ocurrences) {
+            this.cex = cex;
+            this.ocurrences = ocurrences;
+        }
+
+        @Override
+        public String toString() {
+            return ocurrences + "";
+        }
+    }
 
     private Repairer(Module module, Command command, ArrayList<Func> repairTargets) {
         this.module = module;
@@ -59,10 +75,10 @@ public class Repairer {
     }
 
     /* If true it means there might be a solution in the location of the current candidate */
-    public boolean canPruneWithVariabilization(Candidate candidate, A4Solution ans){
-        for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
+    public boolean canPruneWithVariabilization(Candidate candidate, A4Solution ans) {
+        for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
             Optional<Expr> variabilized = candidate.variabilize(e.getValue());
-            if(variabilized.isPresent()){
+            if (variabilized.isPresent()) {
                 e.getKey().setBody(variabilized.get());
             } else {
                 return false;
@@ -72,35 +88,42 @@ public class Repairer {
         return false;//(boolean) ans.eval(command.formula);
     }
 
-    public boolean canPruneWithPreviousCounterexample(){
-        for(A4Solution cex : counterexamples){
-            if ((boolean) cex.eval(command.formula)){
+    public boolean attemptPruneWithPreviousCounterexample() {
+        for (int i = 0; i < counterexamples.size(); i++) {
+            CounterExample counterExample = counterexamples.get(i);
+            if ((boolean) counterExample.cex.eval(command.formula)) {
+                counterExample.ocurrences++;
+                if(i > 0 && counterExample.ocurrences > counterexamples.get(i-1).ocurrences){
+                    counterexamples.set(i, counterexamples.get(i-1));
+                    counterexamples.set(i-1, counterExample);
+                }
                 return true;
             }
+
         }
         return false;
     }
 
 
-    public Optional<Candidate> repair(){
+    public Optional<Candidate> repair() {
         return repair(0);
     }
 
-    public Optional<Candidate> repair(long ms_timeout){
+    public Optional<Candidate> repair(long ms_timeout) {
 
         Instant time_begin = Instant.now();
 
-        while(mutationStepper.next()){
-            if(ms_timeout != 0 && Duration.between(time_begin, Instant.now()).toMillis() > ms_timeout){
+        while (mutationStepper.next()) {
+            if (ms_timeout != 0 && Duration.between(time_begin, Instant.now()).toMillis() > ms_timeout) {
                 break;
             }
             Candidate candidate = mutationStepper.getCurrent();
 
-            for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
+            for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
                 e.getKey().setBody(candidate.apply(e.getValue()));
             }
 
-            if(canPruneWithPreviousCounterexample()){
+            if (attemptPruneWithPreviousCounterexample()) {
                 candidate.prunned = Optional.of(PruneReason.PREVIOUS_CEX);
                 continue;
             }
@@ -108,7 +131,7 @@ public class Repairer {
             A4Solution ans =
                     TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts);
 
-            if(!ans.satisfiable()){
+            if (!ans.satisfiable()) {
                 //System.out.println("---------------");
                 //System.out.println(candidate);
                 //System.out.println(candidate.variabilizationID);
@@ -117,10 +140,10 @@ public class Repairer {
                 return Optional.of(candidate);
             }
 
-            counterexamples.add(ans);
+            counterexamples.add(new CounterExample(ans, 1));
 
             boolean prune = canPruneWithVariabilization(candidate, ans);
-            if(prune){
+            if (prune) {
                 mutationStepper.addVariabilization(candidate);
             }
 
@@ -139,21 +162,21 @@ public class Repairer {
         return Optional.empty();
     }
 
-    public long getGeneratedTotal(){
+    public long getGeneratedTotal() {
         return mutationStepper.candidates.size();
     }
 
-    public long getPrunnedTotal(){
+    public long getPrunnedTotal() {
         return mutationStepper.candidates.stream().filter(c -> c.prunned.isPresent()).count();
     }
 
-    public long getPrunnedBy(PruneReason pruneReason){
+    public long getPrunnedBy(PruneReason pruneReason) {
         return mutationStepper.candidates.stream()
                 .filter(c -> c.prunned.isPresent() && c.prunned.get().equals(pruneReason))
                 .count();
     }
 
-    public String generatedJSON(){
+    public String generatedJSON() {
         return mutationStepper.candidates.get(0).toJSON();
     }
 }

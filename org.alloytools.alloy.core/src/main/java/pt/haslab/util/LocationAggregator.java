@@ -7,6 +7,7 @@ import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Stack;
 
 public class LocationAggregator {
 
@@ -15,9 +16,10 @@ public class LocationAggregator {
 
         VisitQuery<Void> visitQuery = new VisitQuery<Void>() {
             boolean insideDecl = false;
+            final Stack<ExprHasName> vars = new Stack<>();
 
-            private void add(Expr e){
-                ret.add(new Location(e, insideDecl));
+            private void add(Expr e) {
+                ret.add(new Location(e, insideDecl, new ArrayList<>(vars)));
             }
 
             public Void visit(ExprBinary x) throws Err {
@@ -28,7 +30,7 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprList x) throws Err {
-                for(Expr arg : x.args){
+                for (Expr arg : x.args) {
                     visitThis(arg);
                 }
                 add(x);
@@ -56,11 +58,23 @@ public class LocationAggregator {
             public Void visit(ExprQt x) throws Err {
                 boolean currInsideDecl = insideDecl;
                 insideDecl = true;
-                for(Decl decl : x.decls){
+                for (Decl decl : x.decls) {
                     visitThis(decl.expr);
                 }
                 insideDecl = currInsideDecl;
+
+                int added = 0;
+                for (Decl d : x.decls) {
+                    for (ExprHasName e : d.names) {
+                        vars.push(e);
+                        added++;
+                    }
+                }
                 visitThis(x.sub);
+                for (int i = 0; i < added; i++) {
+                    vars.pop();
+                }
+
                 add(x);
                 return null;
             }
