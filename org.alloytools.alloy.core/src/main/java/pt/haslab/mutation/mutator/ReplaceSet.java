@@ -18,30 +18,41 @@ public class ReplaceSet extends Mutator {
         this.name = original + "->" + expr;
     }
 
-    private static List<Mutator> generateFromSig(Expr original, ConstList<Sig> sigs, List<ExprHasName> vars, Sig mutSig){
+    private static List<Mutator> generateFromSig(Expr original, ConstList<Sig> sigs, List<ExprHasName> vars, Sig mutSig) {
         ArrayList<Mutator> ret = new ArrayList<>();
-        for(Sig sig : sigs){
-            if(mutSig.type() == sig.type() && !mutSig.equals(sig)){
+        for (Sig sig : sigs) {
+            if (mutSig.type() == sig.type() && !mutSig.equals(sig)) {
                 ret.add(new ReplaceSet(ExprMaker.make(sig, ExprUnary.Op.NOOP), original));
             }
         }
-        for(ExprHasName var : vars){
-            if(mutSig.type() == var.type()){
+
+        for (ExprHasName var : vars) {
+            if (mutSig.type() == var.type()) {
                 ret.add(new ReplaceSet(ExprMaker.make(var, ExprUnary.Op.NOOP), original));
+            }
+        }
+
+        for (int i = 0; i < sigs.size(); i++) {
+            for (int j = i + 1; j < sigs.size(); j++) {
+                if(mutSig.type() == sigs.get(i).type() && sigs.get(i).type().equals(sigs.get(j).type())){
+                    Expr left = ExprMaker.make(sigs.get(i), ExprUnary.Op.NOOP);
+                    Expr right = ExprMaker.make(sigs.get(j), ExprUnary.Op.NOOP);
+                    ret.add(new ReplaceSet(ExprMaker.make(left, right, ExprBinary.Op.PLUS), original));
+                }
             }
         }
         return ret;
     }
 
-    private static List<Mutator> generateFromVar(Expr original, ConstList<Sig> sigs, List<ExprHasName> vars, ExprVar mutSig){
+    private static List<Mutator> generateFromVar(Expr original, ConstList<Sig> sigs, List<ExprHasName> vars, ExprVar mutSig) {
         ArrayList<Mutator> ret = new ArrayList<>();
-        for(Sig sig : sigs){
-            if(mutSig.type() == sig.type()){
+        for (Sig sig : sigs) {
+            if (mutSig.type() == sig.type()) {
                 ret.add(new ReplaceSet(ExprMaker.make(sig, ExprUnary.Op.NOOP), original));
             }
         }
-        for(ExprHasName var : vars){
-            if(mutSig.type() == var.type() && !mutSig.equals(var)){
+        for (ExprHasName var : vars) {
+            if (mutSig.type() == var.type() && !mutSig.equals(var)) {
                 ret.add(new ReplaceSet(ExprMaker.make(var, ExprUnary.Op.NOOP), original));
             }
         }
@@ -50,14 +61,14 @@ public class ReplaceSet extends Mutator {
 
     public static List<Mutator> generate(Location location, ConstList<Sig> sigs) {
         Expr expr = location.expr;
-        if(!(expr instanceof ExprUnary) || (((ExprUnary) expr).op != ExprUnary.Op.NOOP)){
+        if (!(expr instanceof ExprUnary) || (((ExprUnary) expr).op != ExprUnary.Op.NOOP)) {
             return new ArrayList<>();
         }
         Expr sub = ((ExprUnary) expr).sub;
 
-        if(sub instanceof Sig){
+        if (sub instanceof Sig) {
             return generateFromSig(expr, sigs, location.vars, (Sig) sub);
-        } else if(sub instanceof ExprVar){
+        } else if (sub instanceof ExprVar) {
             return generateFromVar(expr, sigs, location.vars, (ExprVar) sub);
         }
 
