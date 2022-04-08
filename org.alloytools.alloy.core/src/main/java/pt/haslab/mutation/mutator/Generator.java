@@ -26,6 +26,7 @@ public class Generator {
             ret.addAll(RemoveBinaryOperator.generate(expr));
             ret.addAll(TransmuteBinaryOperator.generate(location));
             ret.addAll(ReplaceSet.generate(location, sigs));
+            ret.addAll(ExprQtMutator.generate(location, sigs));
         }
         return ret;
     }
