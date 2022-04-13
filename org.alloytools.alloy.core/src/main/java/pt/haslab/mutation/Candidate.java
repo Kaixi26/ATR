@@ -10,7 +10,6 @@ import java.util.stream.Collectors;
 
 public class Candidate {
     public final List<Mutator> mutators;
-    public final Candidate parent;
     public List<Candidate> children = null;
     public Optional<PruneReason> prunned = Optional.empty();
 
@@ -20,7 +19,6 @@ public class Candidate {
     private final Set<Expr> blacklisted;
 
     Candidate(Candidate parent, List<Mutator> mutators, Set<Expr> blacklisted) {
-        this.parent = parent;
         this.mutators = mutators;
         this.blacklisted = blacklisted;
         this.variabilizationID = calculateVariabilizationID(mutators);

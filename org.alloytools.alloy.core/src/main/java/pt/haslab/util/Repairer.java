@@ -8,7 +8,10 @@ import edu.mit.csail.sdg.ast.Func;
 import edu.mit.csail.sdg.ast.Module;
 import edu.mit.csail.sdg.translator.A4Options;
 import edu.mit.csail.sdg.translator.A4Solution;
+import edu.mit.csail.sdg.translator.A4TupleSet;
 import edu.mit.csail.sdg.translator.TranslateAlloyToKodkod;
+import kodkod.ast.Expression;
+import kodkod.ast.Formula;
 import pt.haslab.mutation.Candidate;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.MutationStepper;
@@ -41,6 +44,19 @@ public class Repairer {
         CounterExample(A4Solution cex, int ocurrences) {
             this.cex = cex;
             this.ocurrences = ocurrences;
+        }
+
+        boolean eval(Expr formula, int state){
+            return (boolean) cex.eval(formula, state);
+        }
+
+        boolean evalAllStates(Expr formula) {
+            for (int i = 0; i<cex.getTraceLength(); i++) {
+                if(this.eval(formula, i)){
+                    return true;
+                }
+            }
+            return false;
         }
 
         @Override
@@ -100,15 +116,13 @@ public class Repairer {
     public boolean attemptPruneWithPreviousCounterexample() {
         for (int i = 0; i < counterexamples.size(); i++) {
             CounterExample counterExample = counterexamples.get(i);
-            if ((boolean) counterExample.cex.eval(command.formula)) {
+            if (counterExample.evalAllStates(command.formula)) {
                 counterExample.ocurrences++;
-                if(i > 0 && counterExample.ocurrences > counterexamples.get(i-1).ocurrences){
-                    counterexamples.set(i, counterexamples.get(i-1));
-                    counterexamples.set(i-1, counterExample);
+                if (i > 0 && counterExample.ocurrences > counterexamples.get(i - 1).ocurrences) {
+                    Collections.swap(counterexamples, i, i - 1);
                 }
                 return true;
             }
-
         }
         return false;
     }
