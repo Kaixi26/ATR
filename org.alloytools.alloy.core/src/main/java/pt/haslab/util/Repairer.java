@@ -12,6 +12,7 @@ import edu.mit.csail.sdg.translator.A4TupleSet;
 import edu.mit.csail.sdg.translator.TranslateAlloyToKodkod;
 import kodkod.ast.Expression;
 import kodkod.ast.Formula;
+import org.eclipse.jdt.annotation.Nullable;
 import pt.haslab.mutation.Candidate;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.MutationStepper;
@@ -20,6 +21,7 @@ import pt.haslab.mutation.PruneReason;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class Repairer {
     static final A4Reporter rep = new A4Reporter();
@@ -46,13 +48,13 @@ public class Repairer {
             this.ocurrences = ocurrences;
         }
 
-        boolean eval(Expr formula, int state){
+        boolean eval(Expr formula, int state) {
             return (boolean) cex.eval(formula, state);
         }
 
         boolean evalAllStates(Expr formula) {
-            for (int i = 0; i<cex.getTraceLength(); i++) {
-                if(this.eval(formula, i)){
+            for (int i = 0; i < cex.getTraceLength(); i++) {
+                if (this.eval(formula, i)) {
                     return true;
                 }
             }
@@ -99,21 +101,37 @@ public class Repairer {
         return ret;
     }
 
-    /* If true it means there might be a solution in the location of the current candidate */
-    public boolean canPruneWithVariabilization(Candidate candidate, A4Solution ans) {
-        for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
-            Optional<Expr> variabilized = candidate.variabilize(e.getValue());
-            if (variabilized.isPresent()) {
-                e.getKey().setBody(variabilized.get());
-            } else {
+    public boolean canPruneWithVariabilization(Candidate candidate, A4Solution cex) {
+        List<Expr> suspectExpressions = new ArrayList<>(funcOriginalBody.values());
+
+        List<Map<Expr, Expr>> variabilizations = candidate.variabilize(suspectExpressions);
+        if (variabilizations == null) {
+            return false;
+        }
+
+        boolean[] results = new boolean[cex.getTraceLength()];
+        Arrays.fill(results, true);
+
+        for (Map<Expr, Expr> variabilization : variabilizations) {
+            for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
+                e.getKey().setBody(variabilization.get(e.getValue()));
+            }
+            for (int i = 0; i < cex.getTraceLength(); i++) {
+                results[i] = results[i] && (boolean) cex.eval(command.formula);
+            }
+        }
+
+        for (boolean result : results) {
+            if (result) {
                 return false;
             }
-            //System.out.println(e.getKey().getBody());
         }
-        return false;//(boolean) ans.eval(command.formula);
+
+        return true;
     }
 
-    public boolean attemptPruneWithPreviousCounterexample() {
+    @Nullable
+    public CounterExample attemptPruneWithPreviousCounterexample() {
         for (int i = 0; i < counterexamples.size(); i++) {
             CounterExample counterExample = counterexamples.get(i);
             if (counterExample.evalAllStates(command.formula)) {
@@ -121,10 +139,10 @@ public class Repairer {
                 if (i > 0 && counterExample.ocurrences > counterexamples.get(i - 1).ocurrences) {
                     Collections.swap(counterexamples, i, i - 1);
                 }
-                return true;
+                return counterExample;
             }
         }
-        return false;
+        return null;
     }
 
 
@@ -147,9 +165,15 @@ public class Repairer {
                 e.getKey().setBody(candidate.apply(e.getValue()));
             }
 
-            if (attemptPruneWithPreviousCounterexample()) {
-                candidate.prunned = Optional.of(PruneReason.PREVIOUS_CEX);
-                continue;
+            {
+                CounterExample pruneCounterexample = attemptPruneWithPreviousCounterexample();
+                if (pruneCounterexample != null) {
+                    candidate.prunned = Optional.of(PruneReason.PREVIOUS_CEX);
+                    if (canPruneWithVariabilization(candidate, pruneCounterexample.cex)) {
+                        mutationStepper.pruneByVariabilization(candidate);
+                    }
+                    continue;
+                }
             }
 
             A4Solution ans =
@@ -160,6 +184,10 @@ public class Repairer {
                 //System.out.println(candidate);
                 //System.out.println(candidate.variabilizationID);
                 //System.out.println("Found!");
+                //for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
+                //    e.getKey().setBody(candidate.apply(e.getValue()));
+                //    System.out.println(candidate.variabilize(e.getValue()));
+                //}
                 solution = Optional.of(candidate);
                 repairStatus = RepairStatus.SUCCESS;
                 return Optional.of(candidate);
@@ -167,10 +195,6 @@ public class Repairer {
 
             counterexamples.add(new CounterExample(ans, 1));
 
-            boolean prune = canPruneWithVariabilization(candidate, ans);
-            if (prune) {
-                mutationStepper.addVariabilization(candidate);
-            }
 
             //System.out.println(candidate);
             //System.out.println("---------------");

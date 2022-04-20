@@ -67,21 +67,29 @@ public class MutationStepper {
     public boolean next() {
         while (step()) {
             Candidate curr = getCurrent();
+            curr.visited = true;
             String extensionalityID = curr.getExtensionalityID();
             if (extensionalities.putIfAbsent(extensionalityID, curr) != null) {
                 curr.prunned = Optional.of(PruneReason.EXTENSIONALITY);
                 continue;
             } else if (variabilizations.containsKey(curr.getVariabilizationID())) {
-               curr.prunned = Optional.of(PruneReason.VARIABILIZATION);
-               continue;
+                curr.prunned = Optional.of(PruneReason.VARIABILIZATION);
+                continue;
             }
             return true;
         }
         return false;
     }
 
-    public void addVariabilization(Candidate candidate) {
-        variabilizations.putIfAbsent(candidate.getVariabilizationID(), candidate);
+    public void pruneByVariabilization(Candidate candidate) {
+        Expr variabilizedMutatorOriginal = candidate.mutators.get(candidate.mutators.size() - 1).original;
+        candidate.parent.children.stream()
+                .filter(c -> c.mutators.get(c.mutators.size() - 1).original == variabilizedMutatorOriginal)
+                .forEach(c -> {
+                    if (!c.visited) {
+                        c.prunned = Optional.of(PruneReason.VARIABILIZATION);
+                    }
+                });
     }
 
 }

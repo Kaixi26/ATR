@@ -1,8 +1,11 @@
 package pt.haslab.mutation;
 
 import edu.mit.csail.sdg.ast.Expr;
+import edu.mit.csail.sdg.ast.ExprConstant;
 import edu.mit.csail.sdg.ast.Module;
+import org.eclipse.jdt.annotation.Nullable;
 import pt.haslab.mutation.mutator.Mutator;
+import pt.haslab.util.ExprMaker;
 import pt.haslab.util.Variabilizer;
 
 import java.util.*;
@@ -10,8 +13,10 @@ import java.util.stream.Collectors;
 
 public class Candidate {
     public final List<Mutator> mutators;
+    public final Candidate parent;
     public List<Candidate> children = null;
     public Optional<PruneReason> prunned = Optional.empty();
+    public boolean visited = false;
 
     public final String extensionalityID;
     public final String variabilizationID;
@@ -23,9 +28,10 @@ public class Candidate {
         this.blacklisted = blacklisted;
         this.variabilizationID = calculateVariabilizationID(mutators);
         this.extensionalityID = calculateExtensionalityID(mutators);
+        this.parent = parent;
     }
 
-    public static Candidate empty(){
+    public static Candidate empty() {
         return new Candidate(null, new ArrayList<>(), new HashSet<>());
     }
 
@@ -33,9 +39,59 @@ public class Candidate {
         return MutatorApplier.make(mutators).apply(mutationTarget);
     }
 
-    public Optional<Expr> variabilize(Expr mutationTarget) {
-        Optional<Expr> variabilized = Variabilizer.variabilize(mutationTarget, mutators.get(mutators.size() - 1).original);
-        return variabilized.map(this::apply);
+    @Nullable
+    public List<Expr> variabilize(Expr mutationTarget) {
+        int sz = this.mutators.size();
+        if (sz == 0) {
+            return null;
+        }
+
+        if (!this.mutators.get(sz - 1).original.type().is_bool) {
+            return null;
+        }
+
+        Expr[] bools = {
+                ExprConstant.makeNUMBER(0).equal(ExprConstant.makeNUMBER(1)),
+                ExprConstant.makeNUMBER(1).equal(ExprConstant.makeNUMBER(1))
+        };
+
+        Expr intialMutated = this.parent.apply(mutationTarget);
+
+        return Arrays.stream(bools).map(b -> {
+            Mutator mutator = Mutator.make(mutators.get(sz - 1).original, b);
+            List<Mutator> mutators = Collections.singletonList(mutator);
+            return MutatorApplier.make(mutators).apply(intialMutated);
+        }).collect(Collectors.toList());
+    }
+
+    public List<Map<Expr, Expr>> variabilize(List<Expr> mutationTargets) {
+        int sz = this.mutators.size();
+        if (sz == 0) {
+            return null;
+        }
+
+        if (!this.mutators.get(sz - 1).original.type().is_bool) {
+            return null;
+        }
+
+        Expr[] bools = {
+                ExprConstant.makeNUMBER(0).equal(ExprConstant.makeNUMBER(1)),
+                ExprConstant.makeNUMBER(1).equal(ExprConstant.makeNUMBER(1))
+        };
+
+        List<Map<Expr, Expr>> ret = new ArrayList();
+        for (Expr bool : bools) {
+            Map<Expr, Expr> mappings = new HashMap<>();
+            for (Expr mutationTarget : mutationTargets) {
+                Mutator mutator = Mutator.make(mutators.get(sz - 1).original, bool);
+                List<Mutator> mutators = new ArrayList<>(this.mutators);
+                mutators.set(sz - 1, mutator);
+                mappings.put(mutationTarget, MutatorApplier.make(mutators).apply(mutationTarget));
+            }
+            ret.add(mappings);
+        }
+
+        return ret;
     }
 
     @Override
@@ -47,7 +103,7 @@ public class Candidate {
         if (this.children == null) {
             this.children = new ArrayList<>();
             for (Mutator mutator : mutators) {
-                if(this.blacklisted.contains(mutator.original)){
+                if (this.blacklisted.contains(mutator.original)) {
                     continue;
                 }
 
@@ -68,7 +124,7 @@ public class Candidate {
     private static String calculateVariabilizationID(List<Mutator> mutators) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < mutators.size(); i++) {
-            if(i > 0){
+            if (i > 0) {
                 sb.append(",");
             }
             sb.append(System.identityHashCode(mutators.get(i).original));
