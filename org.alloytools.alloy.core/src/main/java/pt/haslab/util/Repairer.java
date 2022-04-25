@@ -2,6 +2,8 @@ package pt.haslab.util;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
 import edu.mit.csail.sdg.alloy4.Pair;
+import edu.mit.csail.sdg.alloy4.Util;
+import edu.mit.csail.sdg.alloy4.Version;
 import edu.mit.csail.sdg.ast.Command;
 import edu.mit.csail.sdg.ast.Expr;
 import edu.mit.csail.sdg.ast.Func;
@@ -23,6 +25,9 @@ import java.time.Instant;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static edu.mit.csail.sdg.alloy4.A4Preferences.*;
+import static edu.mit.csail.sdg.alloy4.A4Preferences.DecomposePref;
+
 public class Repairer {
     static final A4Reporter rep = new A4Reporter();
     static final A4Options opts = new A4Options();
@@ -38,6 +43,17 @@ public class Repairer {
     public Optional<Candidate> solution = Optional.empty();
 
     ArrayList<CounterExample> counterexamples = new ArrayList<>();
+
+    static {
+        Repairer.opts.recordKodkod = RecordKodkod.get();
+        Repairer.opts.noOverflow = NoOverflow.get();
+        Repairer.opts.unrolls = Version.experimental ? Unrolls.get() : (-1);
+        Repairer.opts.skolemDepth = SkolemDepth.get();
+        Repairer.opts.coreMinimization = CoreMinimization.get();
+        Repairer.opts.inferPartialInstance = InferPartialInstance.get();
+        Repairer.opts.coreGranularity = CoreGranularity.get();
+        Repairer.opts.decompose_mode = DecomposePref.get().ordinal();
+    }
 
     private static class CounterExample {
         public final A4Solution cex;
@@ -73,7 +89,8 @@ public class Repairer {
         NOT_STARTED,
         FAIL,
         TIMEOUT,
-        SUCCESS
+        SUCCESS,
+        ALREADY_CORRECT,
     }
 
     private Repairer(Module module, Command command, ArrayList<Func> repairTargets) {
@@ -88,7 +105,7 @@ public class Repairer {
         for (Func repairTarget : repairTargets) {
             ret.funcOriginalBody.put(repairTarget, repairTarget.getBody());
 
-            Collection<Location> repairTargetLocations = LocationAggregator.BreadthBottomUp(repairTarget.getBody());
+            Collection<Location> repairTargetLocations = LocationAggregator.DepthFirst(repairTarget.getBody());
             ret.repairTargetLocations.addAll(repairTargetLocations);
 
             for (Location repairTargetLocation : repairTargetLocations) {
@@ -151,6 +168,11 @@ public class Repairer {
     }
 
     public Optional<Candidate> repair(long ms_timeout) {
+        if(!TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts).satisfiable()){
+            this.solution = Optional.of(Candidate.empty());
+            this.repairStatus = RepairStatus.ALREADY_CORRECT;
+            return this.solution;
+        }
 
         Instant time_begin = Instant.now();
 
@@ -194,6 +216,9 @@ public class Repairer {
             }
 
             counterexamples.add(new CounterExample(ans, 1));
+            if (canPruneWithVariabilization(candidate, ans)) {
+                mutationStepper.pruneByVariabilization(candidate);
+            }
 
 
             //System.out.println(candidate);

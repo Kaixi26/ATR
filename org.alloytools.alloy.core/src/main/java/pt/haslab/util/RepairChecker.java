@@ -1,27 +1,21 @@
 package pt.haslab.util;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
-import edu.mit.csail.sdg.alloy4.Util;
-import edu.mit.csail.sdg.alloy4.Version;
 import edu.mit.csail.sdg.ast.Command;
 import edu.mit.csail.sdg.ast.Func;
 import edu.mit.csail.sdg.ast.Module;
+import edu.mit.csail.sdg.ast.Sig;
 import edu.mit.csail.sdg.parser.CompUtil;
-import edu.mit.csail.sdg.translator.A4Options;
-import pt.haslab.mutation.Candidate;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-
-import static edu.mit.csail.sdg.alloy4.A4Preferences.ImplicitThis;
 
 public class RepairChecker {
 
-    public static Repairer attemptRepair(String filename, int maxDepth, long timeout) {
+    public static Repairer attemptRepair(String filename, int maxDepth, long timeout) throws IOException {
         Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, null, filename);
-        //Module world = CompUtil.parseEverything_fromString(A4Reporter.NOP, content);
 
         Optional<Command> cmd = world.getAllCommands().stream()
                 .filter(c -> (c.label.equals("this/__repair") || c.label.equals("__repair")) && c.check)
@@ -40,7 +34,7 @@ public class RepairChecker {
 
         return rep;
     }
-    public static Repairer attemptRepair(String content, long timeout) {
+    public static Repairer attemptRepair(String content, long timeout) throws IOException {
         return attemptRepair(content, 3, timeout);
     }
 }
