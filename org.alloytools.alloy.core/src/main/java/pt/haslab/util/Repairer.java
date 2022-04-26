@@ -105,7 +105,7 @@ public class Repairer {
         for (Func repairTarget : repairTargets) {
             ret.funcOriginalBody.put(repairTarget, repairTarget.getBody());
 
-            Collection<Location> repairTargetLocations = LocationAggregator.DepthFirst(repairTarget.getBody());
+            Collection<Location> repairTargetLocations = LocationAggregator.BreadthBottomUp(repairTarget.getBody());
             ret.repairTargetLocations.addAll(repairTargetLocations);
 
             for (Location repairTargetLocation : repairTargetLocations) {

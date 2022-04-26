@@ -104,19 +104,7 @@ public class MutatorApplier extends VisitReturn<Expr> {
             moreDecls.add(new Decl(decl.isPrivate, decl.disjoint, decl.disjoint2, decl.isVar, decl.names, visitThis(decl.expr)));
         }
 
-        Decl head = moreDecls.remove(0);
-        switch (x.op){
-            case NO:
-                return visitThis(x.sub).forNo(head, moreDecls.toArray(new Decl[0]));
-            case SOME:
-                return visitThis(x.sub).forSome(head, moreDecls.toArray(new Decl[0]));
-            case ALL:
-                return visitThis(x.sub).forAll(head, moreDecls.toArray(new Decl[0]));
-            case ONE:
-                return visitThis(x.sub).forOne(head, moreDecls.toArray(new Decl[0]));
-            default:
-                throw new NotImplementedException();
-        }
+        return ExprMaker.make(moreDecls, visitThis(x.sub), x.op);
     }
 
     @Override

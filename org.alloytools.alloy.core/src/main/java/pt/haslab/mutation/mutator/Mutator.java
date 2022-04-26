@@ -2,32 +2,61 @@ package pt.haslab.mutation.mutator;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.alloy4.Pos;
-import edu.mit.csail.sdg.ast.Expr;
-import edu.mit.csail.sdg.ast.Sig;
+import edu.mit.csail.sdg.ast.*;
 import org.eclipse.jdt.annotation.NonNull;
 
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import static edu.mit.csail.sdg.ast.ExprUnary.Op.*;
+import static edu.mit.csail.sdg.ast.ExprUnary.Op.ONE;
 
 public class Mutator {
+
+    public static final Set<ExprUnary.Op> uops_bool2bool =
+            Stream.of(ExprUnary.Op.NOT, ExprUnary.Op.AFTER, ExprUnary.Op.ALWAYS, ExprUnary.Op.EVENTUALLY, ExprUnary.Op.BEFORE, ExprUnary.Op.HISTORICALLY, ExprUnary.Op.ONCE).collect(Collectors.toSet());
+
+    public static final Set<ExprUnary.Op> uops_set2bool =
+            new HashSet<>(Arrays.asList(NO, SOME, LONE, ONE));
+
+    public static final Set<ExprBinary.Op> bops_boolbool2bool =
+            Stream.of(ExprBinary.Op.AND, ExprBinary.Op.OR, ExprBinary.Op.IFF, ExprBinary.Op.IMPLIES, ExprBinary.Op.UNTIL, ExprBinary.Op.RELEASES, ExprBinary.Op.SINCE, ExprBinary.Op.TRIGGERED).collect(Collectors.toSet());
+
+    public static final Set<ExprBinary.Op> bops_setset2set =
+            Stream.of(ExprBinary.Op.PLUS, ExprBinary.Op.MINUS, ExprBinary.Op.INTERSECT).collect(Collectors.toSet());
+
+    public static Set<ExprBinary.Op> bops_setset2bool =
+            Stream.of(ExprBinary.Op.IN, ExprBinary.Op.NOT_IN).collect(Collectors.toSet());
+
+    public static Set<ExprQt.Op> exprqts_expr2bool =
+            Stream.of(ExprQt.Op.NO, ExprQt.Op.ONE, ExprQt.Op.LONE, ExprQt.Op.SOME, ExprQt.Op.ALL).collect(Collectors.toSet());
+
     public Expr original;
     public Expr mutant;
     public Set<Expr> blacklisted = new HashSet<>();
 
+    /* Mutators made available only when this mutator is applied */
+    private List<Mutator> generatedMutators = null;
+
     public String name = "Mutator";
 
-    public static List<Mutator> generate(Expr ignoredExpr){
-        return new ArrayList<>();
-    }
-
-    public static List<Mutator> generate(Expr ignoredExpr, ConstList<Sig> ignoredSigs){
-        return generate(ignoredExpr);
-    }
-
-    public static Mutator make(@NonNull Expr original, @NonNull Expr mutant){
+    public static Mutator make(@NonNull Expr original, @NonNull Expr mutant) {
         Mutator ret = new Mutator();
         ret.original = original;
         ret.mutant = mutant;
         return ret;
+    }
+
+    private List<Mutator> calculateGeneratedMutators() {
+        return new ArrayList<>();
+    }
+
+    public List<Mutator> getGeneratedMutators() {
+        if (this.generatedMutators == null) {
+            this.generatedMutators = calculateGeneratedMutators();
+        }
+        return this.generatedMutators;
     }
 
     @Override
@@ -39,14 +68,14 @@ public class Mutator {
                 "}";
     }
 
-    public String toJSON(){
+    public String toJSON() {
         return "{" +
                 "\"mutator\": \"" + this + "\"," +
                 "\"pos\": \"" + this.mutant.pos + "\"" +
                 "}";
     }
 
-    public String describe(){
+    public String describe() {
         return this.getClass().getSimpleName() + "\n"
                 + this.original.pos + "\n"
                 + "<|" + this.original + "\n"

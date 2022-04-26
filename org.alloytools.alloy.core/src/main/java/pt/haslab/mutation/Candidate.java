@@ -40,30 +40,6 @@ public class Candidate {
     }
 
     @Nullable
-    public List<Expr> variabilize(Expr mutationTarget) {
-        int sz = this.mutators.size();
-        if (sz == 0) {
-            return null;
-        }
-
-        if (!this.mutators.get(sz - 1).original.type().is_bool) {
-            return null;
-        }
-
-        Expr[] bools = {
-                ExprConstant.makeNUMBER(0).equal(ExprConstant.makeNUMBER(1)),
-                ExprConstant.makeNUMBER(1).equal(ExprConstant.makeNUMBER(1))
-        };
-
-        Expr intialMutated = this.parent.apply(mutationTarget);
-
-        return Arrays.stream(bools).map(b -> {
-            Mutator mutator = Mutator.make(mutators.get(sz - 1).original, b);
-            List<Mutator> mutators = Collections.singletonList(mutator);
-            return MutatorApplier.make(mutators).apply(intialMutated);
-        }).collect(Collectors.toList());
-    }
-
     public List<Map<Expr, Expr>> variabilize(List<Expr> mutationTargets) {
         int sz = this.mutators.size();
         if (sz == 0) {
@@ -79,7 +55,7 @@ public class Candidate {
                 ExprConstant.makeNUMBER(1).equal(ExprConstant.makeNUMBER(1))
         };
 
-        List<Map<Expr, Expr>> ret = new ArrayList();
+        List<Map<Expr, Expr>> ret = new ArrayList<>();
         for (Expr bool : bools) {
             Map<Expr, Expr> mappings = new HashMap<>();
             for (Expr mutationTarget : mutationTargets) {
