@@ -55,7 +55,7 @@ public class Variabilizer {
         if(varabilized.type().is_bool){
             return Optional.of(varabilizeBool(root, varabilized));
         } else if(varabilized.type().is_int()) {
-            throw new NotImplementedException();
+            throw new RuntimeException("Not Implemented");
         } else {
             return Optional.empty();
             //return varabilizeSig(root, varabilized);

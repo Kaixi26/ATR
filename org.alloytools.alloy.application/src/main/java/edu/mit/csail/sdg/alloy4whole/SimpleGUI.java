@@ -173,6 +173,7 @@ import pt.haslab.mutation.PruneReason;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.LocationAggregator;
 import pt.haslab.util.ReferencedFunctions;
+import pt.haslab.util.RepairChecker;
 import pt.haslab.util.Repairer;
 
 /**
@@ -2451,62 +2452,33 @@ public final class SimpleGUI implements ComponentListener, Listener {
         }
         try {
 
-            A4Options opt = new A4Options();
-            int resolutionMode = (Version.experimental && ImplicitThis.get()) ? 2 : 1;
-            opt.tempDirectory = alloyHome(frame) + fs + "tmp";
-            opt.solverDirectory = alloyHome(frame) + fs + "binary";
-            opt.originalFilename = Util.canon(text.get().getFilename());
-            Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, text.takeSnapshot(), opt.originalFilename, 1);
-            //Module world = CompUtil.parseEverything_fromString(A4Reporter.NOP, text.get().getText());
+            Repairer rep = RepairChecker.attemptRepair(text.get().getFilename(), 1000*60);
+            System.out.println(text.get().getFilename());
 
-            Optional<Command> cmd = world.getAllCommands().stream()
-                    .filter(c -> (c.label.equals("this/__repair") || c.label.equals("__repair")) && c.check)
-                    .findAny();
+            log.log("Total generated " + rep.getGeneratedTotal() + "\n");
+            log.log("Prunned " + rep.getPrunnedTotal() + "\n");
+            log.log("Prunned by extensionality " + rep.getPrunnedBy(PruneReason.EXTENSIONALITY) + "\n");
+            log.log("Prunned by variabilization " + rep.getPrunnedBy(PruneReason.VARIABILIZATION) + "\n");
+            log.log("Prunned by previous cex " + rep.getPrunnedBy(PruneReason.PREVIOUS_CEX) + "\n");
+            log.log("Tested " + (rep.mutationStepper) + "\n");
 
-            List<Func> funcs = new ArrayList<>();
-            for(Func func : world.getAllFunc()){
-                if(func.label.equals("this/__repair") || func.label.equals("__repair")){
-                    funcs.addAll(ReferencedFunctions.find(func));
-                    break;
-                }
-            }
-
-            if(!cmd.isPresent() || !(funcs.size() > 0)){
-                if(!cmd.isPresent()){
-                    log.logRed("'__repair__' command not defined.\n");
-                }
-                if(!(funcs.size() > 0)){
-                    log.logRed("'__repair__' pred doesn't mention any predicates.\n");
-                }
+            if(rep.solution.isPresent()){
+                Candidate solution = rep.solution.get();
+                log.log("Solution found\n");
+                //for(Mutator mut : solution.mutators){
+                //    log.log("\t" + mut.toString() + "\n");
+                //}
+                text.shade(
+                        solution.mutators.stream().map(mut -> mut.original.pos).collect(Collectors.toList()),
+                        new Color(0.9f, 0.4f, 0.4f),
+                        true
+                );
             } else {
-                log.log("Attempting to repair check '" + cmd.get().label + "' altering func '" + funcs.stream().map(f -> f.label).collect(Collectors.toList()) + "'.\n");
-                log.flush();
-
-                Repairer rep = Repairer.make(world, cmd.get(), funcs, 2);
-                Optional<Candidate> solution = rep.repair();
-
-                log.log("Total generated " + rep.getGeneratedTotal() + "\n");
-                log.log("Prunned " + rep.getPrunnedTotal() + "\n");
-                log.log("Prunned by extensionality " + rep.getPrunnedBy(PruneReason.EXTENSIONALITY) + "\n");
-                log.log("Prunned by variabilization " + rep.getPrunnedBy(PruneReason.VARIABILIZATION) + "\n");
-                log.log("Tested " + (rep.getGeneratedTotal() - rep.getPrunnedTotal()) + "\n");
-                if(solution.isPresent()){
-                    log.log("Solution found\n");
-                    for(Mutator mut : solution.get().mutators){
-                        log.log("\t" + mut.toString() + "\n");
-                    }
-                    text.shade(
-                            solution.get().mutators.stream().map(mut -> mut.original.pos).collect(Collectors.toList()),
-                            new Color(0.9f, 0.4f, 0.4f),
-                            true
-                    );
-                } else {
-                    log.log("Solution not found.\n");
-                }
-                log.logDivider();
-                log.flush();
-
+                log.log("Solution not found.\n");
             }
+            log.logDivider();
+            log.flush();
+
         } catch (Exception e){
             log.logRed(e.toString());
         }

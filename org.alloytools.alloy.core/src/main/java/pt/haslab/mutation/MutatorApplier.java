@@ -84,12 +84,12 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprITE x) throws Err {
-        throw new NotImplementedException();
+        throw new RuntimeException("Not Implemented");
     }
 
     @Override
     public Expr visit(ExprLet x) throws Err {
-        throw new NotImplementedException();
+        throw new RuntimeException("Not Implemented");
     }
 
     @Override

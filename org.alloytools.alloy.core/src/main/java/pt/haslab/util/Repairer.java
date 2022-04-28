@@ -1,8 +1,6 @@
 package pt.haslab.util;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
-import edu.mit.csail.sdg.alloy4.Pair;
-import edu.mit.csail.sdg.alloy4.Util;
 import edu.mit.csail.sdg.alloy4.Version;
 import edu.mit.csail.sdg.ast.Command;
 import edu.mit.csail.sdg.ast.Expr;
@@ -10,10 +8,7 @@ import edu.mit.csail.sdg.ast.Func;
 import edu.mit.csail.sdg.ast.Module;
 import edu.mit.csail.sdg.translator.A4Options;
 import edu.mit.csail.sdg.translator.A4Solution;
-import edu.mit.csail.sdg.translator.A4TupleSet;
 import edu.mit.csail.sdg.translator.TranslateAlloyToKodkod;
-import kodkod.ast.Expression;
-import kodkod.ast.Formula;
 import org.eclipse.jdt.annotation.Nullable;
 import pt.haslab.mutation.Candidate;
 import pt.haslab.mutation.Location;
@@ -23,13 +18,11 @@ import pt.haslab.mutation.PruneReason;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import static edu.mit.csail.sdg.alloy4.A4Preferences.*;
-import static edu.mit.csail.sdg.alloy4.A4Preferences.DecomposePref;
 
 public class Repairer {
-    static final A4Reporter rep = new A4Reporter();
+    static final A4Reporter rep = A4Reporter.NOP;
     static final A4Options opts = new A4Options();
     final Module module;
     Command command;
@@ -85,7 +78,7 @@ public class Repairer {
 
     private RepairStatus repairStatus = RepairStatus.NOT_STARTED;
 
-    public static enum RepairStatus {
+    public enum RepairStatus {
         NOT_STARTED,
         FAIL,
         TIMEOUT,

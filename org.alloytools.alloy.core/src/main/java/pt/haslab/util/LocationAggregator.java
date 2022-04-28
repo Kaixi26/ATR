@@ -46,11 +46,11 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprITE x) throws Err {
-                throw new NotImplementedException();
+                throw new RuntimeException("Not Implemented");
             }
 
             public Void visit(ExprLet x) throws Err {
-                throw new NotImplementedException();
+                throw new RuntimeException("Not Implemented");
             }
 
             public Void visit(ExprQt x) throws Err {
@@ -141,11 +141,11 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprITE x) throws Err {
-                throw new NotImplementedException();
+                throw new RuntimeException("Not Implemented");
             }
 
             public Void visit(ExprLet x) throws Err {
-                throw new NotImplementedException();
+                throw new RuntimeException("Not Implemented");
             }
 
             public Void visit(ExprQt x) throws Err {

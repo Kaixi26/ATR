@@ -3,7 +3,7 @@
 -includeresource: \
     src/main/resources, \
     @${repo;slf4j.api}, \
-    
+
 -buildpath: \
 	org.alloytools:pardinus.core;version=1.3.0,\
 	org.alloytools:pardinus.nativesat;version=1.3.0,\
@@ -19,6 +19,9 @@
 Export-Package: \
 	edu.mit.csail.sdg.alloy4,\
 	edu.mit.csail.sdg.ast,\
+	pt.haslab.mutation,\
+	pt.haslab.mutation.mutator,\
+	pt.haslab.util,\
 	org.alloytools.graphics.util,\
 	edu.mit.csail.sdg.parser,\
 	edu.mit.csail.sdg.sim,\
