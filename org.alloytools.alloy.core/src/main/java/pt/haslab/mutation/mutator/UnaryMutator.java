@@ -4,6 +4,7 @@ import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.Expr;
 import edu.mit.csail.sdg.ast.ExprUnary;
 import edu.mit.csail.sdg.ast.Sig;
+import pt.haslab.mutation.Location;
 import pt.haslab.util.ExprMaker;
 
 import java.util.ArrayList;
@@ -17,18 +18,20 @@ public class UnaryMutator {
         UOp expr ~> expr
     */
     private static class RemoveOperator extends Mutator {
-        private RemoveOperator(ExprUnary expr) {
-            this.original = expr;
-            this.mutant = expr.sub;
-            this.blacklisted.add(expr);
-            this.name = expr.op.name();
+        private RemoveOperator(Location original) {
+            ExprUnary originalExpr = (ExprUnary) original.expr;
+            this.original = original;
+            this.mutant = originalExpr.sub;
+            this.blacklisted.add(originalExpr);
+            this.name = originalExpr.op.name();
         }
 
-        public static void generate(List<Mutator> accumulator, ExprUnary expr) {
-            if (expr.op == ExprUnary.Op.NOOP || expr.type() != expr.sub.type()) {
+        public static void generate(List<Mutator> accumulator, Location original) {
+            ExprUnary originalExpr = (ExprUnary) original.expr;
+            if (originalExpr.op == ExprUnary.Op.NOOP || originalExpr.type() != originalExpr.sub.type()) {
                 return;
             }
-            accumulator.add(new RemoveOperator(expr));
+            accumulator.add(new RemoveOperator(original));
         }
     }
 
@@ -37,20 +40,21 @@ public class UnaryMutator {
         BooleanExpr ~> UOp BooleanExpr
      */
     private static class InsertOperator extends Mutator {
-        private InsertOperator(ExprUnary expr, Expr original) {
+        private InsertOperator(Location original, ExprUnary expr) {
             this.original = original;
             this.mutant = expr;
             this.name = expr.op.name();
         }
 
-        public static void generate(List<Mutator> accumulator, ExprUnary expr) {
-            if (expr.op == ExprUnary.Op.NOOP && expr.sub instanceof Sig) {
-                accumulator.add(new InsertOperator((ExprUnary) expr.prime(), expr));
+        public static void generate(List<Mutator> accumulator, Location original) {
+            ExprUnary originalExpr = (ExprUnary) original.expr;
+            if (originalExpr.op == ExprUnary.Op.NOOP && originalExpr.sub instanceof Sig) {
+                accumulator.add(new InsertOperator(original, (ExprUnary) originalExpr.prime()));
             }
 
-            if (expr.type().is_bool) {
+            if (originalExpr.type().is_bool) {
                 for (ExprUnary.Op op : Mutator.uops_bool2bool) {
-                    accumulator.add(new InsertOperator(ExprMaker.make(expr, op), expr));
+                    accumulator.add(new InsertOperator(original, ExprMaker.make(originalExpr, op)));
                 }
             }
         }
@@ -60,17 +64,19 @@ public class UnaryMutator {
         (UOp A) ~> (UOp' A)
      */
     private static class ReplaceOperator extends Mutator {
-        private ReplaceOperator(ExprUnary expr, ExprUnary.Op op) {
-            this.original = expr;
-            this.name = expr.op.name() + "->" + op.name();
-            this.mutant = ExprMaker.make(expr.sub, op);
+        private ReplaceOperator(Location original, ExprUnary.Op op) {
+            ExprUnary originalExpr = (ExprUnary) original.expr;
+            this.original = original;
+            this.name = originalExpr.op.name() + "->" + op.name();
+            this.mutant = ExprMaker.make(originalExpr.sub, op);
         }
 
-        public static void generate(List<Mutator> accumulator, ExprUnary expr) {
-            if (Mutator.uops_set2bool.contains(expr.op)) {
+        public static void generate(List<Mutator> accumulator, Location original) {
+            ExprUnary originalExpr = (ExprUnary) original.expr;
+            if (Mutator.uops_set2bool.contains(originalExpr.op)) {
                 for (ExprUnary.Op op : Mutator.uops_set2bool) {
-                    if (op != expr.op) {
-                        accumulator.add(new ReplaceOperator(expr, op));
+                    if (op != originalExpr.op) {
+                        accumulator.add(new ReplaceOperator(original, op));
                     }
                 }
             }
@@ -78,9 +84,9 @@ public class UnaryMutator {
 
     }
 
-    public static void generate(List<Mutator> accumulator, ExprUnary expr) {
-        RemoveOperator.generate(accumulator, expr);
-        InsertOperator.generate(accumulator, expr);
-        ReplaceOperator.generate(accumulator, expr);
+    public static void generate(List<Mutator> accumulator, Location original) {
+        RemoveOperator.generate(accumulator, original);
+        InsertOperator.generate(accumulator, original);
+        ReplaceOperator.generate(accumulator, original);
     }
 }

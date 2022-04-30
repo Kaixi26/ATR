@@ -14,18 +14,20 @@ public class ExprQtMutator {
         [qtop] Decls | expr ~> [qtop'] Decls | expr
      */
     private static class ReplaceOperator extends Mutator {
-        private ReplaceOperator(ExprQt original, ExprQt.Op op) {
+        private ReplaceOperator(Location original, ExprQt.Op op) {
+            ExprQt originalExpr = (ExprQt) original.expr;
             this.original = original;
-            this.mutant = ExprMaker.make(original.decls, original.sub, op);
-            this.name = original.op.name() + "->" + op.name();
+            this.mutant = ExprMaker.make(originalExpr.decls, originalExpr.sub, op);
+            this.name = originalExpr.op.name() + "->" + op.name();
         }
 
-        public static void generate(List<Mutator> accumulator, ExprQt original) {
-            if (!Mutator.exprqts_expr2bool.contains(original.op)) {
+        public static void generate(List<Mutator> accumulator, Location original) {
+            ExprQt originalExpr = (ExprQt) original.expr;
+            if (!Mutator.exprqts_expr2bool.contains(originalExpr.op)) {
                 return;
             }
             for (ExprQt.Op op : Mutator.exprqts_expr2bool) {
-                if (op != original.op) {
+                if (op != originalExpr.op) {
                     accumulator.add(new ReplaceOperator(original, op));
                 }
             }
@@ -36,21 +38,23 @@ public class ExprQtMutator {
         [qtop] A | expr ~> [uop] A
      */
     private static class ToUnaryOperator extends Mutator {
-        private ToUnaryOperator(ExprQt original, ExprUnary mutant) {
+        private ToUnaryOperator(Location original, ExprUnary mutant) {
+            ExprQt originalExpr = (ExprQt) original.expr;
             this.original = original;
             this.mutant = mutant;
-            this.name = "Qt_" + original.op.name() + "->" + "Un_" + mutant.op.name();
-            for (Location location : LocationAggregator.BreadthBottomUp(original)) {
+            this.name = "Qt_" + originalExpr.op.name() + "->" + "Un_" + mutant.op.name();
+            for (Location location : LocationAggregator.BreadthBottomUp(originalExpr)) {
                 this.blacklisted.add(location.expr);
             }
         }
 
-        public static void generate(List<Mutator> accumulator, ExprQt original, ConstList<Sig> sigs) {
-            ExprUnary.Op mutantOp = opQt2opUnary(original.op);
+        public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs) {
+            ExprQt originalExpr = (ExprQt) original.expr;
+            ExprUnary.Op mutantOp = opQt2opUnary(originalExpr.op);
             if (mutantOp == null) {
                 return;
             }
-            for (Decl d : original.decls) {
+            for (Decl d : originalExpr.decls) {
                 for (Sig sig : sigs) {
                     if (d.get().type().equals(sig.type())) {
                         ExprUnary mutant = ExprMaker.make(ExprMaker.make(sig, ExprUnary.Op.NOOP), mutantOp);
@@ -76,8 +80,8 @@ public class ExprQtMutator {
         }
     }
 
-    public static void generate(List<Mutator> accumulator, ExprQt expr, ConstList<Sig> sigs) {
-        ReplaceOperator.generate(accumulator, expr);
-        ToUnaryOperator.generate(accumulator, expr, sigs);
+    public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs) {
+        ReplaceOperator.generate(accumulator, original);
+        ToUnaryOperator.generate(accumulator, original, sigs);
     }
 }

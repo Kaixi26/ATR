@@ -28,7 +28,7 @@ public class MutatorApplier extends VisitReturn<Expr> {
     private Optional<Expr> attemptComputeMutation(Expr x){
         int mutIndex = -1;
         for(int i = 0; i < mutators.size(); i++){
-            if(mutators.get(i).original == x){
+            if(mutators.get(i).original.expr == x){
                 mutIndex = i;
                 break;
             }

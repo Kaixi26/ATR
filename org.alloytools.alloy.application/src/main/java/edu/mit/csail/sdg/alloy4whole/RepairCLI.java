@@ -16,23 +16,24 @@
 package edu.mit.csail.sdg.alloy4whole;
 
 import edu.mit.csail.sdg.alloy4.Err;
+import pt.haslab.util.JSON;
 import pt.haslab.util.RepairChecker;
+import pt.haslab.util.Repairer;
 
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import java.util.Queue;
+import java.util.*;
 import java.util.stream.Stream;
 
 
-public final class Repairer {
+public final class RepairCLI {
     static int depth = 3;
     static long timeout = 60;
     static String filepath = null;
+    static String output_filepath = null;
 
     private static void usage() {
         System.err.println("usage: repairer [OPTION]...");
-        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]")
+        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE], --out [FILE] (Optional)")
                 .forEach(option -> System.err.println("\t" + option));
         System.exit(-1);
     }
@@ -63,6 +64,9 @@ public final class Repairer {
             case "--file":
                 filepath = args.remove();
                 break;
+            case "--out":
+                output_filepath = args.remove();
+                break;
             default:
                 usageError("Unknown option '" + arg + "'.");
         }
@@ -86,19 +90,24 @@ public final class Repairer {
     public static void main(String[] args) throws Err, IOException {
         parseArguments(args);
 
-        pt.haslab.util.Repairer repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout);
+        Repairer repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout);
+
+        Map<String, String> json = new HashMap<>();
+        json.put("elapsed", "" + repairer.getElapsedMillis());
+        json.put("depth", "" + depth);
+        json.put("timeout", "" + timeout);
+        json.put("file", "\"" + filepath + "\"");
+        json.put("solved", "" + repairer.solution.isPresent());
+        json.put("timed_out", "" + repairer.getRepairStatus().equals(pt.haslab.util.Repairer.RepairStatus.TIMEOUT));
+        System.out.println(JSON.toJSON(json));
+
         switch (repairer.getRepairStatus()) {
             case ALREADY_CORRECT:
-                System.out.println("[CORRECT]: '" + filepath + "'");
-                System.exit(0);
             case SUCCESS:
-                System.out.println("[SUCCESS]: '" + filepath + "'");
                 System.exit(0);
             case TIMEOUT:
-                System.out.println("[TIMEOUT]: '" + filepath + "'");
                 System.exit(1);
             case FAIL:
-                System.out.println("[FAILED]: '" + filepath + "'");
                 System.exit(2);
             default:
                 System.exit(-1);

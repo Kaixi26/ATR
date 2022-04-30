@@ -2469,7 +2469,7 @@ public final class SimpleGUI implements ComponentListener, Listener {
                 //    log.log("\t" + mut.toString() + "\n");
                 //}
                 text.shade(
-                        solution.mutators.stream().map(mut -> mut.original.pos).collect(Collectors.toList()),
+                        solution.mutators.stream().map(mut -> mut.original.expr.pos).collect(Collectors.toList()),
                         new Color(0.9f, 0.4f, 0.4f),
                         true
                 );

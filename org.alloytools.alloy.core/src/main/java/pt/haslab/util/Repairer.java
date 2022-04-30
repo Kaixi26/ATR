@@ -37,6 +37,9 @@ public class Repairer {
 
     ArrayList<CounterExample> counterexamples = new ArrayList<>();
 
+    public long ms_begin = 0;
+    public long ms_end = 0;
+
     static {
         Repairer.opts.recordKodkod = RecordKodkod.get();
         Repairer.opts.noOverflow = NoOverflow.get();
@@ -161,73 +164,57 @@ public class Repairer {
     }
 
     public Optional<Candidate> repair(long ms_timeout) {
-        if(!TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts).satisfiable()){
-            this.solution = Optional.of(Candidate.empty());
-            this.repairStatus = RepairStatus.ALREADY_CORRECT;
-            return this.solution;
-        }
+        ms_begin = System.currentTimeMillis();
 
-        Instant time_begin = Instant.now();
-
-        while (mutationStepper.next()) {
-            if (ms_timeout != 0 && Duration.between(time_begin, Instant.now()).toMillis() > ms_timeout) {
-                this.repairStatus = RepairStatus.TIMEOUT;
-                return Optional.empty();
-            }
-            Candidate candidate = mutationStepper.getCurrent();
-
-            for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
-                e.getKey().setBody(candidate.apply(e.getValue()));
+        try {
+            if (!TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts).satisfiable()) {
+                this.solution = Optional.of(Candidate.empty());
+                this.repairStatus = RepairStatus.ALREADY_CORRECT;
+                return this.solution;
             }
 
-            {
-                CounterExample pruneCounterexample = attemptPruneWithPreviousCounterexample();
-                if (pruneCounterexample != null) {
-                    candidate.prunned = Optional.of(PruneReason.PREVIOUS_CEX);
-                    if (canPruneWithVariabilization(candidate, pruneCounterexample.cex)) {
-                        mutationStepper.pruneByVariabilization(candidate);
+            while (mutationStepper.next()) {
+                if (ms_timeout != 0 && (System.currentTimeMillis() - ms_begin) > ms_timeout) {
+                    this.repairStatus = RepairStatus.TIMEOUT;
+                    return Optional.empty();
+                }
+                Candidate candidate = mutationStepper.getCurrent();
+
+                for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
+                    e.getKey().setBody(candidate.apply(e.getValue()));
+                }
+
+                {
+                    CounterExample pruneCounterexample = attemptPruneWithPreviousCounterexample();
+                    if (pruneCounterexample != null) {
+                        candidate.prunned = Optional.of(PruneReason.PREVIOUS_CEX);
+                        if (canPruneWithVariabilization(candidate, pruneCounterexample.cex)) {
+                            mutationStepper.pruneByVariabilization(candidate);
+                        }
+                        continue;
                     }
-                    continue;
+                }
+
+                A4Solution ans =
+                        TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts);
+
+                if (!ans.satisfiable()) {
+                    solution = Optional.of(candidate);
+                    repairStatus = RepairStatus.SUCCESS;
+                    return Optional.of(candidate);
+                }
+
+                counterexamples.add(new CounterExample(ans, 1));
+                if (canPruneWithVariabilization(candidate, ans)) {
+                    mutationStepper.pruneByVariabilization(candidate);
                 }
             }
 
-            A4Solution ans =
-                    TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts);
-
-            if (!ans.satisfiable()) {
-                //System.out.println("---------------");
-                //System.out.println(candidate);
-                //System.out.println(candidate.variabilizationID);
-                //System.out.println("Found!");
-                //for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
-                //    e.getKey().setBody(candidate.apply(e.getValue()));
-                //    System.out.println(candidate.variabilize(e.getValue()));
-                //}
-                solution = Optional.of(candidate);
-                repairStatus = RepairStatus.SUCCESS;
-                return Optional.of(candidate);
-            }
-
-            counterexamples.add(new CounterExample(ans, 1));
-            if (canPruneWithVariabilization(candidate, ans)) {
-                mutationStepper.pruneByVariabilization(candidate);
-            }
-
-
-            //System.out.println(candidate);
-            //System.out.println("---------------");
-            //System.out.println(candidate.variabilizationID);
-            //System.out.println(prune);
-            //for(Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()){
-            //    System.out.println(e.getKey().getBody());
-            //}
-            //System.out.println(ans);
-            //System.exit(69);
-
+            repairStatus = RepairStatus.FAIL;
+            return Optional.empty();
+        } finally {
+            ms_end = System.currentTimeMillis();
         }
-
-        repairStatus = RepairStatus.FAIL;
-        return Optional.empty();
     }
 
     public long getGeneratedTotal() {
@@ -250,5 +237,9 @@ public class Repairer {
 
     public RepairStatus getRepairStatus() {
         return repairStatus;
+    }
+
+    public long getElapsedMillis(){
+        return ms_end - ms_begin;
     }
 }

@@ -21,21 +21,21 @@ public class Generator {
 
         if (location.insideDecl) {
             if (expr instanceof ExprUnary && ((ExprUnary) expr).sub instanceof Sig) {
-                SigMutator.generate(accumulator, location.expr, sigs, location.vars);
+                SigMutator.generate(accumulator, location, sigs, location.vars);
             }
         } else {
             if (expr instanceof ExprUnary) {
                 if (((ExprUnary) expr).sub instanceof Sig) {
-                    SigMutator.generate(accumulator, location.expr, sigs, location.vars);
+                    SigMutator.generate(accumulator, location, sigs, location.vars);
                 } else if (((ExprUnary) expr).sub instanceof ExprVar) {
-                    ExprVarMutator.generate(accumulator, location.expr, sigs, location.vars);
+                    ExprVarMutator.generate(accumulator, location, sigs, location.vars);
                 } else {
-                    UnaryMutator.generate(accumulator, (ExprUnary) expr);
+                    UnaryMutator.generate(accumulator, location);
                 }
             } else if (expr instanceof ExprBinary) {
-                BinaryMutator.generate(accumulator, (ExprBinary) expr);
+                BinaryMutator.generate(accumulator, location);
             } else if (expr instanceof ExprQt) {
-                ExprQtMutator.generate(accumulator, (ExprQt) expr, sigs);
+                ExprQtMutator.generate(accumulator, location, sigs);
             }
         }
     }

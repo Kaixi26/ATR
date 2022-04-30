@@ -4,6 +4,7 @@ import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.alloy4.Pos;
 import edu.mit.csail.sdg.ast.*;
 import org.eclipse.jdt.annotation.NonNull;
+import pt.haslab.mutation.Location;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -27,12 +28,12 @@ public class Mutator {
             Stream.of(ExprBinary.Op.PLUS, ExprBinary.Op.MINUS, ExprBinary.Op.INTERSECT).collect(Collectors.toSet());
 
     public static Set<ExprBinary.Op> bops_setset2bool =
-            Stream.of(ExprBinary.Op.IN, ExprBinary.Op.NOT_IN).collect(Collectors.toSet());
+            Stream.of(ExprBinary.Op.IN, ExprBinary.Op.NOT_IN, ExprBinary.Op.EQUALS, ExprBinary.Op.NOT_EQUALS).collect(Collectors.toSet());
 
     public static Set<ExprQt.Op> exprqts_expr2bool =
             Stream.of(ExprQt.Op.NO, ExprQt.Op.ONE, ExprQt.Op.LONE, ExprQt.Op.SOME, ExprQt.Op.ALL).collect(Collectors.toSet());
 
-    public Expr original;
+    public Location original;
     public Expr mutant;
     public Set<Expr> blacklisted = new HashSet<>();
 
@@ -41,11 +42,15 @@ public class Mutator {
 
     public String name = "Mutator";
 
-    public static Mutator make(@NonNull Expr original, @NonNull Expr mutant) {
+    public static Mutator make(@NonNull Location original, @NonNull Expr mutant) {
         Mutator ret = new Mutator();
         ret.original = original;
         ret.mutant = mutant;
         return ret;
+    }
+
+    public static Mutator make(@NonNull Expr original, @NonNull Expr mutant) {
+        return Mutator.make(new Location(original, false, new ArrayList<>()), mutant);
     }
 
     private List<Mutator> calculateGeneratedMutators() {
@@ -61,7 +66,7 @@ public class Mutator {
 
     @Override
     public String toString() {
-        Pos pos = original.pos();
+        Pos pos = original.expr.pos();
         return this.getClass().getSimpleName() + "{" +
                 "'" + name + "', " +
                 "pos='(" + pos.x + "," + pos.y + ")-(" + pos.x2 + "," + pos.y2 + ")'," +
@@ -77,7 +82,7 @@ public class Mutator {
 
     public String describe() {
         return this.getClass().getSimpleName() + "\n"
-                + this.original.pos + "\n"
+                + this.original.expr.pos + "\n"
                 + "<|" + this.original + "\n"
                 + "|>" + this.mutant;
     }

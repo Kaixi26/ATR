@@ -46,7 +46,7 @@ public class Candidate {
             return null;
         }
 
-        if (!this.mutators.get(sz - 1).original.type().is_bool) {
+        if (!this.mutators.get(sz - 1).original.expr.type().is_bool) {
             return null;
         }
 
@@ -84,7 +84,7 @@ public class Candidate {
                 }
 
                 Set<Expr> childBlacklisted = new HashSet<Expr>(this.blacklisted);
-                childBlacklisted.add(mutator.original);
+                childBlacklisted.add(mutator.original.expr);
                 childBlacklisted.addAll(mutator.blacklisted);
 
                 List<Mutator> childMutators = new ArrayList<>(this.mutators.size() + 1);

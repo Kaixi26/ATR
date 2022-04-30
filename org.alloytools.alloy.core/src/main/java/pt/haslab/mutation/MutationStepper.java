@@ -97,7 +97,7 @@ public class MutationStepper {
     }
 
     public void pruneByVariabilization(Candidate candidate) {
-        Expr variabilizedMutatorOriginal = candidate.mutators.get(candidate.mutators.size() - 1).original;
+        Expr variabilizedMutatorOriginal = candidate.mutators.get(candidate.mutators.size() - 1).original.expr;
         Set<Expr> reachable = reachableFrom.getOrDefault(variabilizedMutatorOriginal, null);
 
         assert reachable != null;
