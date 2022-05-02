@@ -21,7 +21,7 @@ public class ExprVarMutator {
         private ReplaceMutator(Location original, Expr expr) {
             this.original = original;
             this.mutant = expr;
-            this.name = original + "->" + expr;
+            this.name = original.expr + "->" + expr;
         }
 
         public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs) {

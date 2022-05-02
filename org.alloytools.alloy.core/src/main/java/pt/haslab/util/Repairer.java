@@ -1,6 +1,8 @@
 package pt.haslab.util;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
+import edu.mit.csail.sdg.alloy4.ErrorSyntax;
+import edu.mit.csail.sdg.alloy4.ErrorType;
 import edu.mit.csail.sdg.alloy4.Version;
 import edu.mit.csail.sdg.ast.Command;
 import edu.mit.csail.sdg.ast.Expr;
@@ -180,8 +182,13 @@ public class Repairer {
                 }
                 Candidate candidate = mutationStepper.getCurrent();
 
-                for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
-                    e.getKey().setBody(candidate.apply(e.getValue()));
+                try {
+                    for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
+                        e.getKey().setBody(candidate.apply(e.getValue()));
+                    }
+                } catch (ErrorType | ErrorSyntax ignored) {
+                    candidate.prunned = Optional.of(PruneReason.TYPE_ERROR);
+                    continue;
                 }
 
                 {
@@ -239,7 +246,7 @@ public class Repairer {
         return repairStatus;
     }
 
-    public long getElapsedMillis(){
+    public long getElapsedMillis() {
         return ms_end - ms_begin;
     }
 }
