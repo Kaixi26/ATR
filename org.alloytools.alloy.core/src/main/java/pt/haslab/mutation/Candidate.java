@@ -1,5 +1,7 @@
 package pt.haslab.mutation;
 
+import edu.mit.csail.sdg.alloy4.ErrorSyntax;
+import edu.mit.csail.sdg.alloy4.ErrorType;
 import edu.mit.csail.sdg.ast.Expr;
 import edu.mit.csail.sdg.ast.ExprConstant;
 import edu.mit.csail.sdg.ast.Module;
@@ -35,7 +37,7 @@ public class Candidate {
         return new Candidate(null, new ArrayList<>(), new HashSet<>());
     }
 
-    public Expr apply(Expr mutationTarget) {
+    public Expr apply(Expr mutationTarget) throws ErrorType, ErrorSyntax {
         return MutatorApplier.make(mutators).apply(mutationTarget);
     }
 
@@ -75,24 +77,34 @@ public class Candidate {
         return "Candidate{" + mutators.toString() + '}';
     }
 
+    private void generateChild(Mutator mutator) {
+        if (this.blacklisted.contains(mutator.original.expr)) {
+            return;
+        }
+
+        Set<Expr> childBlacklisted = new HashSet<Expr>(this.blacklisted);
+        childBlacklisted.add(mutator.original.expr);
+        childBlacklisted.addAll(mutator.blacklisted);
+
+        List<Mutator> childMutators = new ArrayList<>(this.mutators.size() + 1);
+        childMutators.addAll(this.mutators);
+        childMutators.add(mutator);
+
+        this.children.add(new Candidate(this, childMutators, childBlacklisted));
+    }
+
     public List<Candidate> generateChildren(Collection<Mutator> mutators) {
         if (this.children == null) {
             this.children = new ArrayList<>();
             for (Mutator mutator : mutators) {
-                if (this.blacklisted.contains(mutator.original)) {
-                    continue;
-                }
-
-                Set<Expr> childBlacklisted = new HashSet<Expr>(this.blacklisted);
-                childBlacklisted.add(mutator.original.expr);
-                childBlacklisted.addAll(mutator.blacklisted);
-
-                List<Mutator> childMutators = new ArrayList<>(this.mutators.size() + 1);
-                childMutators.addAll(this.mutators);
-                childMutators.add(mutator);
-
-                this.children.add(new Candidate(this, childMutators, childBlacklisted));
+                generateChild(mutator);
             }
+
+            this.mutators.forEach(m -> {
+                for (Mutator mutator : m.getGeneratedMutators()) {
+                    generateChild(mutator);
+                }
+            });
         }
         return this.children;
     }

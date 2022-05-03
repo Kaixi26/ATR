@@ -41,6 +41,7 @@ public class Mutator {
     private List<Mutator> generatedMutators = null;
 
     public String name = "Mutator";
+    public ConstList<Sig> sigs;
 
     public static Mutator make(@NonNull Location original, @NonNull Expr mutant) {
         Mutator ret = new Mutator();

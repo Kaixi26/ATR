@@ -15,10 +15,13 @@ public class Generator {
     public static List<Mutator> generateMutators(Location location, ConstList<Sig> sigs) {
         List<Mutator> ret = new ArrayList<>();
         generateMutators(ret, location, sigs);
+        for (Mutator mutator : ret) {
+            mutator.sigs = sigs;
+        }
         return ret;
     }
 
-    public static void generateMutators(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
+    private static void generateMutators(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
         ConstList<Sig.Field> fields;
         {
             List<Sig.Field> tmp = new ArrayList<>();

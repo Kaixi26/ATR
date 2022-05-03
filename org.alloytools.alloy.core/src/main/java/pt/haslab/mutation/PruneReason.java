@@ -6,5 +6,5 @@ public enum PruneReason {
     EXTENSIONALITY,
     VARIABILIZATION,
     PREVIOUS_CEX,
-
+    TYPE_ERROR,
 }
