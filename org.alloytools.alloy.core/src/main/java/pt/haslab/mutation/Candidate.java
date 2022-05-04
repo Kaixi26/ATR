@@ -23,18 +23,15 @@ public class Candidate {
     public final String extensionalityID;
     public final String variabilizationID;
 
-    private final Set<Expr> blacklisted;
-
-    Candidate(Candidate parent, List<Mutator> mutators, Set<Expr> blacklisted) {
+    Candidate(Candidate parent, List<Mutator> mutators) {
         this.mutators = mutators;
-        this.blacklisted = blacklisted;
         this.variabilizationID = calculateVariabilizationID(mutators);
         this.extensionalityID = calculateExtensionalityID(mutators);
         this.parent = parent;
     }
 
     public static Candidate empty() {
-        return new Candidate(null, new ArrayList<>(), new HashSet<>());
+        return new Candidate(null, new ArrayList<>());
     }
 
     public Expr apply(Expr mutationTarget) throws ErrorType, ErrorSyntax {
@@ -78,19 +75,15 @@ public class Candidate {
     }
 
     private void generateChild(Mutator mutator) {
-        if (this.blacklisted.contains(mutator.original.expr)) {
+        if (this.isBlacklisted(mutator.original.expr)) {
             return;
         }
-
-        Set<Expr> childBlacklisted = new HashSet<Expr>(this.blacklisted);
-        childBlacklisted.add(mutator.original.expr);
-        childBlacklisted.addAll(mutator.blacklisted);
 
         List<Mutator> childMutators = new ArrayList<>(this.mutators.size() + 1);
         childMutators.addAll(this.mutators);
         childMutators.add(mutator);
 
-        this.children.add(new Candidate(this, childMutators, childBlacklisted));
+        this.children.add(new Candidate(this, childMutators));
     }
 
     public List<Candidate> generateChildren(Collection<Mutator> mutators) {
@@ -107,6 +100,15 @@ public class Candidate {
             });
         }
         return this.children;
+    }
+
+    private boolean isBlacklisted(Expr e) {
+        for (Mutator mutator : this.mutators) {
+            if (mutator.isBlacklisted(e)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static String calculateVariabilizationID(List<Mutator> mutators) {

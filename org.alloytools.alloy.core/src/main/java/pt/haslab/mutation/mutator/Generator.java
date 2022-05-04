@@ -4,6 +4,7 @@ import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.*;
 import edu.mit.csail.sdg.ast.ExprVar;
 import pt.haslab.mutation.Location;
+import pt.haslab.mutation.mutator.binary.InsertUnaryMutator;
 import pt.haslab.mutation.mutator.relation.ExtendOrReduceMutator;
 import pt.haslab.util.ExprMaker;
 
@@ -21,7 +22,25 @@ public class Generator {
         return ret;
     }
 
+    private static void generateMutatorsExprUnary(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
+        ExprUnary expr = (ExprUnary) location.expr;
+        if (expr.op == ExprUnary.Op.NOOP) {
+            if (expr.sub instanceof Sig) {
+                SigMutator.generate(accumulator, location, sigs, location.vars);
+            } else if (expr.sub instanceof ExprVar) {
+                ExprVarMutator.generate(accumulator, location, sigs, location.vars);
+            }
+        } else {
+            UnaryMutator.generate(accumulator, location, sigs, fields);
+        }
+
+    }
+
     private static void generateMutators(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
+        if (location.expr instanceof Sig || location.expr instanceof ExprVar) {
+            return;
+        }
+
         ConstList<Sig.Field> fields;
         {
             List<Sig.Field> tmp = new ArrayList<>();
@@ -43,13 +62,7 @@ public class Generator {
             }
         } else {
             if (expr instanceof ExprUnary) {
-                if (((ExprUnary) expr).sub instanceof Sig) {
-                    SigMutator.generate(accumulator, location, sigs, location.vars);
-                } else if (((ExprUnary) expr).sub instanceof ExprVar) {
-                    ExprVarMutator.generate(accumulator, location, sigs, location.vars);
-                } else {
-                    UnaryMutator.generate(accumulator, location);
-                }
+                generateMutatorsExprUnary(accumulator, location, sigs, fields);
             } else if (expr instanceof ExprBinary) {
                 BinaryMutator.generate(accumulator, location);
             } else if (expr instanceof ExprQt) {
@@ -58,6 +71,7 @@ public class Generator {
 
             InsertJoinMutator.generate(accumulator, location, sigs, fields);
             ExtendOrReduceMutator.generate(accumulator, location, sigs, fields);
+            InsertUnaryMutator.generate(accumulator, location);
 
         }
     }

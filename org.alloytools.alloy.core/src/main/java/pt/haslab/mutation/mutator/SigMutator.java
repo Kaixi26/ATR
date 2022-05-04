@@ -19,12 +19,13 @@ public class SigMutator {
         private ReplaceMutator(Location original, Expr expr) {
             this.original = original;
             this.mutant = expr;
-            this.name = original + "->" + expr;
+            this.name = original.expr + "->" + expr;
         }
 
         public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs) {
             for (Sig sig : sigs) {
-                if (original.expr.type() == sig.type() && !original.expr.equals(sig)) {
+                // TODO: maybe it can be filtered better?
+                if (!original.expr.equals(sig)) {
                     accumulator.add(new ReplaceMutator(original, ExprMaker.make(sig, ExprUnary.Op.NOOP)));
                 }
             }

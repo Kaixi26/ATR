@@ -33,12 +33,12 @@ public class BinaryMutator {
                 case LEFT:
                     this.mutant = originalExpr.left;
                     this.name = "TAKE_LEFT";
-                    this.blacklisted.addAll(LocationAggregator.BreadthBottomUp(originalExpr.right).stream().map(l -> l.expr).collect(Collectors.toList()));
+                    this.setBlacklisted(LocationAggregator.BreadthBottomUp(originalExpr.right).stream().map(l -> l.expr).collect(Collectors.toList()));
                     break;
                 case RIGHT:
                     this.mutant = originalExpr.right;
                     this.name = "TAKE_RIGHT";
-                    this.blacklisted.addAll(LocationAggregator.BreadthBottomUp(originalExpr.left).stream().map(l -> l.expr).collect(Collectors.toList()));
+                    this.setBlacklisted(LocationAggregator.BreadthBottomUp(originalExpr.left).stream().map(l -> l.expr).collect(Collectors.toList()));
                     break;
             }
         }

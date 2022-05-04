@@ -1,8 +1,8 @@
 package pt.haslab.mutation;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
-import edu.mit.csail.sdg.ast.*;
-import edu.mit.csail.sdg.translator.A4Solution;
+import edu.mit.csail.sdg.ast.Expr;
+import edu.mit.csail.sdg.ast.Sig;
 import pt.haslab.mutation.mutator.Generator;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.LocationAggregator;
@@ -41,7 +41,7 @@ public class MutationStepper {
         for (Location repairTargetLocation : repairTargetLocations) {
             baseMutators.addAll(Generator.generateMutators(repairTargetLocation, modelSigs));
 
-            for(Location sublocation : LocationAggregator.BreadthBottomUp(repairTargetLocation.expr)){
+            for (Location sublocation : LocationAggregator.BreadthBottomUp(repairTargetLocation.expr)) {
                 reachableFrom.compute(repairTargetLocation.expr, (key, value) -> {
                     if (value == null) {
                         return new HashSet<>(Collections.singleton(sublocation.expr));
@@ -100,11 +100,12 @@ public class MutationStepper {
         Expr variabilizedMutatorOriginal = candidate.mutators.get(candidate.mutators.size() - 1).original.expr;
         Set<Expr> reachable = reachableFrom.getOrDefault(variabilizedMutatorOriginal, null);
 
-        assert reachable != null;
-        assert reachable.contains(variabilizedMutatorOriginal);
+        if (reachable == null) {
+            return;
+        }
 
         candidate.parent.children.stream()
-                .filter(c -> reachable.contains(c.mutators.get(c.mutators.size() - 1).original))
+                .filter(c -> reachable.contains(c.mutators.get(c.mutators.size() - 1).original.expr))
                 .forEach(c -> {
                     if (!c.visited) {
                         c.prunned = Optional.of(PruneReason.VARIABILIZATION);

@@ -1,11 +1,11 @@
 package pt.haslab.mutation.mutator;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
-import edu.mit.csail.sdg.ast.Expr;
-import edu.mit.csail.sdg.ast.ExprUnary;
-import edu.mit.csail.sdg.ast.Sig;
+import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.Location;
+import pt.haslab.mutation.mutator.relation.ExtendOrReduceMutator;
 import pt.haslab.util.ExprMaker;
+import pt.haslab.util.LocationAggregator;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,7 +22,6 @@ public class UnaryMutator {
             ExprUnary originalExpr = (ExprUnary) original.expr;
             this.original = original;
             this.mutant = originalExpr.sub;
-            this.blacklisted.add(originalExpr);
             this.name = originalExpr.op.name();
         }
 
@@ -35,6 +34,8 @@ public class UnaryMutator {
         }
     }
 
+
+    // TODO: needs review
     /*
         (NOOP Sig) ~> (NOOP Sig)'
         BooleanExpr ~> UOp BooleanExpr
@@ -54,6 +55,8 @@ public class UnaryMutator {
 
             if (originalExpr.type().is_bool) {
                 for (ExprUnary.Op op : Mutator.uops_bool2bool) {
+                    System.out.println(new InsertOperator(original, ExprMaker.make(originalExpr, op)));
+                    System.out.println(originalExpr);
                     accumulator.add(new InsertOperator(original, ExprMaker.make(originalExpr, op)));
                 }
             }
@@ -61,6 +64,7 @@ public class UnaryMutator {
     }
 
     /*
+        TODO: move this out
         (UOp A) ~> (UOp' A)
      */
     private static class ReplaceOperator extends Mutator {
@@ -84,9 +88,56 @@ public class UnaryMutator {
 
     }
 
-    public static void generate(List<Mutator> accumulator, Location original) {
+    /*
+        (A can be any expression)
+        no A ~> no B
+     */
+    private static class ReplaceSetUnder extends Mutator {
+
+        private ReplaceSetUnder(Location original, Expr expr) {
+            this.original = original;
+            this.mutant = expr;
+            this.name = original.expr + "->" + expr;
+            this.setBlacklisted(LocationAggregator.BreadthBottomUp(original.expr)
+                    .stream().map(x -> x.expr).collect(Collectors.toList()));
+        }
+
+        public List<Mutator> getGeneratedMutators() {
+            List<Mutator> ret = new ArrayList<>();
+            ret.addAll(Generator.generateMutators(new Location(this.mutant, this.original.insideDecl, this.original.vars), this.sigs));
+            ret.addAll(Generator.generateMutators(new Location(((ExprUnary) this.mutant).sub, this.original.insideDecl, this.original.vars), this.sigs));
+            return ret;
+        }
+
+        private static void addIfCompatible(List<Mutator> accumulator, Location original, Expr expr, ConstList<Sig> sigs) {
+            ExprUnary originalExpr = (ExprUnary) original.expr;
+            if (!originalExpr.sub.equals(expr) && !expr.type().equals(Sig.NONE.type())) {
+                accumulator.add(new ReplaceSetUnder(original, ExprMaker.make(expr, originalExpr.op)));
+            }
+        }
+
+        public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
+            ExprUnary originalExpr = (ExprUnary) original.expr;
+            if (originalExpr.sub.type().arity() > 0) {
+                for (Sig sig : sigs) {
+                    addIfCompatible(accumulator, original, sig, sigs);
+                }
+                for (ExprHasName var : original.vars) {
+                    if (var instanceof ExprVar) {
+                        addIfCompatible(accumulator, original, var, sigs);
+                    }
+                }
+                for (Sig.Field field : fields) {
+                    addIfCompatible(accumulator, original, field, sigs);
+                }
+            }
+
+        }
+    }
+
+    public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
         RemoveOperator.generate(accumulator, original);
-        InsertOperator.generate(accumulator, original);
         ReplaceOperator.generate(accumulator, original);
+        ReplaceSetUnder.generate(accumulator, original, sigs, fields);
     }
 }

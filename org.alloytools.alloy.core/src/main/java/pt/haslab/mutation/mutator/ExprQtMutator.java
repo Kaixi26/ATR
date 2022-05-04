@@ -7,6 +7,7 @@ import pt.haslab.util.ExprMaker;
 import pt.haslab.util.LocationAggregator;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ExprQtMutator {
 
@@ -43,9 +44,8 @@ public class ExprQtMutator {
             this.original = original;
             this.mutant = mutant;
             this.name = "Qt_" + originalExpr.op.name() + "->" + "Un_" + mutant.op.name();
-            for (Location location : LocationAggregator.BreadthBottomUp(originalExpr)) {
-                this.blacklisted.add(location.expr);
-            }
+            this.setBlacklisted(LocationAggregator.BreadthBottomUp(originalExpr)
+                    .stream().map(l -> l.expr).collect(Collectors.toList()));
         }
 
         public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs) {

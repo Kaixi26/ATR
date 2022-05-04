@@ -4,7 +4,6 @@ import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Generator;
-import pt.haslab.mutation.mutator.InsertJoinMutator;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 

@@ -35,7 +35,9 @@ public class Mutator {
 
     public Location original;
     public Expr mutant;
-    public Set<Expr> blacklisted = new HashSet<>();
+
+    /* array of pointers to blacklisted nodes */
+    public int[] blacklisted = new int[0];
 
     /* Mutators made available only when this mutator is applied */
     private List<Mutator> generatedMutators = null;
@@ -63,6 +65,24 @@ public class Mutator {
             this.generatedMutators = calculateGeneratedMutators();
         }
         return this.generatedMutators;
+    }
+
+    void setBlacklisted(Collection<Expr> exprs) {
+        this.blacklisted = new int[exprs.size()];
+        int i = 0;
+        for (Expr expr : exprs) {
+            this.blacklisted[i++] = System.identityHashCode(expr);
+        }
+    }
+
+    public boolean isBlacklisted(Expr e) {
+        int ptr = System.identityHashCode(e);
+        for (int i : this.blacklisted) {
+            if (i == ptr) {
+                return true;
+            }
+        }
+        return ptr == System.identityHashCode(original.expr);
     }
 
     @Override
