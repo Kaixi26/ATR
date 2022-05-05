@@ -67,6 +67,10 @@ public class Mutator {
         return this.generatedMutators;
     }
 
+    public void setBlacklisted(Stream<Expr> exprs) {
+        this.setBlacklisted(exprs.collect(Collectors.toList()));
+    }
+
     void setBlacklisted(Collection<Expr> exprs) {
         this.blacklisted = new int[exprs.size()];
         int i = 0;

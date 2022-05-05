@@ -20,6 +20,7 @@ public class MutationStepper {
 
     int start = 0;
     int current = 0;
+    int currentToGenerate = 0;
     int depth = 0;
 
     HashMap<String, Candidate> extensionalities = new HashMap<>();
@@ -61,19 +62,24 @@ public class MutationStepper {
     }
 
     public boolean step() {
-        int candidateSize = candidates.size();
-        if (current + 1 >= candidateSize) {
-            depth++;
-            if (depth > maxDepth) {
+        while (current + 1 >= candidates.size()) {
+            if (currentToGenerate > current) {
                 return false;
             }
-            for (int i = start; i < candidateSize; i++) {
-                candidates.addAll(candidates.get(i).generateChildren(this.baseMutators));
-            }
-            start = candidateSize;
-            if (candidateSize == candidates.size()) {
-                return false;
-            }
+            candidates.addAll(candidates.get(currentToGenerate).generateChildren(this.baseMutators));
+            currentToGenerate++;
+            //depth++;
+            //if (depth > maxDepth) {
+            //    return false;
+            //}
+            //for (int i = start; i < candidateSize; i++) {
+            //    System.out.println(Runtime.getRuntime().freeMemory());
+            //    candidates.addAll(candidates.get(i).generateChildren(this.baseMutators));
+            //}
+            //start = candidateSize;
+            //if (candidateSize == candidates.size()) {
+            //    return false;
+            //}
         }
         current++;
         return true;
@@ -82,6 +88,9 @@ public class MutationStepper {
     public boolean next() {
         while (step()) {
             Candidate curr = getCurrent();
+            if (curr.mutators.size() > maxDepth) {
+                return false;
+            }
             curr.visited = true;
             String extensionalityID = curr.getExtensionalityID();
             if (extensionalities.putIfAbsent(extensionalityID, curr) != null) {

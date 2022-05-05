@@ -1,10 +1,11 @@
-package pt.haslab.mutation.mutator;
+package pt.haslab.mutation.mutator.signature;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.Expr;
 import edu.mit.csail.sdg.ast.ExprBinary;
 import edu.mit.csail.sdg.ast.Sig;
 import pt.haslab.mutation.Location;
+import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
@@ -25,7 +26,7 @@ public class InsertJoinMutator extends Mutator {
                     accumulator.add(new InsertJoinMutator(original, ExprMaker.make(field, original.expr, ExprBinary.Op.JOIN)));
                 }
                 if (!original.expr.type().join(field.type()).equals(Sig.NONE.type())) {
-                    accumulator.add(new InsertJoinMutator(original, ExprMaker.make(field, original.expr, ExprBinary.Op.JOIN)));
+                    accumulator.add(new InsertJoinMutator(original, ExprMaker.make(original.expr, field, ExprBinary.Op.JOIN)));
                 }
             }
         }
