@@ -68,18 +68,6 @@ public class MutationStepper {
             }
             candidates.addAll(candidates.get(currentToGenerate).generateChildren(this.baseMutators));
             currentToGenerate++;
-            //depth++;
-            //if (depth > maxDepth) {
-            //    return false;
-            //}
-            //for (int i = start; i < candidateSize; i++) {
-            //    System.out.println(Runtime.getRuntime().freeMemory());
-            //    candidates.addAll(candidates.get(i).generateChildren(this.baseMutators));
-            //}
-            //start = candidateSize;
-            //if (candidateSize == candidates.size()) {
-            //    return false;
-            //}
         }
         current++;
         return true;

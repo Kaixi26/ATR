@@ -42,6 +42,8 @@ public class Repairer {
     public long ms_begin = 0;
     public long ms_end = 0;
 
+    public boolean variabilizationEnabled = false;
+
     static {
         Repairer.opts.recordKodkod = RecordKodkod.get();
         Repairer.opts.noOverflow = NoOverflow.get();
@@ -117,6 +119,9 @@ public class Repairer {
     }
 
     public boolean canPruneWithVariabilization(Candidate candidate, A4Solution cex) {
+        if (!variabilizationEnabled) {
+            return false;
+        }
         List<Expr> suspectExpressions = new ArrayList<>(funcOriginalBody.values());
 
         List<Map<Expr, Expr>> variabilizations = candidate.variabilize(suspectExpressions);

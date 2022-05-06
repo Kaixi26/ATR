@@ -16,6 +16,8 @@
 package edu.mit.csail.sdg.alloy4whole;
 
 import edu.mit.csail.sdg.alloy4.Err;
+import pt.haslab.mutation.Candidate;
+import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.JSON;
 import pt.haslab.util.RepairChecker;
 import pt.haslab.util.Repairer;
@@ -30,10 +32,12 @@ public final class RepairCLI {
     static long timeout = 60;
     static String filepath = null;
     static String output_filepath = null;
+    static boolean debug = false;
+    static boolean enableVariabilization = false;
 
     private static void usage() {
         System.err.println("usage: repairer [OPTION]...");
-        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE], --out [FILE] (Optional)")
+        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]", "--out [FILE] (Optional)", "--enable-variabilization")
                 .forEach(option -> System.err.println("\t" + option));
         System.exit(-1);
     }
@@ -67,6 +71,12 @@ public final class RepairCLI {
             case "--out":
                 output_filepath = args.remove();
                 break;
+            case "--debug":
+                debug = true;
+                break;
+            case "--enable-variabilization":
+                enableVariabilization = true;
+                break;
             default:
                 usageError("Unknown option '" + arg + "'.");
         }
@@ -90,7 +100,7 @@ public final class RepairCLI {
     public static void main(String[] args) throws Err, IOException {
         parseArguments(args);
 
-        Repairer repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout);
+        Repairer repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout, enableVariabilization);
 
         Map<String, String> json = new HashMap<>();
         json.put("elapsed", "" + repairer.getElapsedMillis());
@@ -100,6 +110,15 @@ public final class RepairCLI {
         json.put("solved", "" + repairer.solution.isPresent());
         json.put("timed_out", "" + repairer.getRepairStatus().equals(pt.haslab.util.Repairer.RepairStatus.TIMEOUT));
         System.out.println(JSON.toJSON(json));
+
+        if (debug) {
+            for (Mutator baseMutator : repairer.mutationStepper.baseMutators) {
+                System.out.println(baseMutator);
+                for (Mutator mutator : baseMutator.getGeneratedMutators()) {
+                    System.out.println("\t" + mutator);
+                }
+            }
+        }
 
         switch (repairer.getRepairStatus()) {
             case ALREADY_CORRECT:

@@ -15,6 +15,10 @@ import java.util.Optional;
 public class RepairChecker {
 
     public static Repairer attemptRepair(String filename, int maxDepth, long timeout) throws IOException {
+        return attemptRepair(filename, maxDepth, timeout, false);
+    }
+
+    public static Repairer attemptRepair(String filename, int maxDepth, long timeout, boolean variabilizationEnabled) throws IOException {
         Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, null, filename);
 
         Optional<Command> cmd = world.getAllCommands().stream()
@@ -30,10 +34,12 @@ public class RepairChecker {
         }
 
         Repairer rep = Repairer.make(world, cmd.get(), funcs, maxDepth);
+        rep.variabilizationEnabled = variabilizationEnabled;
         rep.repair(timeout);
 
         return rep;
     }
+
     public static Repairer attemptRepair(String content, long timeout) throws IOException {
         return attemptRepair(content, 3, timeout);
     }
