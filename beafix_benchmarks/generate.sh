@@ -27,4 +27,9 @@ do
     done
 done
 
-generate_file "generated" "A4F-1B/CLASSROOM/classroom_inv1_1.als"
+for filepath in $(find . | grep "GRAPHS" | grep "\.als$")
+do
+    PRED=$(printf $filepath | sed -E "s/_/__/1; s/^.*__//g; s/_.*$//g")
+    printf "generating for $filepath, $PRED\n"
+    generate_file "generated" $filepath "$PRED" "$PRED <=> ${PRED}_OK"
+done
