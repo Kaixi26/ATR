@@ -429,5 +429,5 @@ pred __repair {
 noLoops
 }
 check __repair {
-noLoops <=> noLoops_OK
+noLoops <=> noLoopsOK
 }

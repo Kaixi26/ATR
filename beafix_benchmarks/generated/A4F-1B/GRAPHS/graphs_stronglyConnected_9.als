@@ -429,5 +429,5 @@ pred __repair {
 stronglyConnected
 }
 check __repair {
-stronglyConnected <=> stronglyConnected_OK
+stronglyConnected <=> stronglyConnectedOK
 }

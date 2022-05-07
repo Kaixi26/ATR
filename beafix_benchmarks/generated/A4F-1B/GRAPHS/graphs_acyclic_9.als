@@ -428,5 +428,5 @@ pred __repair {
 acyclic
 }
 check __repair {
-acyclic <=> acyclic_OK
+acyclic <=> acyclicOK
 }

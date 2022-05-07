@@ -18,18 +18,18 @@ function generate_file(){
     ) > $OUTPUT_PATH
 }
 
-for i in {1..15}
-do
-    printf "generating for inv$i\n"
-    for filepath in $(find . | grep "inv$i.*\.als")
-    do
-        generate_file "generated" $filepath "inv$i" "inv$i <=> inv${i}_OK"
-    done
-done
+#for i in {1..15}
+#do
+#    printf "generating for inv$i\n"
+#    for filepath in $(find . | grep "inv$i.*\.als")
+#    do
+#        generate_file "generated" $filepath "inv$i" "inv$i <=> inv${i}_OK"
+#    done
+#done
 
 for filepath in $(find . | grep "GRAPHS" | grep "\.als$")
 do
     PRED=$(printf $filepath | sed -E "s/_/__/1; s/^.*__//g; s/_.*$//g")
     printf "generating for $filepath, $PRED\n"
-    generate_file "generated" $filepath "$PRED" "$PRED <=> ${PRED}_OK"
+    generate_file "generated" $filepath "$PRED" "$PRED <=> ${PRED}OK"
 done

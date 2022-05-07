@@ -428,5 +428,5 @@ pred __repair {
 oriented
 }
 check __repair {
-oriented <=> oriented_OK
+oriented <=> orientedOK
 }

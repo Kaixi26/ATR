@@ -429,5 +429,5 @@ pred __repair {
 complete
 }
 check __repair {
-complete <=> complete_OK
+complete <=> completeOK
 }

@@ -429,5 +429,5 @@ pred __repair {
 transitive
 }
 check __repair {
-transitive <=> transitive_OK
+transitive <=> transitiveOK
 }

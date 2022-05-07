@@ -427,5 +427,5 @@ pred __repair {
 undirected
 }
 check __repair {
-undirected <=> undirected_OK
+undirected <=> undirectedOK
 }
