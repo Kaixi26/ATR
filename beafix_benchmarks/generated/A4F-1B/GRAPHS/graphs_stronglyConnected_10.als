@@ -426,8 +426,8 @@ assert transitiveRepaired {
  check stonglyConnectedRepaired expect 0
  check transitiveRepaired expect 0
 pred __repair {
-stronglyConnected
+stonglyConnected
 }
 check __repair {
-stronglyConnected <=> stronglyConnectedOK
+stonglyConnected <=> stonglyConnectedOK
 }

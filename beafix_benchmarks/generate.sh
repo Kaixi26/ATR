@@ -29,7 +29,7 @@ function generate_file(){
 
 for filepath in $(find . | grep "GRAPHS" | grep "\.als$")
 do
-    PRED=$(printf $filepath | sed -E "s/_/__/1; s/^.*__//g; s/_.*$//g")
+    PRED=$(printf $filepath | sed -E "s/_/__/1; s/^.*__//g; s/_.*$//g; s/stronglyConnected/stonglyConnected/g")
     printf "generating for $filepath, $PRED\n"
     generate_file "generated" $filepath "$PRED" "$PRED <=> ${PRED}OK"
 done
