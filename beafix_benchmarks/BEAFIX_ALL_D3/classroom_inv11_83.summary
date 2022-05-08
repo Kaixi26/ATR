@@ -1,0 +1,1 @@
+classroom_inv11_83; true; 490; real; ORIGINAL: all c : one Class | (some (c . Groups)) <=> (some t : one Teacher | c in (t . Teaches))£REPAIRED: all c : one Class | (some (c . Groups)) => (some t : one Teacher | c in (t . Teaches))£; depth 3; VALID

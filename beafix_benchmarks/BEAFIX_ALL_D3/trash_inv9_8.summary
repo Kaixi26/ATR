@@ -1,0 +1,1 @@
+trash_inv9_8; true; 35660; real; ORIGINAL: all f1 : one File, f2 : one File | ! ((f1 . link) = f2)£REPAIRED: all f1 : File . link, f2 : one File | ! ((f1 . link) != f2 - File)£; depth 3; VALID

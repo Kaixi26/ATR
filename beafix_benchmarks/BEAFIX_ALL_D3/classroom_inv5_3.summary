@@ -1,0 +1,1 @@
+classroom_inv5_3; true; 3031; real; ORIGINAL: all p : one Person | some c : one Class | (p in Teacher) => ((p -> c) in Teaches)£REPAIRED: some p : one Person | some c : one Class | (p in Teacher) && ((p -> c) in Teaches)£; depth 3; VALID

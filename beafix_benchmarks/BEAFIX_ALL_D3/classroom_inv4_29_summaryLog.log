@@ -1,0 +1,903 @@
+================REPAIR LOG================
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 22 <SSE> 
+|<	Student
+|>	(Student + Person)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6268 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 22 <SSE> 
+|<	Student
+|>	(Student + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6269 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 19 <SSE> 
+|<	Teacher
+|>	(Teacher + Person)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6270 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 19 <SSE> 
+|<	Teacher
+|>	(Teacher + Student)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6271 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 19 <SSE> 
+|<	Teacher
+|>	(Teacher + Person)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6272 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 19 <SSE> 
+|<	Teacher
+|>	(Teacher + Student)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6273 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSS> 
+|<	((Student - Teacher) + Teacher)
+|>	(((Student - Teacher) + Teacher) - Class)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6274 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSS> 
+|<	((Student - Teacher) + Teacher)
+|>	(((Student - Teacher) + Teacher) - Group)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6275 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSS> 
+|<	((Student - Teacher) + Teacher)
+|>	(((Student - Teacher) + Teacher) - Person)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6276 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSS> 
+|<	((Student - Teacher) + Teacher)
+|>	(((Student - Teacher) + Teacher) - Student)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 6277 for 15 commands...
+*********
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <BESOR> 
+|<	(Student & Teacher)
+|>	(Student - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSE> 
+|<	(Student - Teacher)
+|>	((Student - Teacher) + Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 108 <SSS> 
+|<	((Student - Teacher) + Teacher)
+|>	(((Student - Teacher) + Teacher) - Teacher)  
+
+
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+java.io.StreamCorruptedException: invalid type code: 23
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1696)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:501)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:459)
+	at edu.mit.csail.sdg.alloy4.WorkerEngine$3.run(WorkerEngine.java:319)
+	at java.lang.Thread.run(Thread.java:748)
+May 07, 2022 1:04:48 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback fail
+SEVERE: fail
+==============GENERATOR LOG===============
+ from mayor expression : some (Student - (Teacher . Tutors))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Tutors, (Tutors - Tutors))
+ from mayor expression : some (Student - (Teacher . Tutors))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Teaches . Class)
+
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Teaches . Class)
+
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Student, (Student + Student))
+ from mayor expression : some (Student - (Teaches . Class))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Teaches, (Teaches + Teaches))
+ from mayor expression : some (Student - (Teaches . Class))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Class, (Class + Class))
+ from mayor expression : some (Student - (Teaches . Class))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Student, (Student - Student))
+ from mayor expression : some (Student - (Teaches . Class))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Teaches, (Teaches - Teaches))
+ from mayor expression : some (Student - (Teaches . Class))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Class, (Class - Class))
+ from mayor expression : some (Student - (Teaches . Class))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Tutors . Person)
+
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Tutors . Person)
+
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Student, (Student + Student))
+ from mayor expression : some (Student - (Tutors . Person))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Tutors, (Tutors + Tutors))
+ from mayor expression : some (Student - (Tutors . Person))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : some (Student - (Tutors . Person))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Student, (Student - Student))
+ from mayor expression : some (Student - (Tutors . Person))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Tutors, (Tutors - Tutors))
+ from mayor expression : some (Student - (Tutors . Person))
+May 07, 2022 1:04:46 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : some (Student - (Tutors . Person))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Tutors . Student)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Tutors . Student)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Student, (Student + Student))
+ from mayor expression : some (Student - (Tutors . Student))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Tutors, (Tutors + Tutors))
+ from mayor expression : some (Student - (Tutors . Student))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Student, (Student + Student))
+ from mayor expression : some (Student - (Tutors . Student))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Student, (Student - Student))
+ from mayor expression : some (Student - (Tutors . Student))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Tutors, (Tutors - Tutors))
+ from mayor expression : some (Student - (Tutors . Student))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Student, (Student - Student))
+ from mayor expression : some (Student - (Tutors . Student))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Tutors . Teacher)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (JEE) |< Teacher |> (Tutors . Teacher)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Student, (Student + Student))
+ from mayor expression : some (Student - (Tutors . Teacher))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Tutors, (Tutors + Tutors))
+ from mayor expression : some (Student - (Tutors . Teacher))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Teacher, (Teacher + Teacher))
+ from mayor expression : some (Student - (Tutors . Teacher))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Student, (Student - Student))
+ from mayor expression : some (Student - (Tutors . Teacher))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Tutors, (Tutors - Tutors))
+ from mayor expression : some (Student - (Tutors . Teacher))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Teacher, (Teacher - Teacher))
+ from mayor expression : some (Student - (Tutors . Teacher))
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Class)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Class)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Group)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Group)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Person)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Person)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : some ((Student - Teacher) + Person)
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : some ((Student - Teacher) + Person)
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Student)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Student)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Student, (Student + Student))
+ from mayor expression : some ((Student - Teacher) + Student)
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Student, (Student - Student))
+ from mayor expression : some ((Student - Teacher) + Student)
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Teacher)
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 108 : (SSE) |< (Student - Teacher) |> ((Student - Teacher) + Teacher)
+
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 22 : (SSE) |< Student |> (Student + Person)
+
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[2] mutations}
+
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[2] mutations}
+Line : 108 : (BESOR) |< (Student & Teacher) |> (Student - Teacher)
+Line : 22 : (SSE) |< Student |> (Student + Person)
+
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (VCR, Student, Person)
+ from mayor expression : some ((Student + Person) - Teacher)
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (VCR, Person, Student)
+ from mayor expression : some ((Student + Person) - Teacher)
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Student, (Student + Student))
+ from mayor expression : some ((Student + Person) - Teacher)
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Teacher, (Teacher + Teacher))
+ from mayor expression : some ((Student + Person) - Teacher)
+========CANDIDATE GENERATION LOG==========
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab sendCandidateToInput
+INFO: candidate was last, ignoring...
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab sendCandidateToInput
+INFO: candidate was last, ignoring...
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab sendCandidateToInput
+INFO: candidate was last, ignoring...
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:47 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab sendCandidateToInput
+INFO: candidate was last, ignoring...
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 1:04:48 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel

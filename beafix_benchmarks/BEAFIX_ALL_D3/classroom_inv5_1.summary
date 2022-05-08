@@ -1,0 +1,1 @@
+classroom_inv5_1; true; 526; real; ORIGINAL: all c : one Class | some t : one Teacher | (t -> c) in Teaches£REPAIRED: some c : one Class | some t : one Teacher | (t -> c) in Teaches£; depth 3; VALID

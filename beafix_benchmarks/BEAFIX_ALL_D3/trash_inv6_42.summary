@@ -1,0 +1,1 @@
+trash_inv6_42; true; 2843; real; ORIGINAL: some f : one File | lone (link :> f)£REPAIRED: all f : one File | lone ((~ link) :> f)£; depth 3; VALID

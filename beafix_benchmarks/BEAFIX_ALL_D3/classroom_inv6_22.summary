@@ -1,0 +1,1 @@
+classroom_inv6_22; true; 20570; real; ORIGINAL: (Teacher . (Teacher <: Teaches)) = Person£REPAIRED: Teacher in Teaches . Class£; depth 3; VALID

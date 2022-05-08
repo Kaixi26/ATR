@@ -1,0 +1,1 @@
+graphs_oriented_1; true; 2716; real; ORIGINAL: adj != (~ adj)£REPAIRED: ((~ adj) - adj) = (~ adj)£; depth 3; VALID

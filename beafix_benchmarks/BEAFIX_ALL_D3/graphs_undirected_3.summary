@@ -1,0 +1,1 @@
+graphs_undirected_3; true; 249; real; ORIGINAL: all a, b : one Node | ((a -> b) in adj) => ((b -> a) !in adj)£REPAIRED: all a, b : one Node | ((a -> b) in adj) || ((b -> a) !in adj)£; depth 3; VALID

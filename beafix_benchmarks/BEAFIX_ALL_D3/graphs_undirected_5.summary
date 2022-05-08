@@ -1,0 +1,1 @@
+graphs_undirected_5; true; 12661; real; ORIGINAL: all n : one Node | one (n . adj)£REPAIRED: all n : one Node | one (n . (* ((~ adj) - adj)))£; depth 3; VALID

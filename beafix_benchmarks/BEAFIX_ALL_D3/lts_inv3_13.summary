@@ -1,0 +1,1 @@
+lts_inv3_13; true; 13790; real; ORIGINAL: all s : one State, e : one Event | one (s . (e . trans))£REPAIRED: all s : one State, e : one Event | lone (e . (s . trans))£; depth 3; VALID

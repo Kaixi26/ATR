@@ -1,0 +1,1 @@
+graphs_acyclic_26; true; 5887; real; ORIGINAL: ! (iden in (^ adj))£REPAIRED: (some ((adj . adj) . adj)) => (! (((adj . adj) . adj) in (^ adj)))£; depth 3; VALID

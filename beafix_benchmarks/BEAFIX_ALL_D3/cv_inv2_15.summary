@@ -1,0 +1,1 @@
+cv_inv2_15; true; 19763; real; ORIGINAL: all w : one Work | (w in (User . profile)) => (User = (w . source))£REPAIRED: all w : source . User | (w in (User . profile)) => (profile . w = (w . source))£; depth 3; VALID

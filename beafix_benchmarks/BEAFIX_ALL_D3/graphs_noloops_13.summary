@@ -1,0 +1,1 @@
+graphs_noloops_13; true; 252; real; ORIGINAL: no (adj + iden)£REPAIRED: no (adj & iden)£; depth 3; VALID

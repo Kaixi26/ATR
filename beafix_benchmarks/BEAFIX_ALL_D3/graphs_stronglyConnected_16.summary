@@ -1,0 +1,1 @@
+graphs_stronglyConnected_16; true; 2260; real; ORIGINAL: all n : one Node | (Node - n) = ((n . (^ adj)) + (n . (^ (~ adj))))£REPAIRED: all n : one Node | Node = ((n) + (n . (^ (~ adj))))£; depth 3; VALID

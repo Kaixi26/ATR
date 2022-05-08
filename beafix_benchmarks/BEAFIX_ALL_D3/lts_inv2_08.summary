@@ -1,0 +1,1 @@
+lts_inv2_08; true; 1439; real; ORIGINAL: one s : one State | no (trans . s)£REPAIRED: one s : one State | no s - Init£; depth 3; VALID

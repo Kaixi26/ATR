@@ -1,0 +1,1 @@
+graphs_acyclic_27; true; 1896; real; ORIGINAL: some a : one Node | (a -> a) in adj£REPAIRED: no a : one Node | (a -> a) in (^ adj)£; depth 3; VALID

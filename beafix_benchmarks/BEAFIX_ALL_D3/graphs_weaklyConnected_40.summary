@@ -1,0 +1,1 @@
+graphs_weaklyConnected_40; true; 7274; real; ORIGINAL: all n : one Node | Node in (((n + (n . adj)) + (adj . n)) . (* adj))£REPAIRED: all n : one Node | Node in (((n + (n . adj)) + (adj . n)) . ((~ (* adj)) + adj))£; depth 3; VALID

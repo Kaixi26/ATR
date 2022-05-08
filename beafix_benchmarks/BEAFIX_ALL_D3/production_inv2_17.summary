@@ -1,0 +1,1 @@
+production_inv2_17; true; 549; real; ORIGINAL: no ((Component . (^ parts)) <: Component)£REPAIRED: no ((Component . (^ parts)) <: (parts . parts))£; depth 3; VALID

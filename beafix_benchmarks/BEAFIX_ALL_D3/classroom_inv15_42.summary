@@ -1,0 +1,1 @@
+classroom_inv15_42; true; 7896; real; ORIGINAL: all s : one Student | some (Teacher & (s . (^ Tutors)))£REPAIRED: all s : one Person | some (Teacher & (s . (~ (^ Tutors))))£; depth 3; VALID

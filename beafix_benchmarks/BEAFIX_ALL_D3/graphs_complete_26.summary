@@ -1,0 +1,1 @@
+graphs_complete_26; true; 235; real; ORIGINAL: all n : one Node | Node in (n . (* adj))£REPAIRED: all n : one Node | Node in (n . (adj))£; depth 3; VALID

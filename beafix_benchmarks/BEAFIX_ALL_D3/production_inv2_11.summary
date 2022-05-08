@@ -1,0 +1,1 @@
+production_inv2_11; true; 824; real; ORIGINAL: all c : one Component | no (c <: (parts . c))£REPAIRED: all c : one Component | no (c <: (parts . (parts . parts)))£; depth 3; VALID

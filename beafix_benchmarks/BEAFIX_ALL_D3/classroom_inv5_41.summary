@@ -1,0 +1,1 @@
+classroom_inv5_41; true; 1099; real; ORIGINAL: some (Teacher -> Class)£REPAIRED: some (Teacher . Teaches -> Class)£; depth 3; VALID

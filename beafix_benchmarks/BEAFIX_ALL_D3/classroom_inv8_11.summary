@@ -1,0 +1,1 @@
+classroom_inv8_11; true; 908; real; ORIGINAL: all t : one Teacher | some x, y : one Class | (((t -> x) in Teaches) && ((t -> y) in Teaches)) => (x = y)£REPAIRED: all t : one Teacher | all x, y : one Class | (((t -> x) in Teaches) && ((t -> y) in Teaches)) => (x = y)£; depth 3; VALID

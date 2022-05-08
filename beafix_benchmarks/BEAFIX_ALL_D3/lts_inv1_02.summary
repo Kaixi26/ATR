@@ -1,0 +1,1 @@
+lts_inv1_02; true; 441; real; ORIGINAL: all s : one State | some trans£REPAIRED: all s : one State | some s . trans£; depth 3; VALID

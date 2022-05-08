@@ -1,0 +1,903 @@
+================REPAIR LOG================
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4354 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	c
+|>	(Tutors . Teacher)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4355 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	c
+|>	(Tutors . p)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4356 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	c
+|>	(p . Teaches)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4357 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	c
+|>	(p . Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4358 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Person . Teaches)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4359 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Person . Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4360 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Student . Teaches)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4361 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Student . Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4362 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Teacher . Teaches)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4363 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Teacher . Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4364 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Teaches . Class)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4365 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Teaches . c)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4366 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Tutors . Person)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Evaluation result: Not a repair
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: *********
+Validating mutant 4367 for 15 commands...
+*********
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <CUOI> 
+|<	((q -> p) in Tutors)
+|>	! ((q -> p) in Tutors)  
+
+
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback callback
+INFO: Line 887 <JEE> 
+|<	p
+|>	(Tutors . Student)  
+
+
+java.io.StreamCorruptedException: invalid type code: 23
+	at java.io.ObjectInputStream.readObject0(ObjectInputStream.java:1696)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:501)
+	at java.io.ObjectInputStream.readObject(ObjectInputStream.java:459)
+	at edu.mit.csail.sdg.alloy4.WorkerEngine$3.run(WorkerEngine.java:319)
+	at java.lang.Thread.run(Thread.java:748)
+May 07, 2022 10:44:44 PM edu.mit.csail.sdg.alloy4whole.AStryker$SimpleCallback fail
+SEVERE: fail
+==============GENERATOR LOG===============
+INFO: variabilization check is disabled, returning true
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[1] mutations}
+
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[1] mutations}
+Line : 887 : (CUOI) |< ((c -> (p -> g)) in Groups) |> ! ((c -> (p -> g)) in Groups)
+
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Class, (Class + Class))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Group, (Group + Group))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, c, (c + c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, p, (p + p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, g, (g + g))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Groups, (Groups + Groups))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, q, (q + q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, c, (c + c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Teaches, (Teaches + Teaches))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, q, (q + q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, p, (p + p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Tutors, (Tutors + Tutors))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Class, (Class - Class))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Group, (Group - Group))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, c, (c - c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, p, (p - p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, g, (g - g))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Groups, (Groups - Groups))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, q, (q - q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, c, (c - c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Teaches, (Teaches - Teaches))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, q, (q - q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, p, (p - p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:39 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Tutors, (Tutors - Tutors))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (! ((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[1] mutations}
+Line : 887 : (CUOI) |< ((q -> c) in Teaches) |> ! ((q -> c) in Teaches)
+
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[1] mutations}
+
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[1] mutations}
+Line : 887 : (CUOI) |< ((q -> c) in Teaches) |> ! ((q -> c) in Teaches)
+
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Class, (Class + Class))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Group, (Group + Group))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, c, (c + c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, p, (p + p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, g, (g + g))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Groups, (Groups + Groups))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, q, (q + q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, c, (c + c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Teaches, (Teaches + Teaches))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, q, (q + q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, p, (p + p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Tutors, (Tutors + Tutors))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Class, (Class - Class))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Group, (Group - Group))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, c, (c - c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, p, (p - p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, g, (g - g))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Groups, (Groups - Groups))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, q, (q - q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, c, (c - c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Teaches, (Teaches - Teaches))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, q, (q - q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, p, (p - p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:41 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Tutors, (Tutors - Tutors))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[! ((q -> c) in Teaches), ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Current candidate:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[1] mutations}
+Line : 887 : (CUOI) |< ((q -> p) in Tutors) |> ! ((q -> p) in Tutors)
+
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator variabilizationCheck
+INFO: variabilization check is disabled, returning true
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: variabilization check SUCCEEDED
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending next index candidate:
+CANDIDATE {INDEX : 2 FROM RANGE [0..2] ;[1] mutations}
+
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator generateNewCandidates_impl
+INFO: Sending mutants of:
+CANDIDATE {INDEX : 1 FROM RANGE [0..2] ;[1] mutations}
+Line : 887 : (CUOI) |< ((q -> p) in Tutors) |> ! ((q -> p) in Tutors)
+
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Class, (Class + Class))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Group, (Group + Group))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, c, (c + c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, p, (p + p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, g, (g + g))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Groups, (Groups + Groups))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Person, (Person + Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, q, (q + q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, c, (c + c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Teaches, (Teaches + Teaches))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, q, (q + q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, p, (p + p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSE, Tutors, (Tutors + Tutors))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Class, (Class - Class))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Group, (Group - Group))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, c, (c - c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, p, (p - p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, g, (g - g))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Groups, (Groups - Groups))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Person, (Person - Person))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, q, (q - q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, c, (c - c))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Teaches, (Teaches - Teaches))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, q, (q - q))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, p, (p - p))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.CandidateGenerator lambda$null$1
+INFO: Irrelevant mutation detected: (SSS, Tutors, (Tutors - Tutors))
+ from mayor expression : (all p : one Person  | (some c : one Class ,g : one Group  | (((c -> (p -> g)) in Groups) => (some q : one Person  | AND[((q -> c) in Teaches), ! ((q -> p) in Tutors)]))))
+========CANDIDATE GENERATION LOG==========
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel
+May 07, 2022 10:44:44 PM ar.edu.unrc.dc.mutation.mutantLab.MutantLab advance
+INFO: Inserting current to candidate input channel

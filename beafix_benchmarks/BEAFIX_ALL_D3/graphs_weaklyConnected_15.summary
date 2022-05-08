@@ -1,0 +1,1 @@
+graphs_weaklyConnected_15; true; 2648; real; ORIGINAL: all n : one Node | (n . (adj + (~ adj))) = (Node - n)£REPAIRED: all n : one Node | (n . (* (adj + (~ adj)))) = Node£; depth 3; VALID

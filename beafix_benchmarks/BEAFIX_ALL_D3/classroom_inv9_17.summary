@@ -1,0 +1,1 @@
+classroom_inv9_17; true; 17905; real; ORIGINAL: all c : one Class | lone (c . (~ Teaches))£REPAIRED: all c : one Class | lone ((c . (~ Teaches)) & Teacher)£; depth 3; VALID

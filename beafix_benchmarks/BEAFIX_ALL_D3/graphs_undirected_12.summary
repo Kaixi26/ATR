@@ -1,0 +1,1 @@
+graphs_undirected_12; true; 256; real; ORIGINAL: no (adj . (~ adj))£REPAIRED: no (adj - (~ adj))£; depth 3; VALID

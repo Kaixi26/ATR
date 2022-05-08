@@ -1,0 +1,1 @@
+lts_inv5_12; true; 37950; real; ORIGINAL: all s : one State, e : one Event | some ((s . trans) . e)£REPAIRED: all s : one State, e : one Event | (some ((~ (State . trans)) . e)) => (some ((~ (s . trans)) . e))£; depth 3; VALID

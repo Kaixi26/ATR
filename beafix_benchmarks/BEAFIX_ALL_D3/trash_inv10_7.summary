@@ -1,0 +1,1 @@
+trash_inv10_7; true; 5196; real; ORIGINAL: all f, g : one File | ((g in Trash) && (g != f)) => ((f -> g) !in link)£REPAIRED: all f, g : one File | ((! (Trash . link in Trash)) && (g != f)) => ((f -> g) !in link)£; depth 3; VALID

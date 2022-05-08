@@ -1,0 +1,1 @@
+classroom_inv5_5; true; 6272; real; ORIGINAL: all p : one Person | some c : one Class | p in Person£REPAIRED: some p : one Person | some c : Teacher . Teaches | p in Person£; depth 3; VALID

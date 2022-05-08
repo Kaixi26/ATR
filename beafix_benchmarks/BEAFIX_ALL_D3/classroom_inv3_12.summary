@@ -1,0 +1,1 @@
+classroom_inv3_12; true; 446; real; ORIGINAL: all p : one Person | ! ((p in Student) && (p !in Teacher))£REPAIRED: all p : one Person | ! ((p in Student) && (! (p !in Teacher)))£; depth 3; VALID

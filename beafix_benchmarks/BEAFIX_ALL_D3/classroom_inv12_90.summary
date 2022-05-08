@@ -1,0 +1,1 @@
+classroom_inv12_90; true; 53563; real; ORIGINAL: Teacher in (Person . Teaches)£REPAIRED: Teacher in (Person . (~ ((Teaches . Groups) . Group)))£; depth 3; VALID

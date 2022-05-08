@@ -1,0 +1,1 @@
+graphs_noloops_3; true; 206; real; ORIGINAL: all a : one Node | (a -> a) in adj£REPAIRED: all a : one Node | ! ((a -> a) in adj)£; depth 3; VALID

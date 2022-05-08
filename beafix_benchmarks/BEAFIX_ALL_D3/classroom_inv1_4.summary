@@ -1,0 +1,1 @@
+classroom_inv1_4; true; 6400; real; ORIGINAL: all s : one Student | s in Person£REPAIRED: all s : one Person | s in Student£; depth 3; VALID

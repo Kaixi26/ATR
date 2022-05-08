@@ -1,0 +1,1 @@
+classroom_inv9_50; true; 18469; real; ORIGINAL: no c : one Class | (# (Teaches . c)) > 1£REPAIRED: no c : one Class | (# ((Teaches . c) & Teacher)) > 1£; depth 3; VALID

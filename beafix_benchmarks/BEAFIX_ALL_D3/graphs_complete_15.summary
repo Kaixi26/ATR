@@ -1,0 +1,1 @@
+graphs_complete_15; true; 255; real; ORIGINAL: all n : one Node | (n . adj) = (Node - n)£REPAIRED: all n : one Node | (n . adj) = (Node)£; depth 3; VALID

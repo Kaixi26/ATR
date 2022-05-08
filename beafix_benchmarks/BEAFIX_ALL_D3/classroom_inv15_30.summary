@@ -1,0 +1,1 @@
+classroom_inv15_30; true; 11351; real; ORIGINAL: all p : one Person | Teacher in (p . (^ Tutors))£REPAIRED: all p : one Person | Person in (Teacher . (^ Tutors))£; depth 3; VALID

@@ -1,0 +1,1 @@
+graphs_noloops_2; true; 7621; real; ORIGINAL: adj = (~ iden)£REPAIRED: adj = (((~ iden) - adj) . adj)£; depth 3; VALID

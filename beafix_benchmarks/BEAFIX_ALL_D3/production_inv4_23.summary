@@ -1,0 +1,1 @@
+production_inv4_23; true; 5364; real; ORIGINAL: all c : one Component, p : one (c . parts) | (p in Component) => ((c . cposition) in ordering/nexts[p . cposition])£REPAIRED: all c : one Component, p : one (c . ~ parts) | ! ((p in Component) => ((c . cposition) in ordering/nexts[p . cposition]))£; depth 3; VALID

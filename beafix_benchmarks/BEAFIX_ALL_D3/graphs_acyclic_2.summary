@@ -1,0 +1,1 @@
+graphs_acyclic_2; true; 4968; real; ORIGINAL: adj !in (adj . (^ adj))£REPAIRED: ! (adj !in (adj - (~ (^ adj))))£; depth 3; VALID

@@ -1,0 +1,1 @@
+cv_inv1_24; true; 9610; real; ORIGINAL: Work in ((User . profile) & (User . visible))£REPAIRED: (visible - profile . Work) in ((User . profile) & (User . visible))£; depth 3; VALID

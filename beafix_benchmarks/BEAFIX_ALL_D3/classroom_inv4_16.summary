@@ -1,0 +1,1 @@
+classroom_inv4_16; true; 1988; real; ORIGINAL: (no (Person - Teacher)) && (no (Person - Student))£REPAIRED: (no (Person - Teacher + Student)) || (no (Person - Student))£; depth 3; INVALID

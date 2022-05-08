@@ -1,0 +1,1 @@
+classroom_inv11_85; true; 706; real; ORIGINAL: all c : one Class | (lone (c . Groups)) => (some ((Teaches . c) & Teacher))£REPAIRED: all c : one Class | (some (c . Groups)) => (some ((Teaches . c) & Teacher))£; depth 3; VALID

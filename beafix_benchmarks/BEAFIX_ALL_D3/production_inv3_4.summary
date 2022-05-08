@@ -1,0 +1,1 @@
+production_inv3_4; true; 22676; real; ORIGINAL: all c : one Component | (Robot . rposition) in (c . cposition)£REPAIRED: all c : one Component | ! (((c . cposition) . (~ rposition)) in (c . cposition))£; depth 3; VALID
