@@ -37,3 +37,7 @@ enroute.zip
 
 .idea
 *.iml
+
+# Debug files
+*.log
+*.lck
