@@ -1199,23 +1199,23 @@ graphs_complete_6; true; 252; real; ORIGINAL: all a, b : one Node | b in (a . (^
 graphs_complete_7; true; 1117; real; ORIGINAL: all a : one Node | a in (a . (^ adj))£REPAIRED: all a : one Node | Node in (a . adj)£; depth 3; VALID
 graphs_complete_8; true; 1862; real; ORIGINAL: all a : one Node | (a in (a . (^ adj))) && (! ((a -> a) in adj))£REPAIRED: all a : one Node | (a in (a . (^ adj))) && (! (! ((Node -> a) in adj)))£; depth 3; VALID
 graphs_complete_9; true; 54886; real; ORIGINAL: all a : one Node | (a in (a . (^ adj))) => (a in (a . (^ adj)))£REPAIRED: all a : one Node | Node in (a . adj)£; depth 3; VALID
-graphs_noloops_10; true; 238; real; ORIGINAL: all n : one Node | n !in (n . (^ adj))£REPAIRED: all n : one Node | n !in (n . (adj))£; depth 3; VALID
-graphs_noloops_11; true; 473; real; ORIGINAL: all x, y : one Node | ((x -> y) in adj) => (! ((y -> x) in adj))£REPAIRED: all x, y : one Node | ((y -> y) in adj) => (! ((y -> x) in adj))£; depth 3; VALID
-graphs_noloops_12; true; 480; real; ORIGINAL: all x, y, z : one Node | ((x -> y) in adj) => (! ((y -> x) in adj))£REPAIRED: all x, y, z : one Node | ((y -> y) in adj) => (! ((y -> x) in adj))£; depth 3; VALID
-graphs_noloops_13; true; 252; real; ORIGINAL: no (adj + iden)£REPAIRED: no (adj & iden)£; depth 3; VALID
-graphs_noloops_14; true; 241; real; ORIGINAL: no (adj - iden)£REPAIRED: no (adj & iden)£; depth 3; VALID
-graphs_noloops_15; false; 60002; real; N/A; depth 3; NOT REPAIRED
-graphs_noloops_16; false; 648; real; N/A; depth 3; NOT REPAIRED
-graphs_noloops_17; false; 55322; real; N/A; depth 3; NOT REPAIRED
-graphs_noloops_1; true; 369; real; ORIGINAL: adj = ((Node -> Node) - iden)£REPAIRED: adj in ((Node -> Node) - iden)£; depth 3; VALID
-graphs_noloops_2; true; 7621; real; ORIGINAL: adj = (~ iden)£REPAIRED: adj = (((~ iden) - adj) . adj)£; depth 3; VALID
-graphs_noloops_3; true; 206; real; ORIGINAL: all a : one Node | (a -> a) in adj£REPAIRED: all a : one Node | ! ((a -> a) in adj)£; depth 3; VALID
-graphs_noloops_4; true; 1929; real; ORIGINAL: all a : one Node | no ((a . (^ adj)) & ((^ adj) . a))£REPAIRED: all a : one Node | no (a & ((adj) . a))£; depth 3; VALID
-graphs_noloops_5; true; 230; real; ORIGINAL: all a : one Node | a !in (a . (^ adj))£REPAIRED: all a : one Node | a !in (a . (adj))£; depth 3; VALID
-graphs_noloops_6; true; 1407; real; ORIGINAL: all a : one Node | (a . integer/next[]) !in a£REPAIRED: all a : one Node | (a . (* integer/next[])) !in a . adj£; depth 3; VALID
-graphs_noloops_7; true; 267; real; ORIGINAL: all a : one Node | no (a & (a . (^ adj)))£REPAIRED: all a : one Node | no (a & (a . (adj)))£; depth 3; VALID
-graphs_noloops_8; true; 4876; real; ORIGINAL: all a : one Node | ! ((a . adj) = a)£REPAIRED: all a : one Node | ! (((a . adj) + a) = (a . adj))£; depth 3; VALID
-graphs_noloops_9; true; 879; real; ORIGINAL: all n : one Node | no (n -> n)£REPAIRED: all n : one Node | ! (no ((n -> n) - adj))£; depth 3; VALID
+graphs_noLoops_10; true; 238; real; ORIGINAL: all n : one Node | n !in (n . (^ adj))£REPAIRED: all n : one Node | n !in (n . (adj))£; depth 3; VALID
+graphs_noLoops_11; true; 473; real; ORIGINAL: all x, y : one Node | ((x -> y) in adj) => (! ((y -> x) in adj))£REPAIRED: all x, y : one Node | ((y -> y) in adj) => (! ((y -> x) in adj))£; depth 3; VALID
+graphs_noLoops_12; true; 480; real; ORIGINAL: all x, y, z : one Node | ((x -> y) in adj) => (! ((y -> x) in adj))£REPAIRED: all x, y, z : one Node | ((y -> y) in adj) => (! ((y -> x) in adj))£; depth 3; VALID
+graphs_noLoops_13; true; 252; real; ORIGINAL: no (adj + iden)£REPAIRED: no (adj & iden)£; depth 3; VALID
+graphs_noLoops_14; true; 241; real; ORIGINAL: no (adj - iden)£REPAIRED: no (adj & iden)£; depth 3; VALID
+graphs_noLoops_15; false; 60002; real; N/A; depth 3; NOT REPAIRED
+graphs_noLoops_16; false; 648; real; N/A; depth 3; NOT REPAIRED
+graphs_noLoops_17; false; 55322; real; N/A; depth 3; NOT REPAIRED
+graphs_noLoops_1; true; 369; real; ORIGINAL: adj = ((Node -> Node) - iden)£REPAIRED: adj in ((Node -> Node) - iden)£; depth 3; VALID
+graphs_noLoops_2; true; 7621; real; ORIGINAL: adj = (~ iden)£REPAIRED: adj = (((~ iden) - adj) . adj)£; depth 3; VALID
+graphs_noLoops_3; true; 206; real; ORIGINAL: all a : one Node | (a -> a) in adj£REPAIRED: all a : one Node | ! ((a -> a) in adj)£; depth 3; VALID
+graphs_noLoops_4; true; 1929; real; ORIGINAL: all a : one Node | no ((a . (^ adj)) & ((^ adj) . a))£REPAIRED: all a : one Node | no (a & ((adj) . a))£; depth 3; VALID
+graphs_noLoops_5; true; 230; real; ORIGINAL: all a : one Node | a !in (a . (^ adj))£REPAIRED: all a : one Node | a !in (a . (adj))£; depth 3; VALID
+graphs_noLoops_6; true; 1407; real; ORIGINAL: all a : one Node | (a . integer/next[]) !in a£REPAIRED: all a : one Node | (a . (* integer/next[])) !in a . adj£; depth 3; VALID
+graphs_noLoops_7; true; 267; real; ORIGINAL: all a : one Node | no (a & (a . (^ adj)))£REPAIRED: all a : one Node | no (a & (a . (adj)))£; depth 3; VALID
+graphs_noLoops_8; true; 4876; real; ORIGINAL: all a : one Node | ! ((a . adj) = a)£REPAIRED: all a : one Node | ! (((a . adj) + a) = (a . adj))£; depth 3; VALID
+graphs_noLoops_9; true; 879; real; ORIGINAL: all n : one Node | no (n -> n)£REPAIRED: all n : one Node | ! (no ((n -> n) - adj))£; depth 3; VALID
 graphs_oriented_10; true; 1106; real; ORIGINAL: all x, y : one Node | (((x -> y) in adj) && ((y -> x) in adj)) => (y = x)£REPAIRED: all x, y : one Node | (((x -> y) in adj) && ((y -> x) in adj)) => (y - Node = x)£; depth 3; VALID
 graphs_oriented_11; true; 2142; real; ORIGINAL: no adj£REPAIRED: no ((~ adj) & adj)£; depth 3; VALID
 graphs_oriented_12; true; 257; real; ORIGINAL: no (adj . (~ adj))£REPAIRED: no (adj & (~ adj))£; depth 3; VALID
