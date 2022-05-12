@@ -3,11 +3,19 @@ package pt.haslab.mutation.mutator;
 import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.Location;
-import pt.haslab.mutation.mutator.binary.InsertUnaryMutator;
+import pt.haslab.mutation.mutator.binary.RemoveBinaryMutator;
+import pt.haslab.mutation.mutator.binary.ReplaceBinaryMutator;
+import pt.haslab.mutation.mutator.binary.BinaryToUnaryMutator;
+import pt.haslab.mutation.mutator.bool.InsertUnaryMutator;
+import pt.haslab.mutation.mutator.quantifier.QtToUnaryMutator;
+import pt.haslab.mutation.mutator.quantifier.ReplaceQtOperator;
 import pt.haslab.mutation.mutator.relation.ExtendOrReduceMutator;
+import pt.haslab.mutation.mutator.relation.InsertPrimeMutator;
 import pt.haslab.mutation.mutator.relation.ReplaceRelationMutator;
-import pt.haslab.mutation.mutator.signature.InsertJoinMutator;
-import pt.haslab.mutation.mutator.signature.ToBinaryMutator;
+import pt.haslab.mutation.mutator.relation.InsertJoinMutator;
+import pt.haslab.mutation.mutator.unary.RemoveUnaryOperatorMutator;
+import pt.haslab.mutation.mutator.unary.ReplaceSetUnderUnaryMutator;
+import pt.haslab.mutation.mutator.unary.ReplaceUnaryOperatorMutator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,18 +44,32 @@ public class Generator {
     }
 
     private static void generateMutatorsExprUnary(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
-        ExprUnary expr = (ExprUnary) location.expr;
-        if (expr.op == ExprUnary.Op.NOOP) {
-            if (expr.sub instanceof Sig) {
-                ToBinaryMutator.generate(accumulator, location, sigs);
-                InsertUnaryMutator.generate(accumulator, location);
-            } else if (expr.sub instanceof ExprVar) {
-                ExprVarMutator.generate(accumulator, location, sigs, location.vars);
-            }
-        } else {
-            UnaryMutator.generate(accumulator, location, sigs, fields);
-        }
+        RemoveUnaryOperatorMutator.generate(accumulator, location);
+        ReplaceSetUnderUnaryMutator.generate(accumulator, location, sigs, fields);
+        ReplaceUnaryOperatorMutator.generate(accumulator, location);
+    }
 
+    private static void generateMutatorsExprBinary(List<Mutator> accumulator, Location location) {
+        RemoveBinaryMutator.generate(accumulator, location);
+        ReplaceBinaryMutator.generate(accumulator, location);
+        BinaryToUnaryMutator.generate(accumulator, location);
+    }
+
+    private static void generateMutatorsQt(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
+        ReplaceQtOperator.generate(accumulator, location);
+        QtToUnaryMutator.generate(accumulator, location, sigs);
+    }
+
+    private static void generateMutatorsBool(List<Mutator> accumulator, Location location) {
+        InsertUnaryMutator.generate(accumulator, location);
+    }
+
+    private static void generateMutatorsRelation(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
+        ExtendOrReduceMutator.generate(accumulator, location, sigs, fields);
+        InsertJoinMutator.generate(accumulator, location, sigs, fields);
+        InsertPrimeMutator.generate(accumulator, location);
+        InsertUnaryMutator.generate(accumulator, location);
+        ReplaceRelationMutator.generate(accumulator, location, sigs);
     }
 
     private static void generateMutators(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
@@ -57,30 +79,23 @@ public class Generator {
 
         ConstList<Sig.Field> fields = fieldsFromSigs(sigs);
         Expr expr = location.expr;
-        //System.out.println(expr);
-        //System.out.println(expr.getClass());
 
-
-        if (location.insideDecl) {
-            if (expr instanceof ExprUnary && ((ExprUnary) expr).sub instanceof Sig) {
-                ToBinaryMutator.generate(accumulator, location, sigs);
-                ExtendOrReduceMutator.generate(accumulator, location, sigs, fields);
-                ReplaceRelationMutator.generate(accumulator, location, sigs);
-            }
-        } else {
-            if (expr instanceof ExprUnary) {
+        if (!location.insideDecl) {
+            if (expr instanceof ExprUnary && ((ExprUnary) expr).op != ExprUnary.Op.NOOP) {
                 generateMutatorsExprUnary(accumulator, location, sigs, fields);
             } else if (expr instanceof ExprBinary) {
-                BinaryMutator.generate(accumulator, location);
+                generateMutatorsExprBinary(accumulator, location);
             } else if (expr instanceof ExprQt) {
-                ExprQtMutator.generate(accumulator, location, sigs);
+                generateMutatorsQt(accumulator, location, sigs);
             }
-
-            InsertJoinMutator.generate(accumulator, location, sigs, fields);
-            ExtendOrReduceMutator.generate(accumulator, location, sigs, fields);
-            InsertUnaryMutator.generate(accumulator, location);
-            ReplaceRelationMutator.generate(accumulator, location, sigs);
-
         }
+
+        if (expr.type().is_bool) {
+            generateMutatorsBool(accumulator, location);
+        } else {
+            generateMutatorsRelation(accumulator, location, sigs, fields);
+        }
+
+
     }
 }

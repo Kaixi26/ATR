@@ -21,9 +21,11 @@ Export-Package: \
 	edu.mit.csail.sdg.ast,\
 	pt.haslab.mutation,\
 	pt.haslab.mutation.mutator,\
-	pt.haslab.mutation.mutator.relation,\
 	pt.haslab.mutation.mutator.binary,\
-	pt.haslab.mutation.mutator.signature,\
+	pt.haslab.mutation.mutator.bool,\
+	pt.haslab.mutation.mutator.quantifier,\
+	pt.haslab.mutation.mutator.relation,\
+	pt.haslab.mutation.mutator.unary,\
 	pt.haslab.util,\
 	org.alloytools.graphics.util,\
 	edu.mit.csail.sdg.parser,\

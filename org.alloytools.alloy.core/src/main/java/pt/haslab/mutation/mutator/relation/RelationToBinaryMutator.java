@@ -1,4 +1,4 @@
-package pt.haslab.mutation.mutator.signature;
+package pt.haslab.mutation.mutator.relation;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.Expr;
@@ -12,11 +12,11 @@ import pt.haslab.util.LocationAggregator;
 
 import java.util.List;
 
-public class ToBinaryMutator extends Mutator {
+public class RelationToBinaryMutator extends Mutator {
     /*
         A ~> A op B
      */
-    private ToBinaryMutator(Location original, Expr expr) {
+    private RelationToBinaryMutator(Location original, Expr expr) {
         this.original = original;
         this.mutant = expr;
         this.name = original + "->" + expr;
@@ -24,11 +24,14 @@ public class ToBinaryMutator extends Mutator {
     }
 
     public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs) {
+        if (original.expr.type().arity() != 1) {
+            return;
+        }
         for (Sig sig : sigs) {
             if (original.expr.type() == sig.type() && !original.expr.equals(sig)) {
                 Expr right = ExprMaker.make(sig, ExprUnary.Op.NOOP);
                 for (ExprBinary.Op op : Mutator.bops_setset2set) {
-                    accumulator.add(new ToBinaryMutator(original, ExprMaker.make(original.expr, right, op)));
+                    accumulator.add(new RelationToBinaryMutator(original, ExprMaker.make(original.expr, right, op)));
                 }
             }
         }

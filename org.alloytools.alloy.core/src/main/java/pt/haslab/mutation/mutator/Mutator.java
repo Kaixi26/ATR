@@ -25,13 +25,7 @@ public class Mutator {
             Stream.of(ExprBinary.Op.AND, ExprBinary.Op.OR, ExprBinary.Op.IFF, ExprBinary.Op.IMPLIES, ExprBinary.Op.UNTIL, ExprBinary.Op.RELEASES, ExprBinary.Op.SINCE, ExprBinary.Op.TRIGGERED).collect(Collectors.toSet());
 
     public static final Set<ExprBinary.Op> bops_setset2set =
-            Stream.of(ExprBinary.Op.PLUS, ExprBinary.Op.MINUS, ExprBinary.Op.INTERSECT).collect(Collectors.toSet());
-
-    public static Set<ExprBinary.Op> bops_setset2bool =
-            Stream.of(ExprBinary.Op.IN, ExprBinary.Op.NOT_IN, ExprBinary.Op.EQUALS, ExprBinary.Op.NOT_EQUALS).collect(Collectors.toSet());
-
-    public static Set<ExprQt.Op> exprqts_expr2bool =
-            Stream.of(ExprQt.Op.NO, ExprQt.Op.ONE, ExprQt.Op.LONE, ExprQt.Op.SOME, ExprQt.Op.ALL).collect(Collectors.toSet());
+            Stream.of(ExprBinary.Op.PLUS, ExprBinary.Op.MINUS, ExprBinary.Op.INTERSECT).collect(Collectors.toSet()); public static Set<ExprBinary.Op> bops_setset2bool = Stream.of(ExprBinary.Op.IN, ExprBinary.Op.NOT_IN, ExprBinary.Op.EQUALS, ExprBinary.Op.NOT_EQUALS).collect(Collectors.toSet()); public static Set<ExprQt.Op> exprqts_expr2bool = Stream.of(ExprQt.Op.NO, ExprQt.Op.ONE, ExprQt.Op.LONE, ExprQt.Op.SOME, ExprQt.Op.ALL).collect(Collectors.toSet());
 
     public Location original;
     public Expr mutant;

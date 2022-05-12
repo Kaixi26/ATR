@@ -1,4 +1,4 @@
-package pt.haslab.mutation.mutator.signature;
+package pt.haslab.mutation.mutator.relation;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.Expr;
@@ -19,15 +19,16 @@ public class InsertJoinMutator extends Mutator {
     }
 
     public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
-        if (original.expr.type().arity() == 1) {
-            for (Sig.Field field : fields) {
-                // check if types are compatible to join
-                if (!field.type().join(original.expr.type()).equals(Sig.NONE.type())) {
-                    accumulator.add(new InsertJoinMutator(original, ExprMaker.make(field, original.expr, ExprBinary.Op.JOIN)));
-                }
-                if (!original.expr.type().join(field.type()).equals(Sig.NONE.type())) {
-                    accumulator.add(new InsertJoinMutator(original, ExprMaker.make(original.expr, field, ExprBinary.Op.JOIN)));
-                }
+        if (original.expr.type().arity() != 1) {
+            return;
+        }
+        for (Sig.Field field : fields) {
+            // check if types are compatible to join
+            if (!field.type().join(original.expr.type()).equals(Sig.NONE.type())) {
+                accumulator.add(new InsertJoinMutator(original, ExprMaker.make(field, original.expr, ExprBinary.Op.JOIN)));
+            }
+            if (!original.expr.type().join(field.type()).equals(Sig.NONE.type())) {
+                accumulator.add(new InsertJoinMutator(original, ExprMaker.make(original.expr, field, ExprBinary.Op.JOIN)));
             }
         }
     }

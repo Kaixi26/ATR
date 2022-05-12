@@ -1,10 +1,8 @@
-package pt.haslab.mutation.mutator.binary;
+package pt.haslab.mutation.mutator.bool;
 
 import edu.mit.csail.sdg.ast.ExprUnary;
-import edu.mit.csail.sdg.ast.Sig;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Mutator;
-import pt.haslab.mutation.mutator.UnaryMutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
