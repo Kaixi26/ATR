@@ -4,6 +4,7 @@ import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.ast.Expr;
 import edu.mit.csail.sdg.ast.ExprBinary;
 import edu.mit.csail.sdg.ast.Sig;
+import edu.mit.csail.sdg.ast.Type;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
@@ -24,10 +25,13 @@ public class InsertJoinMutator extends Mutator {
         }
         for (Sig.Field field : fields) {
             // check if types are compatible to join
-            if (!field.type().join(original.expr.type()).equals(Sig.NONE.type())) {
+            Type left_join = field.type().join(original.expr.type());
+            if (!left_join.equals(Sig.NONE.type()) && left_join.arity() == 1) {
                 accumulator.add(new InsertJoinMutator(original, ExprMaker.make(field, original.expr, ExprBinary.Op.JOIN)));
             }
-            if (!original.expr.type().join(field.type()).equals(Sig.NONE.type())) {
+
+            Type right_join = original.expr.type().join(field.type());
+            if (!right_join.equals(Sig.NONE.type()) && left_join.arity() == 1) {
                 accumulator.add(new InsertJoinMutator(original, ExprMaker.make(original.expr, field, ExprBinary.Op.JOIN)));
             }
         }
