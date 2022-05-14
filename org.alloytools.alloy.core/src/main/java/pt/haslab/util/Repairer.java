@@ -35,6 +35,7 @@ public class Repairer {
 
     public Optional<Candidate> solution = Optional.empty();
 
+    int prevCounterexample = -1; // last counter example able to prune
     ArrayList<CounterExample> counterexamples = new ArrayList<>();
 
     public long ms_begin = 0;
@@ -148,19 +149,33 @@ public class Repairer {
         return true;
     }
 
-    @Nullable
-    public CounterExample attemptPruneWithPreviousCounterexample() {
-        for (int i = 0; i < counterexamples.size(); i++) {
-            CounterExample counterExample = counterexamples.get(i);
-            if (counterExample.evalAllStates(command.formula)) {
-                counterExample.ocurrences++;
-                if (i > 0 && counterExample.ocurrences > counterexamples.get(i - 1).ocurrences) {
-                    Collections.swap(counterexamples, i, i - 1);
-                }
-                return counterExample;
+    public CounterExample attemptPruneWithPreviousCounterexample(int i) {
+        CounterExample counterExample = counterexamples.get(i);
+        if (counterExample.evalAllStates(command.formula)) {
+            counterExample.ocurrences++;
+            prevCounterexample = i;
+            if (i > 0 && counterExample.ocurrences > counterexamples.get(i - 1).ocurrences) {
+                Collections.swap(counterexamples, i, i - 1);
+                prevCounterexample = i - 1;
             }
+            return counterExample;
         }
         return null;
+    }
+
+    @Nullable
+    public CounterExample attemptPruneWithPreviousCounterexample() {
+        CounterExample ret = null;
+        if (prevCounterexample != -1) {
+            ret = attemptPruneWithPreviousCounterexample(prevCounterexample);
+        }
+        for (int i = 0; i < counterexamples.size() && ret == null; i++) {
+            if (i == prevCounterexample) {
+                continue;
+            }
+            ret = attemptPruneWithPreviousCounterexample(i);
+        }
+        return ret;
     }
 
 
