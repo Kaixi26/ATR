@@ -17,6 +17,7 @@ package edu.mit.csail.sdg.alloy4whole;
 
 import edu.mit.csail.sdg.alloy4.Err;
 import pt.haslab.mutation.Candidate;
+import pt.haslab.mutation.PruneReason;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.JSON;
 import pt.haslab.util.RepairChecker;
@@ -34,10 +35,11 @@ public final class RepairCLI {
     static String output_filepath = null;
     static boolean debug = false;
     static boolean enableVariabilization = false;
+    static boolean enableStats = false;
 
     private static void usage() {
         System.err.println("usage: repairer [OPTION]...");
-        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]", "--out [FILE] (Optional)", "--enable-variabilization")
+        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]", "--out [FILE] (Optional)", "--enable-variabilization", "--stats")
                 .forEach(option -> System.err.println("\t" + option));
         System.exit(-1);
     }
@@ -77,6 +79,9 @@ public final class RepairCLI {
             case "--enable-variabilization":
                 enableVariabilization = true;
                 break;
+            case "--stats":
+                enableStats = true;
+                break;
             default:
                 usageError("Unknown option '" + arg + "'.");
         }
@@ -97,6 +102,16 @@ public final class RepairCLI {
 
     }
 
+    private static String stats(Repairer repairer) {
+        Map<String, String> json = new HashMap<>();
+        json.put("#cex", "" + repairer.counterexamples.size());
+        json.put("#attempted_candidates", "" + repairer.num_attempted_candidates);
+        json.put("#prunned_cex", "" + repairer.getPrunnedBy(PruneReason.PREVIOUS_CEX));
+        json.put("#prunned_ext", "" + repairer.getPrunnedBy(PruneReason.EXTENSIONALITY));
+        json.put("#generated", "" + repairer.mutationStepper.candidates.size());
+        return JSON.toJSON(json);
+    }
+
     public static void main(String[] args) throws Err, IOException {
         parseArguments(args);
 
@@ -109,6 +124,9 @@ public final class RepairCLI {
         json.put("file", "\"" + filepath + "\"");
         json.put("solved", "" + repairer.solution.isPresent());
         json.put("timed_out", "" + repairer.getRepairStatus().equals(pt.haslab.util.Repairer.RepairStatus.TIMEOUT));
+        if (enableStats) {
+            json.put("stats", stats(repairer));
+        }
         System.out.println(JSON.toJSON(json));
 
         if (debug) {

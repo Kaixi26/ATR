@@ -21,6 +21,9 @@ public class Mutator {
     public static final Set<ExprUnary.Op> uops_set2bool =
             new HashSet<>(Arrays.asList(NO, SOME, LONE, ONE));
 
+    public static final Set<ExprUnary.Op> uops_rel2rel =
+            new HashSet<>(Arrays.asList(TRANSPOSE, CLOSURE, RCLOSURE));
+
     public static final Set<ExprBinary.Op> bops_boolbool2bool =
             Stream.of(ExprBinary.Op.AND, ExprBinary.Op.OR, ExprBinary.Op.IFF, ExprBinary.Op.IMPLIES, ExprBinary.Op.UNTIL, ExprBinary.Op.RELEASES, ExprBinary.Op.SINCE, ExprBinary.Op.TRIGGERED).collect(Collectors.toSet());
 

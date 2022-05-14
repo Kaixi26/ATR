@@ -36,10 +36,12 @@ public class Repairer {
     public Optional<Candidate> solution = Optional.empty();
 
     int prevCounterexample = -1; // last counter example able to prune
-    ArrayList<CounterExample> counterexamples = new ArrayList<>();
+    public ArrayList<CounterExample> counterexamples = new ArrayList<>();
 
     public long ms_begin = 0;
     public long ms_end = 0;
+
+    public long num_attempted_candidates = 0;
 
     public boolean variabilizationEnabled = false;
 
@@ -198,7 +200,9 @@ public class Repairer {
                     this.repairStatus = RepairStatus.TIMEOUT;
                     return Optional.empty();
                 }
+
                 Candidate candidate = mutationStepper.getCurrent();
+                num_attempted_candidates++;
 
                 try {
                     for (Map.Entry<Func, Expr> e : funcOriginalBody.entrySet()) {
