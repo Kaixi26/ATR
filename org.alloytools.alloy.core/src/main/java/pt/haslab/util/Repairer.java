@@ -17,8 +17,6 @@ import pt.haslab.mutation.Location;
 import pt.haslab.mutation.MutationStepper;
 import pt.haslab.mutation.PruneReason;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.util.*;
 
 import static edu.mit.csail.sdg.alloy4.A4Preferences.*;

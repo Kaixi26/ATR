@@ -23,7 +23,7 @@ public class ExtendOrReduceMutator extends Mutator {
     }
 
     private static void addIfCompatible(List<Mutator> accumulator, Location original, Expr expr) {
-        if (!expr.equals(original.expr.deNOP())) {
+        if (original.expr.type().intersects(expr.type()) && !expr.equals(original.expr.deNOP())) {
             accumulator.add(new ExtendOrReduceMutator(original, ExprMaker.make(original.expr, expr, ExprBinary.Op.PLUS)));
             accumulator.add(new ExtendOrReduceMutator(original, ExprMaker.make(original.expr, expr, ExprBinary.Op.MINUS)));
         }
@@ -31,6 +31,8 @@ public class ExtendOrReduceMutator extends Mutator {
 
     public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
         switch (original.expr.type().arity()) {
+            case 0:
+                return;
             case 1:
                 for (Sig sig : sigs) {
                     addIfCompatible(accumulator, original, sig);
@@ -40,12 +42,12 @@ public class ExtendOrReduceMutator extends Mutator {
                         addIfCompatible(accumulator, original, var);
                     }
                 }
-            case 2:
-                for (Sig.Field field : fields) {
-                    addIfCompatible(accumulator, original, field);
-                }
             default:
-                break;
+                for (Sig.Field field : fields) {
+                    if (field.type().intersects(original.expr.type())) {
+                        addIfCompatible(accumulator, original, field);
+                    }
+                }
         }
     }
 }

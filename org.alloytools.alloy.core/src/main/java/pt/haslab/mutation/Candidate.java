@@ -168,4 +168,17 @@ public class Candidate {
         sb.append("]}");
         return sb.toString();
     }
+
+    public boolean hasClass(Class<?> c){
+        for (Mutator mutator : this.mutators) {
+            if(mutator.getClass().equals(c)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean hasClasses(Collection<Class<?>> cs){
+        return cs.stream().allMatch(this::hasClass);
+    }
 }

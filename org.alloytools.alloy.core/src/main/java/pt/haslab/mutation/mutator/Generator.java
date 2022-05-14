@@ -9,10 +9,7 @@ import pt.haslab.mutation.mutator.binary.BinaryToUnaryMutator;
 import pt.haslab.mutation.mutator.bool.InsertUnaryMutator;
 import pt.haslab.mutation.mutator.quantifier.QtToUnaryMutator;
 import pt.haslab.mutation.mutator.quantifier.ReplaceQtOperator;
-import pt.haslab.mutation.mutator.relation.ExtendOrReduceMutator;
-import pt.haslab.mutation.mutator.relation.InsertPrimeMutator;
-import pt.haslab.mutation.mutator.relation.ReplaceRelationMutator;
-import pt.haslab.mutation.mutator.relation.InsertJoinMutator;
+import pt.haslab.mutation.mutator.relation.*;
 import pt.haslab.mutation.mutator.unary.RemoveUnaryOperatorMutator;
 import pt.haslab.mutation.mutator.unary.ReplaceSetUnderUnaryMutator;
 import pt.haslab.mutation.mutator.unary.ReplaceUnaryOperatorMutator;
@@ -43,36 +40,37 @@ public class Generator {
         return fields;
     }
 
-    private static void generateMutatorsExprUnary(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
+    public static void generateMutatorsExprUnary(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
         RemoveUnaryOperatorMutator.generate(accumulator, location);
         ReplaceSetUnderUnaryMutator.generate(accumulator, location, sigs, fields);
         ReplaceUnaryOperatorMutator.generate(accumulator, location);
     }
 
-    private static void generateMutatorsExprBinary(List<Mutator> accumulator, Location location) {
+    public static void generateMutatorsExprBinary(List<Mutator> accumulator, Location location) {
         RemoveBinaryMutator.generate(accumulator, location);
         ReplaceBinaryMutator.generate(accumulator, location);
         BinaryToUnaryMutator.generate(accumulator, location);
     }
 
-    private static void generateMutatorsQt(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
+    public static void generateMutatorsQt(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
         ReplaceQtOperator.generate(accumulator, location);
         QtToUnaryMutator.generate(accumulator, location, sigs);
     }
 
-    private static void generateMutatorsBool(List<Mutator> accumulator, Location location) {
+    public static void generateMutatorsBool(List<Mutator> accumulator, Location location) {
         InsertUnaryMutator.generate(accumulator, location);
     }
 
-    private static void generateMutatorsRelation(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
+    public static void generateMutatorsRelation(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
         ExtendOrReduceMutator.generate(accumulator, location, sigs, fields);
         InsertJoinMutator.generate(accumulator, location, sigs, fields);
         InsertPrimeMutator.generate(accumulator, location);
-        InsertUnaryMutator.generate(accumulator, location);
+        RelationToBinaryMutator.generate(accumulator, location, sigs);
+        RelationToUnaryMutator.generate(accumulator, location);
         ReplaceRelationMutator.generate(accumulator, location, sigs);
     }
 
-    private static void generateMutators(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
+    public static void generateMutators(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
         if (location.expr instanceof Sig || location.expr instanceof ExprVar) {
             return;
         }
