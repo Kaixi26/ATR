@@ -1,0 +1,1 @@
+classroom_inv4_14; true; 437; real; ORIGINAL: all x : one Person | (x !in Student) && (x !in Teacher)£REPAIRED: no x : one Person | (x !in Student) && (x !in Teacher)£; depth 2; VALID

@@ -1,0 +1,1 @@
+trash_inv6_30; true; 887; real; ORIGINAL: all x, y, z : one File | (((x -> y) in link) && ((x -> z) in link)) => (x = y)£REPAIRED: all x, y, z : one File | (((x -> y) in link) && ((x -> z) in link)) => (z = y)£; depth 2; VALID

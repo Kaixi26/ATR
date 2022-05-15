@@ -1,0 +1,1 @@
+trash_inv10_11; true; 396; real; ORIGINAL: all f : one File | ((f . link) in Trash) => ((f . (* link)) in Trash)£REPAIRED: all f : one File | ((f) in Trash) => ((f . (* link)) in Trash)£; depth 2; VALID

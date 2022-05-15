@@ -1,0 +1,1 @@
+classroom_inv5_50; true; 3333; real; ORIGINAL: some x : one Person | {£REPAIRED: some x : Teacher . Teaches | (x in Teacher) || (x in Group) || (x in Class)£; depth 2; VALID

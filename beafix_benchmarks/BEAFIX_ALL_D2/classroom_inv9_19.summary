@@ -1,0 +1,1 @@
+classroom_inv9_19; true; 5594; real; ORIGINAL: all c : one Class | lone ((Teacher . Teaches) :> c)£REPAIRED: all c : one Class | lone ((Teacher . (* Teaches)) :> Teaches . c)£; depth 2; VALID

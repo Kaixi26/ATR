@@ -1,0 +1,1 @@
+trash_inv6_31; true; 1901; real; ORIGINAL: all x, y, z : one File | ((x -> y) in link) => (all z : one File | (x -> z) !in link)£REPAIRED: all x, y, z : one File | ((x -> y) in link) => (all z : one File - y | (x -> z) !in link)£; depth 2; VALID

@@ -1,0 +1,1 @@
+graphs_stronglyConnected_1; true; 290; real; ORIGINAL: all a, b : one Node | (a -> b) in adj£REPAIRED: all a, b : one Node | (a -> b) in * adj£; depth 2; VALID

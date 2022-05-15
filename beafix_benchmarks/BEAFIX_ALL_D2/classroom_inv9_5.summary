@@ -1,0 +1,1 @@
+classroom_inv9_5; true; 1404; real; ORIGINAL: all c : one Class | ! (lone ((Person -> c) & Teaches))£REPAIRED: all c : one Class | ! (! (lone ((Teacher -> c) & Teaches)))£; depth 2; VALID

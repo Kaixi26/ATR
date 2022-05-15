@@ -1,0 +1,1 @@
+trash_inv7_29; true; 1332; real; ORIGINAL: all x, y : one File | ((x -> y) in link) && (y !in Trash)£REPAIRED: all x, y : one File | (! ((x -> y) in link)) || (y !in Trash)£; depth 2; VALID

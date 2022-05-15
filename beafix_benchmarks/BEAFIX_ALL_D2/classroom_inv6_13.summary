@@ -1,0 +1,1 @@
+classroom_inv6_13; true; 1777; real; ORIGINAL: all x : one Person | (x in Teacher) => (x in Class)£REPAIRED: all x : one Person | (x in Teacher) => (x in Teaches . Class)£; depth 2; VALID

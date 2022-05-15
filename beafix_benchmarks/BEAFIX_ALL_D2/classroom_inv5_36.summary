@@ -1,0 +1,1 @@
+classroom_inv5_36; true; 2025; real; ORIGINAL: some t : one Teacher | (t . Teaches) in Class£REPAIRED: some t : one Teacher | ! ((t . Teaches) in Group)£; depth 2; VALID

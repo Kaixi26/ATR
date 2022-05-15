@@ -1,0 +1,1 @@
+graphs_complete_2; true; 625; real; ORIGINAL: (* adj) in (Node -> Node)£REPAIRED: adj = (Node -> Node)£; depth 2; VALID

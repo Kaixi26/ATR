@@ -1,0 +1,1 @@
+classroom_inv3_1; true; 1496; real; ORIGINAL: (Person in Student) && (Person in Teacher)£REPAIRED: (Student in Student) || (Person in Teacher)£; depth 2; VALID

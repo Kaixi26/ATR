@@ -1,0 +1,1 @@
+classroom_inv7_7; true; 2453; real; ORIGINAL: all c : one Class | (Teaches . c) in Teacher£REPAIRED: all c : one Class | c in Teacher . Teaches£; depth 2; VALID

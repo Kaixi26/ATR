@@ -1,0 +1,1 @@
+graphs_oriented_13; true; 251; real; ORIGINAL: no (iden & (adj . (~ adj)))£REPAIRED: no (iden & (adj . (adj)))£; depth 2; VALID

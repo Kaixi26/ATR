@@ -1,0 +1,1 @@
+classroom_inv10_11; true; 459; real; ORIGINAL: all c : one Class, s : one Student | some ((c . Groups) . s)£REPAIRED: all c : one Class, s : one Student | some ((~ (c . Groups)) . s)£; depth 2; VALID

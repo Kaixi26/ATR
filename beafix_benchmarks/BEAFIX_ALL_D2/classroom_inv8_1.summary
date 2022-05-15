@@ -1,0 +1,1 @@
+classroom_inv8_1; true; 418; real; ORIGINAL: ((Teacher <: Teaches) . (Teacher <: Teaches)) in iden£REPAIRED: ((~ (Teacher <: Teaches)) . (Teacher <: Teaches)) in iden£; depth 2; VALID

@@ -1,0 +1,1 @@
+graphs_oriented_6; true; 1267; real; ORIGINAL: all n : one Node | (n . adj) !in (adj . n)£REPAIRED: all n : one Node | n !in ((adj . adj) . n)£; depth 2; VALID

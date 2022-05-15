@@ -1,0 +1,1 @@
+classroom_inv5_21; true; 1957; real; ORIGINAL: (Class -> (Teacher -> Group)) in Groups£REPAIRED: ! ((Class -> (Teacher -> Teacher . Teaches)) in Groups)£; depth 2; VALID

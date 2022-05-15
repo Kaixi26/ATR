@@ -1,0 +1,1 @@
+trash_inv6_19; true; 1555; real; ORIGINAL: all f1, f2, f3 : one File | (((f1 -> f3) in link) && ((f2 -> f3) in link)) => (f2 = f3)£REPAIRED: all f1, f2, f3 : one File | (((f1 -> f3) in link) && ((f2 -> f3) in link)) => (f1 . link = f3)£; depth 2; VALID

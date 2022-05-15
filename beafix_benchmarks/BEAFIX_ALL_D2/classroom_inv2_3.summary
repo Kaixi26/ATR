@@ -1,0 +1,1 @@
+classroom_inv2_3; true; 501; real; ORIGINAL: all x : one Person | x !in Person£REPAIRED: all x : one Teacher | x !in Person£; depth 2; VALID

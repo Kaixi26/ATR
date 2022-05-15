@@ -1,0 +1,1 @@
+graphs_noloops_11; true; 474; real; ORIGINAL: all x, y : one Node | ((x -> y) in adj) => (! ((y -> x) in adj))£REPAIRED: all x, y : one Node | ((y -> y) in adj) => (! ((y -> x) in adj))£; depth 2; VALID

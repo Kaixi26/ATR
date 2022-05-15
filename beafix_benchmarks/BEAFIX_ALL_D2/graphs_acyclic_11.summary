@@ -1,0 +1,1 @@
+graphs_acyclic_11; true; 1646; real; ORIGINAL: all x, y, z : one Node | (((x -> y) in adj) && ((z -> y) in adj)) => (y = z)£REPAIRED: all x, y, z : one Node | (((x -> y) in adj) && ((z -> y) in ^ adj)) => (y != z)£; depth 2; VALID

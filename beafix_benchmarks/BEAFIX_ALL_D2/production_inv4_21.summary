@@ -1,0 +1,1 @@
+production_inv4_21; true; 804; real; ORIGINAL: all c : one Component | no ((c . parts) & (((c . parts) . cposition) . (~ (^ ordering/next[]))))£REPAIRED: all c : one Component | no ((c . cposition) & (((c . parts) . cposition) . (~ (^ ordering/next[]))))£; depth 2; VALID

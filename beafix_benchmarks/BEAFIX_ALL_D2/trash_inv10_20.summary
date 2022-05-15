@@ -1,0 +1,1 @@
+trash_inv10_20; true; 3646; real; ORIGINAL: ((File . link) in Trash) => ((link . File) in Trash)£REPAIRED: (Trash . link) in Trash£; depth 2; VALID

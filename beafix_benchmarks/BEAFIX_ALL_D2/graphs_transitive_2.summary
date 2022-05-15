@@ -1,0 +1,1 @@
+graphs_transitive_2; true; 798; real; ORIGINAL: no ((^ adj) + iden)£REPAIRED: no ((^ adj) - adj)£; depth 2; VALID

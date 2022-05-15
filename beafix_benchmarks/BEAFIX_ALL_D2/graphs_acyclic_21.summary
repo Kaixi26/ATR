@@ -1,0 +1,1 @@
+graphs_acyclic_21; true; 204; real; ORIGINAL: no n : one Node | n !in (n . (^ adj))£REPAIRED: no n : one Node | ! (n !in (n . (^ adj)))£; depth 2; VALID

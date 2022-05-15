@@ -1,0 +1,1 @@
+classroom_inv13_45; true; 546; real; ORIGINAL: ((Teacher . Tutors) in Student) && ((Tutors . Student) in Teacher)£REPAIRED: ((Person . Tutors) in Student) && ((Tutors . Student) in Teacher)£; depth 2; VALID

@@ -1,0 +1,1 @@
+trash_inv5_30; true; 2153; real; ORIGINAL: some f : one File | (f !in Protected) && (f in Trash)£REPAIRED: no f : one File | (f !in Protected) && (! (f in Trash))£; depth 2; VALID

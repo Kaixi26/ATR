@@ -1,0 +1,1 @@
+graphs_undirected_22; true; 3509; real; ORIGINAL: (((~ adj) . adj) in iden) && (iden in ((~ adj) . adj))£REPAIRED: (((~ adj) - adj) in iden) && (iden in (* ((~ adj) . adj)))£; depth 2; VALID

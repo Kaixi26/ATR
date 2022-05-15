@@ -1,0 +1,1 @@
+classroom_inv10_8; true; 11745; real; ORIGINAL: all c : one Class | ((c . Groups) . Group) = Student£REPAIRED: all c : one Class | (((c . Groups) . Group) & Student) = Student£; depth 2; VALID

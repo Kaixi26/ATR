@@ -1,0 +1,1 @@
+classroom_inv8_18; true; 2877; real; ORIGINAL: all t : one Teacher | lone (Teaches . Class)£REPAIRED: all t : one Teacher | lone t . Teaches£; depth 2; VALID

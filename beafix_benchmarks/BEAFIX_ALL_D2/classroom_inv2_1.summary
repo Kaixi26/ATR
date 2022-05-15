@@ -1,0 +1,1 @@
+classroom_inv2_1; true; 2412; real; ORIGINAL: all p1, p2 : one Person | ((p1 -> p2) in Teaches) => (no p1)£REPAIRED: all p1, p2 : one Person | ((p1 - Teacher -> p2) in Teaches) => (no p1)£; depth 2; FAILED(X)

@@ -1,0 +1,1 @@
+graphs_oriented_10; true; 1164; real; ORIGINAL: all x, y : one Node | (((x -> y) in adj) && ((y -> x) in adj)) => (y = x)£REPAIRED: all x, y : one Node | (((x -> y) in adj) && ((y -> x) in adj)) => (y - Node = x)£; depth 2; VALID

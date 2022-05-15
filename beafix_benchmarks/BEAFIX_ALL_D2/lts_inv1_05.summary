@@ -1,0 +1,1 @@
+lts_inv1_05; true; 6626; real; ORIGINAL: all s1, s2 : one State | some e : one Event | ((s1 -> (e -> s2)) in trans) => (s1 != s2)£REPAIRED: all s1, s2 : one State | some e : one Event | ((Event -> (s1 . trans)) in trans) => (s1 != s2)£; depth 2; VALID

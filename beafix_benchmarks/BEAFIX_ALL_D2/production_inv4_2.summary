@@ -1,0 +1,1 @@
+production_inv4_2; true; 4424; real; ORIGINAL: all c : one Component | all p : one (c . parts) | some pos : one ordering/prevs[c . cposition] | (p . cposition) = pos£REPAIRED: all c : one Component | no p : one (c . (~ parts)) | some pos : one ordering/prevs[c . cposition] | (p . cposition) = pos£; depth 2; VALID

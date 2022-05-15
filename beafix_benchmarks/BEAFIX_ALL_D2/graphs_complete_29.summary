@@ -1,0 +1,1 @@
+graphs_complete_29; true; 1674; real; ORIGINAL: all x : one Node | ((x . adj) - x) = (Node - x)£REPAIRED: all x : one Node | (x . adj) = (Node)£; depth 2; VALID

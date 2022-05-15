@@ -1,0 +1,1 @@
+classroom_inv15_10; true; 783; real; ORIGINAL: all p : one Person | some t : one Teacher | ((t -> p) in Tutors) || (some q : one Person | ((q -> p) in Tutors) && ((t -> q) in Tutors))£REPAIRED: all p : one Person | some t : one Teacher | ((t -> p) in ^ Tutors) || (some q : one Person | ((q -> p) in Tutors) && ((t -> q) in Tutors))£; depth 2; VALID

@@ -1,0 +1,1 @@
+graphs_complete_12; true; 254; real; ORIGINAL: all a : one Node, b : one Node | (a in (a . (^ adj))) => ((a -> b) in adj)£REPAIRED: all a : one Node, b : one Node | (a in (a . (^ adj))) && ((a -> b) in adj)£; depth 2; VALID

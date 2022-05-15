@@ -1,0 +1,1 @@
+graphs_transitive_1; true; 428; real; ORIGINAL: all a, b, c : one Node | (((a -> b) in adj) && ((a -> c) in adj)) => ((a -> b) in adj)£REPAIRED: all a, b, c : one Node | (((a -> b) in ^ adj) && ((a -> c) in adj)) => ((a -> b) in adj)£; depth 2; VALID

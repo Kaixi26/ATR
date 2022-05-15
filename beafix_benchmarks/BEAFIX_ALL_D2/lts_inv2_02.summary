@@ -1,0 +1,1 @@
+lts_inv2_02; true; 1685; real; ORIGINAL: all s1, s2 : one State | ((s1 in Init) && (s2 in Init)) => (s1 = s2)£REPAIRED: one s1, s2 : one State | {£; depth 2; VALID

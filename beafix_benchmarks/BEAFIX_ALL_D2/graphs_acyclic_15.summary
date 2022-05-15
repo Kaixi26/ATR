@@ -1,0 +1,1 @@
+graphs_acyclic_15; true; 647; real; ORIGINAL: iden !in ((* adj) - adj)£REPAIRED: ! (iden !in ((* adj) - ^ adj))£; depth 2; VALID

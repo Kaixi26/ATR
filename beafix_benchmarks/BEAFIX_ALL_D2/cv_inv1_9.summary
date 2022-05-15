@@ -1,0 +1,1 @@
+cv_inv1_9; true; 10126; real; ORIGINAL: all w : one Work | (some (visible . w)) => (some (profile . w))£REPAIRED: all w : one Work | (some (visible - profile . w)) => (some ((~ profile) . w))£; depth 2; FAILED(X)

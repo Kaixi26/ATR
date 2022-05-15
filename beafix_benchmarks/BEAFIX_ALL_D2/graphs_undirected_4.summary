@@ -1,0 +1,1 @@
+graphs_undirected_4; true; 421; real; ORIGINAL: all a, b : one Node | (b -> a) in adj£REPAIRED: all a, b : one Node | (a . adj -> a) in adj£; depth 2; VALID

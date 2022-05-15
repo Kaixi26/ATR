@@ -1,0 +1,1 @@
+lts_inv2_04; true; 442; real; ORIGINAL: all x, y : one Init | (some x) => (x = y)£REPAIRED: one x, y : one Init | (some x) => (x = y)£; depth 2; VALID

@@ -1,0 +1,1 @@
+classroom_inv15_21; true; 31698; real; ORIGINAL: all p1 : one Person | (p1 in Teacher) || (some p2 : one Teacher | (p2 -> p1) in Tutors) || (some p2, p3 : one Person | {£REPAIRED: all p1 : one Person | (p1 in Class) || (some p2 : one Teacher | (p2 -> p1) in (^ Tutors)) || (some p2, p3 : one Person | {£; depth 2; VALID

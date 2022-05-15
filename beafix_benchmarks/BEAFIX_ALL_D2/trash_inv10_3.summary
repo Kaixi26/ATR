@@ -1,0 +1,1 @@
+trash_inv10_3; true; 501; real; ORIGINAL: all f, g : one File | ((f . link) in Trash) && ((g . link) in Trash)£REPAIRED: all f, g : one Trash | ((f . link) in Trash) && ((g . link) in Trash)£; depth 2; VALID

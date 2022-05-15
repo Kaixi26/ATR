@@ -1,0 +1,1 @@
+classroom_inv12_67; true; 16407; real; ORIGINAL: all t : one Teacher, c : one Class | some (t . (c . Groups))£REPAIRED: all t : one Teacher, c : one Person | some (t . (Teaches . Groups))£; depth 2; VALID

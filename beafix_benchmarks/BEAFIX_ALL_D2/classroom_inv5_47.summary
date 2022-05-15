@@ -1,0 +1,1 @@
+classroom_inv5_47; true; 964; real; ORIGINAL: some x : one Class | (x in Group) => (x in Teacher)£REPAIRED: some x : Teacher . Teaches | (x in Group) => (x in Teacher)£; depth 2; VALID
