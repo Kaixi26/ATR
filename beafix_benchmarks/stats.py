@@ -43,7 +43,7 @@ for file in sys.argv:
     print("For file '" + file + "'")
     print("Total results parsed: " + str(len(results[file])))
     print("Total results solved: " + str(len(solved)))
-    print("Total results unsolved: " + str(len(solved)))
+    print("Total results unsolved: " + str(len(unsolved)))
     print("Total results timedout: " + str(total_timeout(results[file])))
     print("Solved percentage: " + str(len(solved) / len(results[file])))
     print("Avg. elapsed for all: " + str(avg_elapsed(results[file])))
