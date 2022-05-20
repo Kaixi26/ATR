@@ -186,7 +186,7 @@ public class Repairer {
     }
 
     public Optional<Candidate> repair(long ms_timeout) {
-        ms_begin = System.currentTimeMillis();
+        ms_begin = System.nanoTime();
 
         try {
             if (!TranslateAlloyToKodkod.execute_command(rep, module.getAllReachableSigs(), command, opts).satisfiable()) {
@@ -196,7 +196,7 @@ public class Repairer {
             }
 
             while (mutationStepper.next()) {
-                if (ms_timeout != 0 && (System.currentTimeMillis() - ms_begin) > ms_timeout) {
+                if (ms_timeout != 0 && (System.nanoTime() - ms_begin) > ms_timeout * 1e6) {
                     this.repairStatus = RepairStatus.TIMEOUT;
                     return Optional.empty();
                 }
@@ -242,7 +242,7 @@ public class Repairer {
             repairStatus = RepairStatus.FAIL;
             return Optional.empty();
         } finally {
-            ms_end = System.currentTimeMillis();
+            ms_end = System.nanoTime();
         }
     }
 
@@ -269,6 +269,6 @@ public class Repairer {
     }
 
     public long getElapsedMillis() {
-        return ms_end - ms_begin;
+        return (long) ((ms_end - ms_begin) / 1e6);
     }
 }
