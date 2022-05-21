@@ -172,7 +172,7 @@ public class ExprToString {
                     visit(it.next());
                     it.forEachRemaining(decl -> {
                         sb.append(", ");
-                        visit(it.next());
+                        visit(decl);
                     });
 
                     sb.append(" | ");
