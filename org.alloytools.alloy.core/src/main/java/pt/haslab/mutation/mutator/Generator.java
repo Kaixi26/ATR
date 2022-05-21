@@ -40,6 +40,12 @@ public class Generator {
         return fields;
     }
 
+    public static boolean isGeneratableAsChild(Mutator m) {
+        return !(m instanceof ReplaceSetUnderUnaryMutator
+                || m instanceof RemoveUnaryOperatorMutator
+                || m instanceof RemoveBinaryMutator);
+    }
+
     public static void generateMutatorsExprUnary(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
         RemoveUnaryOperatorMutator.generate(accumulator, location);
         ReplaceSetUnderUnaryMutator.generate(accumulator, location, sigs, fields);

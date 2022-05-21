@@ -1,9 +1,11 @@
 package edu.mit.csail.sdg.alloy4whole;
 
 import edu.mit.csail.sdg.alloy4.Err;
+import edu.mit.csail.sdg.ast.Func;
 import pt.haslab.mutation.Candidate;
 import pt.haslab.mutation.PruneReason;
 import pt.haslab.mutation.mutator.Mutator;
+import pt.haslab.util.ExprToString;
 import pt.haslab.util.JSON;
 import pt.haslab.util.RepairChecker;
 import pt.haslab.util.Repairer;
@@ -97,6 +99,14 @@ public final class RepairCLI {
         return JSON.toJSON(json);
     }
 
+    private static String solution(Repairer repairer) {
+        Map<String, String> json = new HashMap<>();
+        for (Func func : repairer.funcOriginalBody.keySet()) {
+            json.put(func.label.replace("this/", ""), "\"" + ExprToString.exprToString(func.getBody()) + "\"");
+        }
+        return JSON.toJSON(json);
+    }
+
     public static void main(String[] args) throws Err, IOException {
         parseArguments(args);
 
@@ -111,6 +121,9 @@ public final class RepairCLI {
         json.put("timed_out", "" + repairer.getRepairStatus().equals(pt.haslab.util.Repairer.RepairStatus.TIMEOUT));
         if (enableStats) {
             json.put("stats", stats(repairer));
+        }
+        if (repairer.solution.isPresent()) {
+            json.put("solution", solution(repairer));
         }
         System.out.println(JSON.toJSON(json));
 

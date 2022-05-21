@@ -30,7 +30,7 @@ public class Repairer {
     public MutationStepper mutationStepper;
 
     Map<Expr, Func> locationCorrespondentFunc = new HashMap<>();
-    Map<Func, Expr> funcOriginalBody = new HashMap<>();
+    public final Map<Func, Expr> funcOriginalBody = new HashMap<>();
     List<Location> repairTargetLocations = new ArrayList<>();
 
     public Optional<Candidate> solution = Optional.empty();

@@ -84,12 +84,24 @@ public class MutatorApplier extends VisitReturn<Expr> {
 
     @Override
     public Expr visit(ExprITE x) throws Err {
-        throw new RuntimeException("Not Implemented");
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        return visitThis(x.cond).ite(visitThis(x.left), visitThis(x.right));
     }
 
     @Override
     public Expr visit(ExprLet x) throws Err {
-        throw new RuntimeException("Not Implemented");
+        Optional<Expr> mutation = attemptComputeMutation(x);
+        if(mutation.isPresent()){
+            return visitThis(mutation.get());
+        }
+        try {
+            return ExprLet.make(x.pos, (ExprVar) visitThis(x.var), visitThis(x.expr), visitThis(x.sub));
+        } catch (ClassCastException ignored){
+            return x;
+        }
     }
 
     @Override
