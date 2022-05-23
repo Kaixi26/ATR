@@ -2,9 +2,11 @@
 import json
 import sys
 import os
+import re
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib_venn import venn2, venn3
 
 def str_is_int(str):
     try:
@@ -22,10 +24,22 @@ def total_timeout(res):
     return len(list(filter(lambda x: str_is_int(x["elapsed"]) and int(x["elapsed"] > 60000), res)))
 
 cmd = sys.argv.pop(0)
+show_graph_plot = False
+show_venn = None
 
 if sys.argv == 0:
-    print("Usage: " + sys.argv[0] + " [FILE]")
+    print("Usage: " + sys.argv[0] + " --graph --venn2 --venn3 [FILE]")
     exit(-1)
+
+while re.match("--.*", sys.argv[0]):
+    arg = sys.argv.pop(0)
+    if arg == "--graph":
+        show_graph_plot = True
+    elif arg == "--venn2":
+        show_venn = 2
+    elif arg == "--venn3":
+        show_venn = 3
+
 
 results = {}
 
@@ -76,6 +90,45 @@ def plot_graphs():
     plt.ylabel("solved below time (%)")
     plt.legend(list(results.keys()))
 
-plot_graphs()
+    plt.show()
 
-plt.show()
+
+def plot_venn():
+    all = set()
+    for file in results:
+        for result in results[file]:
+            all.add(os.path.basename(result["file"]))
+    
+    solved = {}
+    for file in results:
+        solved[file] = set(map(lambda x: os.path.basename(x["file"]), 
+                            filter(lambda x: x["elapsed"] < 1000,
+                            filter(lambda x: x["solved"], results[file]))))
+    
+
+    sets = [ ]
+    names = [ ]
+
+    for file in solved:
+        sets.append(solved[file])
+        names.append(file)
+    if show_venn == 2:
+        venn2(sets, names)
+    else:
+        sets.insert(0, all)
+        names.insert(0, "all")
+        venn3(sets, names)
+
+    plt.show()
+
+if show_graph_plot:
+    plot_graphs()
+
+if show_venn:
+    plot_venn()
+
+#set1 = set(['A', 'B', 'C'])
+#set2 = set(['A', 'B'])
+#set3 = set(['B', 'C'])
+#venn3([set1, set2, set3], ('Set1', 'Set2', 'Set3'))
+#plt.show()
