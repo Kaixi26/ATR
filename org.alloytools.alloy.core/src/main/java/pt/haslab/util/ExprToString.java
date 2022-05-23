@@ -111,11 +111,13 @@ public class ExprToString {
                 sb.append(x.fun.label.replace("this/", ""));
                 sb.append("[");
                 Iterator<Expr> it = x.args.iterator();
-                visitThis(it.next());
-                it.forEachRemaining(expr -> {
-                    sb.append(", ");
-                    visitThis(expr);
-                });
+                if(it.hasNext()) {
+                    visitThis(it.next());
+                    it.forEachRemaining(expr -> {
+                        sb.append(", ");
+                        visitThis(expr);
+                    });
+                }
                 sb.append("]");
                 return null;
             }
