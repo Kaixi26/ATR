@@ -426,6 +426,7 @@ assert transitiveRepaired {
 pred __repair {
 undirected
 }
-check __repair {
+assert __repair {
 undirected <=> undirectedOK
 }
+check __repair

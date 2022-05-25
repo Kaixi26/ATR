@@ -428,6 +428,7 @@ assert transitiveRepaired {
 pred __repair {
 acyclic
 }
-check __repair {
+assert __repair {
 acyclic <=> acyclicOK
 }
+check __repair

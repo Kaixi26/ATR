@@ -427,6 +427,7 @@ assert transitiveRepaired {
 pred __repair {
 oriented
 }
-check __repair {
+assert __repair {
 oriented <=> orientedOK
 }
+check __repair

@@ -1,30 +1,27 @@
 package pt.haslab.util;
 
-import edu.mit.csail.sdg.alloy4.A4Reporter;
-import edu.mit.csail.sdg.alloy4.ErrorSyntax;
-import edu.mit.csail.sdg.alloy4.ErrorType;
-import edu.mit.csail.sdg.alloy4.Version;
-import edu.mit.csail.sdg.ast.Command;
-import edu.mit.csail.sdg.ast.Expr;
-import edu.mit.csail.sdg.ast.Func;
-import edu.mit.csail.sdg.ast.Module;
+import edu.mit.csail.sdg.alloy4.*;
+import edu.mit.csail.sdg.ast.*;
 import edu.mit.csail.sdg.translator.A4Options;
 import edu.mit.csail.sdg.translator.A4Solution;
+import edu.mit.csail.sdg.translator.A4Tuple;
 import edu.mit.csail.sdg.translator.TranslateAlloyToKodkod;
 import org.eclipse.jdt.annotation.Nullable;
 import pt.haslab.mutation.Candidate;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.MutationStepper;
 import pt.haslab.mutation.PruneReason;
+import pt.haslab.mutation.mutator.Generator;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static edu.mit.csail.sdg.alloy4.A4Preferences.*;
 
 public class Repairer {
     static final A4Reporter rep = A4Reporter.NOP;
     static final A4Options opts = new A4Options();
-    final Module module;
+    public final Module module;
     Command command;
     ArrayList<Func> repairTargets;
     public MutationStepper mutationStepper;
@@ -56,7 +53,7 @@ public class Repairer {
         Repairer.opts.decompose_mode = DecomposePref.get().ordinal();
     }
 
-    private static class CounterExample {
+    public static class CounterExample {
         public final A4Solution cex;
         public int ocurrences;
 
@@ -81,6 +78,30 @@ public class Repairer {
         @Override
         public String toString() {
             return ocurrences + "";
+        }
+
+        public String toJSON(ConstList<Sig> userSigs) {
+            ConstList<Sig> sigs = ConstList.make(userSigs.stream().filter(x -> x.label.startsWith("this/")).collect(Collectors.toList()));
+            ConstList<Sig.Field> fields = Generator.fieldsFromSigs(sigs);
+            Map<String, String> json = new HashMap<>();
+            Map<String, String> cex_json = new HashMap<>();
+            Map<String, String> sigs_json = new HashMap<>();
+            Map<String, String> fields_json = new HashMap<>();
+            for (Sig sig : sigs) {
+                List<String> rel = new ArrayList<>();
+                cex.eval(sig).iterator().forEachRemaining(x -> rel.add("\"" + x.toString() + "\""));
+                sigs_json.put(sig.label.replace("this/", ""), JSON.toJSON(rel));
+            }
+            for (Sig.Field field : fields) {
+                List<String> rel = new ArrayList<>();
+                cex.eval(field).iterator().forEachRemaining(x -> rel.add("\"" + x.toString() + "\""));
+                fields_json.put(field.label.replace("this/", ""), JSON.toJSON(rel));
+            }
+            cex_json.put("sigs", JSON.toJSON(sigs_json));
+            cex_json.put("fields", JSON.toJSON(fields_json));
+            json.put("cex", JSON.toJSON(cex_json));
+            json.put("occurrences", ocurrences + "");
+            return JSON.toJSON(json);
         }
     }
 

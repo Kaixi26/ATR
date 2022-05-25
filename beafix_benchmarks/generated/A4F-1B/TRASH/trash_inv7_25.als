@@ -1,4 +1,5 @@
 
+
 /* The set of files in the file system. */
 sig File {
   	/* A file is potentially a link to other files. */
@@ -135,6 +136,7 @@ assert inv10_Repaired {
 pred __repair {
 inv7
 }
-check __repair {
+assert __repair {
 inv7 <=> inv7_OK
 }
+check __repair

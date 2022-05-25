@@ -136,6 +136,7 @@ assert inv10_Repaired {
 pred __repair {
 inv6
 }
-check __repair {
+assert __repair {
 inv6 <=> inv6_OK
 }
+check __repair

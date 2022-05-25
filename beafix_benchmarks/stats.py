@@ -102,7 +102,7 @@ def plot_venn():
     solved = {}
     for file in results:
         solved[file] = set(map(lambda x: os.path.basename(x["file"]), 
-                            filter(lambda x: x["elapsed"] < 1000,
+                            filter(lambda x: x["elapsed"] < 1000000,
                             filter(lambda x: x["solved"], results[file]))))
     
 

@@ -428,6 +428,7 @@ assert transitiveRepaired {
 pred __repair {
 stonglyConnected
 }
-check __repair {
+assert __repair {
 stonglyConnected <=> stonglyConnectedOK
 }
+check __repair

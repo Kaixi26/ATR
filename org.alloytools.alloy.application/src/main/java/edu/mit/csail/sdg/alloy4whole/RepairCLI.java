@@ -23,10 +23,11 @@ public final class RepairCLI {
     static boolean debug = false;
     static boolean enableVariabilization = false;
     static boolean enableStats = false;
+    static boolean enableShowCexs = false;
 
     private static void usage() {
         System.err.println("usage: repairer [OPTION]...");
-        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]", "--out [FILE] (Optional)", "--enable-variabilization", "--stats")
+        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]", "--out [FILE] (Optional)", "--show-cexs", "--stats")
                 .forEach(option -> System.err.println("\t" + option));
         System.exit(-1);
     }
@@ -63,11 +64,11 @@ public final class RepairCLI {
             case "--debug":
                 debug = true;
                 break;
-            case "--enable-variabilization":
-                enableVariabilization = true;
-                break;
             case "--stats":
                 enableStats = true;
+                break;
+            case "--show-cexs":
+                enableShowCexs = true;
                 break;
             default:
                 usageError("Unknown option '" + arg + "'.");
@@ -99,6 +100,15 @@ public final class RepairCLI {
         return JSON.toJSON(json);
     }
 
+    private static String cexs(Repairer repairer) {
+        List<String> json = new ArrayList<>();
+        for (Repairer.CounterExample counterexample : repairer.counterexamples) {
+            json.add(counterexample.toJSON(repairer.module.getAllReachableUserDefinedSigs()));
+        }
+        return JSON.toJSON(json);
+    }
+
+
     private static String solution(Repairer repairer) {
         Map<String, String> json = new HashMap<>();
         for (Func func : repairer.funcOriginalBody.keySet()) {
@@ -124,6 +134,9 @@ public final class RepairCLI {
         }
         if (repairer.solution.isPresent()) {
             json.put("solution", solution(repairer));
+        }
+        if (enableShowCexs) {
+            json.put("cexs", cexs(repairer));
         }
         System.out.println(JSON.toJSON(json));
 

@@ -428,6 +428,7 @@ assert transitiveRepaired {
 pred __repair {
 transitive
 }
-check __repair {
+assert __repair {
 transitive <=> transitiveOK
 }
+check __repair
