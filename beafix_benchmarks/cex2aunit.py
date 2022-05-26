@@ -1,24 +1,20 @@
 #!/usr/bin/env python
 import json
 import re
+import sys
+import os
+import re
 
-cex = json.loads('''{
-    "sigs": {
-        "Position": ["Position$0", "Position$1", "Position$2"],
-        "Resource": ["Resource$0"],
-        "Product": ["Resource$0", "Component$0", "Component$1"],
-        "Component": ["Component$0", "Component$1"],
-        "Robot": ["Robot$0", "Robot$1"]
-    },
-        "fields": {
-        "cposition": ["Component$0->Position$2", "Component$1->Position$1"],
-        "rposition": ["Robot$0->Position$1", "Robot$1->Position$0"],
-        "parts": ["Component$0->Resource$0", "Component$1->Component$1"]
-    }
-}''')
+program = sys.argv.pop(0)
 
-sigs = cex["sigs"]
-fields = cex["fields"]
+if len(sys.argv) < 2:
+    print("Usage: " + program + " [ATR_RESULTS] [MODEL]...")
+    exit(1)
+
+results = []
+with open(sys.argv.pop(0)) as f:
+    for line in f:
+        results.append(json.loads(line))
 
 def remove_dollar(str):
 	return re.sub("\$", "", str)
@@ -36,7 +32,7 @@ def intercalate(strs, sep):
         ret += sep + str
     return ret
 
-def quantifiers():
+def quantifiers(sigs, fields):
     if not any(map(lambda x: len(x) > 0, sigs.values())):
     	return "{"
     ret = "some "
@@ -68,26 +64,52 @@ def set_assign(label, variables):
         return "no " + label
     return label + " = " + intercalate(map(remove_dollar, variables), " + ")
 
-def sigs_str():
+def sigs_str(sigs, fields):
     ret = "{\n"
     ret += indent(intercalate(map(lambda sig: set_assign(sig, sigs[sig]), sigs.keys()), "\n"), 1)
     ret += "\n}"
     return ret
 
-def fields_str():
+def fields_str(sigs, fields):
     ret = "{\n"
     ret += indent(intercalate(map(lambda field: set_assign(field, fields[field]), fields.keys()), "\n"), 1)
     ret += "\n}"
     return ret
 
+def generate_test(name, cex):
+    sigs = cex["cex"]["sigs"]
+    fields = cex["cex"]["fields"]
+    expected = cex["expected"]
+    out = "pred " + name + " {\n"
+    out += indent(quantifiers(sigs, fields), 1) + "\n"
+    out += indent(sigs_str(sigs, fields), 2) + "\n"
+    out += indent(fields_str(sigs, fields), 2) + "\n"
+    out += indent("}", 1) + "\n"
+    out += "}\n"
+    out += "run " + name + " expect " + str(expected) + "\n"
 
-name = "test0"
-out = "pred test0 {\n"
-out += indent(quantifiers(), 1) + "\n"
-out += indent(sigs_str(), 2) + "\n"
-out += indent(fields_str(), 2) + "\n"
-out += indent("}", 1) + "\n"
-out += "}\n"
-out += "run test0 expect 1"
+    return out
 
-print(out)
+def generate_tests(model_name):
+    prefix = re.match(r"^.*_.*_", model_name)[0]
+
+    cexs = {}
+
+    for result in results:
+        if os.path.basename(result["file"]).startswith(prefix):
+            for cex in result["cexs"]:
+                key = json.dumps(cex)
+                cexs[key] = cexs.get(key, 0) + 1
+
+    i = 0
+    out = ""
+    for cex in sorted(list(cexs), key = lambda cex: -cexs[cex]):
+        out += generate_test("test" + str(i), json.loads(cex)) + "\n"
+        i += 1
+
+    return out
+
+for file in sys.argv:
+    with open(file + ".tests", "w") as f:
+        if re.match("^.*\.als$", file):
+            f.write(generate_tests(os.path.basename(file)))
