@@ -26,50 +26,43 @@ sig Robot {
 pred inv1 { // A component requires at least one part
 	all c:Component | some c.parts
 }
-
-
 pred inv2 { // A component cannot be a part of itself
-{   no Component.^parts} --incorrect 19 
+{   no Component.^parts} 
 }
-
-
 pred inv3 { // The position where a component is assembled must have at least one robot
 	Component.cposition in Robot.rposition
 }
-
-
 pred inv4 { // The parts required by a component cannot be assembled in a later position
     all c:Component | c.parts.cposition in c.cposition.*prev 
 }
-
-
-
 /*======== IFF PERFECT ORACLE ===============*/
 pred inv1_OK {
-	all c:Component | some c.parts --correct
+	all c:Component | some c.parts 
 }
 assert inv1_Repaired {
     inv1[] iff inv1_OK[]
 }
+
 pred inv2_OK {
-		all c:Component | c not in c.^parts --correct
+		all c:Component | c not in c.^parts 
 }
 assert inv2_Repaired {
     inv2[] iff inv2_OK[]
 }
+
 pred inv3_OK {
-	Component.cposition in Robot.rposition --correct
+	Component.cposition in Robot.rposition 
 }
 assert inv3_Repaired {
     inv3[] iff inv3_OK[]
 }
+
 pred inv4_OK {
-  all c:Component | c.parts.cposition in c.cposition.*prev  --correct
+  all c:Component | c.parts.cposition in c.cposition.*prev  
 }
 assert inv4_Repaired {
     inv4[] iff inv4_OK[]
 }
-
  check inv1_Repaired expect 0
  check inv2_Repaired expect 0
  check inv3_Repaired expect 0 
@@ -77,10 +70,16 @@ assert inv4_Repaired {
 pred __repair {
 	inv2
 }
+
 assert __repair {
-	inv2 <=> inv2_OK
+	inv2 <=> {
+		all c:Component | c not in c.^parts 
 }
+}
+
 check __repair
+
 fact __repair {
 	inv2
 }
+
