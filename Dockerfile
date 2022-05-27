@@ -15,7 +15,7 @@ RUN mv build/atr.sh atr.sh
 RUN mv build/beafix_benchmarks/A4F-1B-ATR A4F-1B-ATR
 RUN mv build/alloy4fun_models alloy4fun_models
 
-RUN printf "#!/bin/sh\nfor f in \$(find A4F-1B-ATR -type f | sort);\ndo echo $f; ./atr.sh atr.jar --depth 1 --timeout 60 --show-cexs --stats --file \$f >> results.json;\n done " >> run-all-a4f.sh; chmod +x run-all-a4f.sh
+RUN printf "#!/bin/sh\nfor f in \$(find A4F-1B-ATR -type f | sort);\ndo echo \$f; ./atr.sh atr.jar --depth 3 --timeout 60 --show-cexs --stats --file \$f >> results.json;\n done " >> run-all-a4f.sh; chmod +x run-all-a4f.sh
 
 RUN rm -rf build
 
