@@ -1,6 +1,7 @@
 package pt.haslab.util;
 
 import edu.mit.csail.sdg.alloy4.A4Reporter;
+import edu.mit.csail.sdg.alloy4.ErrorSyntax;
 import edu.mit.csail.sdg.ast.Command;
 import edu.mit.csail.sdg.ast.Func;
 import edu.mit.csail.sdg.ast.Module;
@@ -18,7 +19,7 @@ public class RepairChecker {
         return attemptRepair(filename, maxDepth, timeout, false);
     }
 
-    public static Repairer attemptRepair(String filename, int maxDepth, long timeout, boolean variabilizationEnabled) throws IOException {
+    public static Repairer attemptRepair(String filename, int maxDepth, long timeout, boolean variabilizationEnabled) throws ErrorSyntax {
         Module world = CompUtil.parseEverything_fromFile(A4Reporter.NOP, null, filename);
 
         Optional<Command> cmd = world.getAllCommands().stream()

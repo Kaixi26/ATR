@@ -1,6 +1,8 @@
 package pt.haslab.util;
 
+import edu.mit.csail.sdg.alloy4.ConstList;
 import edu.mit.csail.sdg.alloy4.Pos;
+import edu.mit.csail.sdg.alloy4.SafeList;
 import edu.mit.csail.sdg.alloy4.Util;
 import edu.mit.csail.sdg.ast.*;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
@@ -19,6 +21,10 @@ public class ExprMaker {
 
     public static ExprQt make(List<Decl> decls, Expr sub, ExprQt.Op op) {
         return (ExprQt) op.make(decls.get(0).span(), null, decls, sub);
+    }
+
+    public static ExprList make(List<Expr> exprs, ExprList.Op op){
+        return ExprList.make(null, null, op, exprs);
     }
 
 }

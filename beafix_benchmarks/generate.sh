@@ -28,7 +28,7 @@ for filepath in $(find A4F-1B | grep "GRAPHS" | grep "\.als$")
 do
     PRED=$(printf $filepath | sed -E "s/_/__/1; s/^.*__//g; s/_.*$//g; s/stronglyConnected/stonglyConnected/g")
     generate_file "A4F-1B-ATR" $filepath "$PRED" "${PRED}OK"
-    generate_file "A4F-1B-AREPAIR" $filepath "$PRED" "${PRED}OK" "$PRED"
+    generate_file "arepair/A4F-1B-AREPAIR" $filepath "$PRED" "${PRED}OK" "$PRED"
 done
 
 printf "waiting for everything to finish generating...\n"

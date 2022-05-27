@@ -1,6 +1,7 @@
 package edu.mit.csail.sdg.alloy4whole;
 
 import edu.mit.csail.sdg.alloy4.Err;
+import edu.mit.csail.sdg.alloy4.ErrorSyntax;
 import edu.mit.csail.sdg.ast.Func;
 import pt.haslab.mutation.Candidate;
 import pt.haslab.mutation.PruneReason;
@@ -103,7 +104,7 @@ public final class RepairCLI {
     private static String cexs(Repairer repairer) {
         List<String> json = new ArrayList<>();
         for (Repairer.CounterExample counterexample : repairer.counterexamples) {
-            json.add(counterexample.toJSON(repairer.module.getAllReachableUserDefinedSigs()));
+            json.add(counterexample.toJSON(repairer, repairer.module.getAllReachableUserDefinedSigs()));
         }
         return JSON.toJSON(json);
     }
@@ -120,35 +121,48 @@ public final class RepairCLI {
     public static void main(String[] args) throws Err, IOException {
         parseArguments(args);
 
-        Repairer repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout, enableVariabilization);
 
         Map<String, String> json = new HashMap<>();
-        json.put("elapsed", "" + repairer.getElapsedMillis());
-        json.put("depth", "" + depth);
+        json.put("max_depth", "" + depth);
         json.put("timeout", "" + timeout);
         json.put("file", "\"" + filepath + "\"");
-        json.put("solved", "" + repairer.solution.isPresent());
-        json.put("timed_out", "" + repairer.getRepairStatus().equals(pt.haslab.util.Repairer.RepairStatus.TIMEOUT));
-        if (enableStats) {
-            json.put("stats", stats(repairer));
-        }
-        if (repairer.solution.isPresent()) {
-            json.put("solution", solution(repairer));
-        }
-        if (enableShowCexs) {
-            json.put("cexs", cexs(repairer));
-        }
-        System.out.println(JSON.toJSON(json));
 
-        if (debug) {
-            for (Mutator baseMutator : repairer.mutationStepper.baseMutators) {
-                System.out.println(baseMutator);
-                for (Mutator mutator : baseMutator.getGeneratedMutators()) {
-                    System.out.println("\t" + mutator);
+        Repairer repairer = null;
+        try {
+            repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout, enableVariabilization);
+            json.put("elapsed", "" + repairer.getElapsedMillis());
+            if (repairer.solution.isPresent()) {
+                json.put("depth", "" + repairer.solution.get().mutators.size());
+                json.put("solution", solution(repairer));
+            }
+            json.put("solved", "" + repairer.solution.isPresent());
+            json.put("timed_out", "" + repairer.getRepairStatus().equals(pt.haslab.util.Repairer.RepairStatus.TIMEOUT));
+            if (enableStats) {
+                json.put("stats", stats(repairer));
+            }
+            if (enableShowCexs) {
+                json.put("cexs", cexs(repairer));
+            }
+            if (debug) {
+                for (Mutator baseMutator : repairer.mutationStepper.baseMutators) {
+                    System.out.println(baseMutator);
+                    for (Mutator mutator : baseMutator.getGeneratedMutators()) {
+                        System.out.println("\t" + mutator);
+                    }
                 }
             }
+        } catch (ErrorSyntax e) {
+            json.put("error", "\"" + e.toString().replace("\n", "\\n").replace("\"", "") + "\"");
         }
 
+
+        System.out.println(JSON.toJSON(json));
+
+
+        if (repairer == null) {
+            System.exit(-1);
+            return;
+        }
         switch (repairer.getRepairStatus()) {
             case ALREADY_CORRECT:
             case SUCCESS:

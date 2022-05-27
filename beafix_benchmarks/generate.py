@@ -41,11 +41,15 @@ with open(fname, "r") as f:
 model = re.sub("#m#\(\)", "", model)
 model = remove_comments(model)
 
-model += "\npred __repair {\n\t" + target + "\n}\n"
+if fact:
+    model += "\npred _repair {\n\t" + target + "\n}\n"
+else:
+    model += "\npred __repair {\n\t" + target + "\n}\n"
+
 model += "\nassert __repair {\n\t" + target + " <=> " + solution_segment(model, solution) + "\n}\n"
 model += "\ncheck __repair\n"
 
 if fact:
-    model += "\nfact __repair {\n\t" + fact + "\n}\n"
+    model += "\nfact ___repair {\n\t" + fact + "\n}\n"
 
 print(model)

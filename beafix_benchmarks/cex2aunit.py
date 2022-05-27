@@ -77,8 +77,8 @@ def fields_str(sigs, fields):
     return ret
 
 def generate_test(name, cex):
-    sigs = cex["cex"]["sigs"]
-    fields = cex["cex"]["fields"]
+    sigs = cex["sigs"]
+    fields = cex["fields"]
     expected = cex["expected"]
     out = "pred " + name + " {\n"
     out += indent(quantifiers(sigs, fields), 1) + "\n"
