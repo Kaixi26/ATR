@@ -216,18 +216,18 @@ assert inv15_Repaired {
  check inv14_Repaired expect 0
  check inv15_Repaired expect 0
 pred _repair {
-	inv1
+	inv14
 }
 
 assert __repair {
-	inv1 <=> {
-  Person in Student 
+	inv14 <=> {
+      all s : Person, c : Class, t : Person, g : Group | (c -> s -> g in Groups) and t -> c in Teaches implies t -> s in Tutors 
 }
 }
 
 check __repair
 
 fact ___repair {
-	inv1
+	inv14
 }
 

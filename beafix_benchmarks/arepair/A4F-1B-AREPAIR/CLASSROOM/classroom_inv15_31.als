@@ -216,18 +216,18 @@ assert inv15_Repaired {
  check inv14_Repaired expect 0
  check inv15_Repaired expect 0
 pred _repair {
-	inv1
+	inv15
 }
 
 assert __repair {
-	inv1 <=> {
-  Person in Student 
+	inv15 <=> {
+  all s : Person | some Teacher & ^Tutors.s 
 }
 }
 
 check __repair
 
 fact ___repair {
-	inv1
+	inv15
 }
 

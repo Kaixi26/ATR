@@ -16,10 +16,10 @@ function generate_file(){
 for i in {1..15}
 do
     printf "generating for inv$i\n"
-    (for filepath in $(find A4F-1B | grep "inv$i.*\.als")
+    (for filepath in $(find A4F-1B | grep -E "inv$i\_.*\.als")
     do
         generate_file "A4F-1B-ATR" $filepath "inv$i" "inv${i}_OK" ""
-        generate_file "A4F-1B-AREPAIR" $filepath "inv$i" "inv${i}_OK" "inv$i"
+        generate_file "arepair/A4F-1B-AREPAIR" $filepath "inv$i" "inv${i}_OK" "inv$i"
     done
     printf "finished for inv$i\n") &
 done

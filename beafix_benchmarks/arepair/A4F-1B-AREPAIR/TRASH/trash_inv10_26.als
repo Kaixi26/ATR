@@ -141,22 +141,18 @@ assert inv10_Repaired {
  check inv9_Repaired expect 0
  check inv10_Repaired expect 0
 pred _repair {
-	inv1
+	inv10
 }
 
 assert __repair {
-	inv1 <=> {
-	no Trash 
+	inv10 <=> {
+  Trash.link in Trash 
 }
 }
 
 check __repair
 
 fact ___repair {
-	inv1
-}
-
-ir {
 	inv10
 }
 

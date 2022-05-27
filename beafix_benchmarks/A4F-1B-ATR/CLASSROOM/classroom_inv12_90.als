@@ -217,12 +217,12 @@ assert inv15_Repaired {
  check inv14_Repaired expect 0
  check inv15_Repaired expect 0
 pred __repair {
-	inv1
+	inv12
 }
 
 assert __repair {
-	inv1 <=> {
-  Person in Student 
+	inv12 <=> {
+ all t : Teacher | some (t.Teaches).Groups 
 }
 }
 
