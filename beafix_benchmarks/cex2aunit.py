@@ -7,9 +7,11 @@ import re
 
 program = sys.argv.pop(0)
 
-if len(sys.argv) < 2:
-    print("Usage: " + program + " [ATR_RESULTS] [MODEL]...")
+if len(sys.argv) < 3:
+    print("Usage: " + program + " [MAX_TESTS] [ATR_RESULTS] [MODEL]...")
     exit(1)
+
+max_tests = int(sys.argv.pop(0))
 
 results = []
 with open(sys.argv.pop(0)) as f:
@@ -104,6 +106,8 @@ def generate_tests(model_name):
     i = 0
     out = ""
     for cex in sorted(list(cexs), key = lambda cex: -cexs[cex]):
+        if i >= max_tests:
+            break
         out += generate_test("test" + str(i), json.loads(cex)) + "\n"
         i += 1
     print(model_name + ": " + str(i) + " generated")
