@@ -97,7 +97,7 @@ def generate_tests(model_name):
 
     for result in results:
         if os.path.basename(result["file"]).startswith(prefix):
-            for cex in result["cexs"]:
+            for cex in result.get("cexs", []):
                 key = json.dumps(cex)
                 cexs[key] = cexs.get(key, 0) + 1
 
@@ -106,6 +106,7 @@ def generate_tests(model_name):
     for cex in sorted(list(cexs), key = lambda cex: -cexs[cex]):
         out += generate_test("test" + str(i), json.loads(cex)) + "\n"
         i += 1
+    print(model_name + ": " + str(i) + " generated")
 
     return out
 

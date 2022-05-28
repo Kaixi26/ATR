@@ -152,6 +152,7 @@ public final class RepairCLI {
                 }
             }
         } catch (ErrorSyntax e) {
+            json.put("elapsed", "N/A");
             json.put("error", "\"" + e.toString().replace("\n", "\\n").replace("\"", "") + "\"");
         }
 

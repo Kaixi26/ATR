@@ -1,0 +1,1452 @@
+pred test0 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test0 expect 0
+
+pred test1 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test1 expect 0
+
+pred test2 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test2 expect 0
+
+pred test3 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test3 expect 0
+
+pred test4 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test4 expect 0
+
+pred test5 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test5 expect 1
+
+pred test6 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test6 expect 0
+
+pred test7 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test7 expect 0
+
+pred test8 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0
+    }
+  }
+}
+run test8 expect 0
+
+pred test9 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test9 expect 0
+
+pred test10 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test10 expect 1
+
+pred test11 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test11 expect 0
+
+pred test12 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test12 expect 0
+
+pred test13 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test13 expect 0
+
+pred test14 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test14 expect 0
+
+pred test15 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test15 expect 0
+
+pred test16 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test16 expect 1
+
+pred test17 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      no adj
+    }
+  }
+}
+run test17 expect 0
+
+pred test18 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test18 expect 0
+
+pred test19 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test19 expect 0
+
+pred test20 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test20 expect 1
+
+pred test21 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test21 expect 0
+
+pred test22 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test22 expect 0
+
+pred test23 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test23 expect 1
+
+pred test24 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test24 expect 0
+
+pred test25 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test25 expect 0
+
+pred test26 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test26 expect 0
+
+pred test27 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test27 expect 0
+
+pred test28 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test28 expect 1
+
+pred test29 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test29 expect 0
+
+pred test30 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test30 expect 1
+
+pred test31 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test31 expect 0
+
+pred test32 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test32 expect 0
+
+pred test33 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test33 expect 0
+
+pred test34 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test34 expect 1
+
+pred test35 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test35 expect 0
+
+pred test36 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test36 expect 1
+
+pred test37 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test37 expect 0
+
+pred test38 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test38 expect 1
+
+pred test39 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test39 expect 0
+
+pred test40 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test40 expect 0
+
+pred test41 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test41 expect 0
+
+pred test42 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test42 expect 1
+
+pred test43 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test43 expect 0
+
+pred test44 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test44 expect 0
+
+pred test45 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test45 expect 1
+
+pred test46 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test46 expect 0
+
+pred test47 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test47 expect 0
+
+pred test48 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test48 expect 1
+
+pred test49 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test49 expect 0
+
+pred test50 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test50 expect 0
+
+pred test51 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test51 expect 0
+
+pred test52 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test52 expect 1
+
+pred test53 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test53 expect 0
+
+pred test54 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test54 expect 0
+
+pred test55 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test55 expect 0
+
+pred test56 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test56 expect 0
+
+pred test57 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test57 expect 1
+
+pred test58 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test58 expect 0
+
+pred test59 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test59 expect 0
+
+pred test60 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test60 expect 0
+
+pred test61 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test61 expect 0
+
+pred test62 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test62 expect 0
+
+pred test63 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test63 expect 1
+
+pred test64 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test64 expect 0
+
+pred test65 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test65 expect 1
+
+pred test66 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test66 expect 0
+
+pred test67 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test67 expect 0
+
+pred test68 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test68 expect 1
+
+pred test69 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test69 expect 0
+
+pred test70 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test70 expect 0
+
+pred test71 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test71 expect 0
+
+pred test72 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test72 expect 1
+
+pred test73 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test73 expect 0
+
+pred test74 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test74 expect 0
+
+pred test75 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test75 expect 1
+
+pred test76 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test76 expect 0
+
+pred test77 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test77 expect 1
+
+pred test78 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test78 expect 0
+
+pred test79 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test79 expect 0
+
+pred test80 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test80 expect 0
+
+pred test81 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test81 expect 0
+
+pred test82 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test82 expect 1
+
+pred test83 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test83 expect 0
+
+pred test84 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test84 expect 0
+
+pred test85 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test85 expect 0
+
+pred test86 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test86 expect 0
+
+pred test87 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test87 expect 0
+
+pred test88 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test88 expect 0
+
+pred test89 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test89 expect 0
+
+pred test90 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test90 expect 1
+
+pred test91 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test91 expect 0
+
+pred test92 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test92 expect 0
+
+pred test93 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test93 expect 1
+
+pred test94 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test94 expect 0
+
+pred test95 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test95 expect 0
+
+pred test96 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test96 expect 0
+
+pred test97 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test97 expect 1
+
+pred test98 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test98 expect 1
+
+pred test99 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test99 expect 0
+
+pred test100 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test100 expect 0
+
+pred test101 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test101 expect 0
+
+pred test102 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test102 expect 0
+
+pred test103 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test103 expect 1
+
+pred test104 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test104 expect 0
+
+pred test105 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test105 expect 1
+
+pred test106 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test106 expect 0
+
+pred test107 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test107 expect 0
+
+pred test108 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test108 expect 0
+
+pred test109 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test109 expect 1
+
+pred test110 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test110 expect 1
+
+pred test111 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test111 expect 0
+
+pred test112 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node0->Node0 + Node0->Node2 + Node1->Node0 + Node1->Node1 + Node2->Node1 + Node2->Node2
+    }
+  }
+}
+run test112 expect 0
+
+pred test113 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test113 expect 0
+
+pred test114 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node0->Node2 + Node1->Node0 + Node2->Node1
+    }
+  }
+}
+run test114 expect 0
+
+pred test115 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test115 expect 0
+
+pred test116 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test116 expect 1
+
+pred test117 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test117 expect 0
+
+pred test118 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test118 expect 0
+
+pred test119 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test119 expect 0
+
+pred test120 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test120 expect 1
+

@@ -1,0 +1,1512 @@
+pred test0 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Teacher0 + Teacher1
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student0->Teacher1 + Teacher1->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group0 + Class0->Teacher0->Group2 + Class0->Teacher1->Group1 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class1->Student0->Group2 + Class1->Teacher1->Group0 + Class1->Teacher1->Group1 + Class1->Teacher1->Group2 + Class2->Student0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group2 + Class2->Teacher1->Group1
+      Teaches = Student0->Class1 + Student0->Class2 + Teacher1->Class0 + Teacher1->Class2
+    }
+  }
+}
+run test0 expect 1
+
+pred test1 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Student0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class0->Teacher0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group0 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test1 expect 0
+
+pred test2 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Teacher0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group1 + Class1->Person0->Group2 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group2 + Class2->Student0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2 + Student0->Class1 + Student0->Class2
+    }
+  }
+}
+run test2 expect 0
+
+pred test3 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Teacher0->Student0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test3 expect 1
+
+pred test4 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person0
+      Groups = Class0->Student0->Group2 + Class0->Person0->Group0 + Class0->Person0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class1->Person0->Group2 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2 + Person0->Class2
+    }
+  }
+}
+run test4 expect 0
+
+pred test5 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Student0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2
+    }
+  }
+}
+run test5 expect 0
+
+pred test6 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Teacher0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student1->Class1 + Student1->Class2
+    }
+  }
+}
+run test6 expect 1
+
+pred test7 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1: Class, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1
+      no Student
+      Person = Teacher0 + Person0
+    }
+    {
+      no Tutors
+      Groups = Class0->Person0->Group0 + Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Teacher0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Person0->Class1
+    }
+  }
+}
+run test7 expect 0
+
+pred test8 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Teacher0 + Student1->Student0 + Student1->Student1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group1 + Class2->Student1->Group0 + Class2->Student1->Group2 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class1 + Teacher0->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test8 expect 1
+
+pred test9 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student1->Student0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test9 expect 1
+
+pred test10 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student1->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group1 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group2 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test10 expect 1
+
+pred test11 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student1->Student0 + Teacher0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group1 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group2 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test11 expect 1
+
+pred test12 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Teacher0->Student0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0 + Class2->Teacher0->Group2
+      Teaches = Student1->Class0 + Student1->Class1 + Student1->Class2
+    }
+  }
+}
+run test12 expect 1
+
+pred test13 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Teacher0->Student0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test13 expect 1
+
+pred test14 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person0
+      Groups = Class0->Student0->Group2 + Class0->Person0->Group0 + Class0->Person0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class1->Person0->Group2 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2 + Person0->Class2
+    }
+  }
+}
+run test14 expect 0
+
+pred test15 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Teacher0 + Teacher1
+    }
+    {
+      Tutors = Teacher0->Teacher0 + Teacher0->Teacher1 + Teacher1->Teacher0
+      Groups = Class0->Teacher0->Group0 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class0->Teacher1->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class1->Teacher1->Group1 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1 + Class2->Teacher0->Group2 + Class2->Teacher1->Group0
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test15 expect 1
+
+pred test16 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0, Person1: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0 + Person1
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Person0->Group0 + Class0->Person0->Group2 + Class0->Person1->Group1 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class1->Student0->Group2 + Class1->Person1->Group0 + Class1->Person1->Group1 + Class1->Person1->Group2 + Class2->Student0->Group2 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Person1->Group1
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2 + Person1->Class2
+    }
+  }
+}
+run test16 expect 0
+
+pred test17 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Teacher0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student1->Class1 + Student1->Class2
+    }
+  }
+}
+run test17 expect 1
+
+pred test18 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Person0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student1->Person0 + Person0->Student1 + Person0->Person0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Person0->Group0 + Class1->Person0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group1
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Person0->Class1
+    }
+  }
+}
+run test18 expect 0
+
+pred test19 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student1->Student1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Student1->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student1->Class1 + Student1->Class2 + Teacher0->Class0
+    }
+  }
+}
+run test19 expect 1
+
+pred test20 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Person0->Group1 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class1 + Student0->Class2 + Person0->Class2
+    }
+  }
+}
+run test20 expect 0
+
+pred test21 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0
+    }
+    {
+      no Tutors
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class1->Student0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Student0->Group2
+      no Teaches
+    }
+  }
+}
+run test21 expect 1
+
+pred test22 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student0->Teacher0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Student1->Group2 + Class1->Teacher0->Group1 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class1 + Teacher0->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test22 expect 1
+
+pred test23 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Person0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group1
+      Teaches = Student0->Class1 + Student0->Class2 + Person0->Class0 + Person0->Class2
+    }
+  }
+}
+run test23 expect 0
+
+pred test24 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0, Student1, Student2: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1 + Student2
+      Person = Student0 + Student1 + Student2
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student0->Student2
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student2->Group1 + Class0->Student2->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Student1->Group2 + Class1->Student2->Group1 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Student2->Group0 + Class2->Student2->Group1
+      Teaches = Student0->Class2 + Student1->Class1 + Student2->Class0 + Student2->Class2
+    }
+  }
+}
+run test24 expect 1
+
+pred test25 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Teacher0 + Student1
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student1->Student0 + Student1->Student1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group2 + Class0->Student1->Group1 + Class1->Student1->Group0 + Class1->Student1->Group1 + Class1->Student1->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student0->Class2 + Teacher0->Class1 + Student1->Class0 + Student1->Class2
+    }
+  }
+}
+run test25 expect 1
+
+pred test26 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Student0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class0->Teacher0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group0 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test26 expect 0
+
+pred test27 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Teacher0 + Student1->Student0 + Student1->Student1 + Teacher0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test27 expect 1
+
+pred test28 {
+  some disj Group0: Group {
+    {
+      Group = Group0
+      no Teacher
+      no Class
+      no Student
+      no Person
+    }
+    {
+      no Tutors
+      no Groups
+      no Teaches
+    }
+  }
+}
+run test28 expect 1
+
+pred test29 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Teacher0 + Teacher1
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student0->Teacher1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher1->Group1 + Class0->Teacher1->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class1->Teacher1->Group1 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Teacher1->Group0 + Class2->Teacher1->Group1
+      Teaches = Student0->Class2 + Teacher0->Class1 + Teacher1->Class0 + Teacher1->Class2
+    }
+  }
+}
+run test29 expect 1
+
+pred test30 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0, Person1: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0 + Person1
+    }
+    {
+      Tutors = Student0->Person0 + Student0->Person1 + Person1->Student0
+      Groups = Class0->Person1->Group1 + Class0->Person1->Group2 + Class1->Person0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Person1->Group0 + Class2->Person1->Group1
+      Teaches = Student0->Class2 + Person0->Class1 + Person1->Class0 + Person1->Class2
+    }
+  }
+}
+run test30 expect 0
+
+pred test31 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Teacher0 + Person0
+    }
+    {
+      no Tutors
+      Groups = Class0->Teacher0->Group2 + Class0->Person0->Group1 + Class1->Teacher0->Group1 + Class1->Person0->Group0 + Class1->Person0->Group2 + Class2->Teacher0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2
+      Teaches = Teacher0->Class1 + Teacher0->Class2 + Person0->Class0
+    }
+  }
+}
+run test31 expect 0
+
+pred test32 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Person0, Person1: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Person0 + Person1 + Teacher0
+    }
+    {
+      Tutors = Person0->Person0 + Person0->Teacher0
+      Groups = Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Person1->Group0 + Class1->Person1->Group2 + Class1->Teacher0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Person0->Class2 + Person1->Class1 + Teacher0->Class1
+    }
+  }
+}
+run test32 expect 0
+
+pred test33 {
+  some disj Class0, Class1, Class2: Class, disj Person0, Person1, Person2: Person {
+    {
+      no Group
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Person0 + Person1 + Person2
+    }
+    {
+      Tutors = Person0->Person0 + Person0->Person1 + Person0->Person2 + Person2->Person0 + Person2->Person2
+      no Groups
+      Teaches = Person0->Class2 + Person1->Class1 + Person2->Class0 + Person2->Class2
+    }
+  }
+}
+run test33 expect 0
+
+pred test34 {
+  some disj Group0: Group, disj Class0, Class1, Class2: Class, disj Person0: Person {
+    {
+      Group = Group0
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Person0
+    }
+    {
+      no Tutors
+      Groups = Class0->Person0->Group0 + Class1->Person0->Group0 + Class2->Person0->Group0
+      Teaches = Person0->Class0 + Person0->Class1 + Person0->Class2
+    }
+  }
+}
+run test34 expect 0
+
+pred test35 {
+  some disj Group0: Group {
+    {
+      Group = Group0
+      no Teacher
+      no Class
+      no Student
+      no Person
+    }
+    {
+      no Tutors
+      no Groups
+      no Teaches
+    }
+  }
+}
+run test35 expect 1
+
+pred test36 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Teacher0 + Student1
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student1->Student0 + Student1->Student1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group2 + Class0->Student1->Group1 + Class1->Student1->Group0 + Class1->Student1->Group1 + Class1->Student1->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student0->Class2 + Teacher0->Class1 + Student1->Class0 + Student1->Class2
+    }
+  }
+}
+run test36 expect 1
+
+pred test37 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Student0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class0->Teacher0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group0 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test37 expect 0
+
+pred test38 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Teacher0 + Student1->Student0 + Student1->Student1 + Teacher0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test38 expect 1
+
+pred test39 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Teacher0->Student0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group0 + Class0->Teacher0->Group1 + Class1->Student0->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test39 expect 1
+
+pred test40 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Student0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class0->Teacher0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group0 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test40 expect 0
+
+pred test41 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student1 + Student1->Student0 + Student1->Student1 + Teacher0->Student1
+      Groups = Class0->Student1->Group1 + Class0->Student1->Group2 + Class0->Teacher0->Group0 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student1->Group1 + Class2->Student1->Group2 + Class2->Teacher0->Group0
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test41 expect 1
+
+pred test42 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Teacher0 + Teacher1
+    }
+    {
+      Tutors = Teacher0->Teacher0 + Teacher0->Teacher1 + Teacher1->Teacher0
+      Groups = Class0->Teacher0->Group0 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class1->Teacher1->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1 + Class2->Teacher0->Group2 + Class2->Teacher1->Group0 + Class2->Teacher1->Group1
+      Teaches = Teacher0->Class1 + Teacher0->Class2 + Teacher1->Class0
+    }
+  }
+}
+run test42 expect 1
+
+pred test43 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student1->Group1 + Class1->Student1->Group2 + Class1->Teacher0->Group0 + Class2->Student0->Group0 + Class2->Student1->Group1 + Class2->Student1->Group2 + Class2->Teacher0->Group0
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Student1->Class2 + Teacher0->Class1
+    }
+  }
+}
+run test43 expect 1
+
+pred test44 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0, Person1: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0 + Person1
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Person0->Group0 + Class0->Person0->Group2 + Class0->Person1->Group1 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class1->Student0->Group2 + Class1->Person1->Group0 + Class1->Person1->Group1 + Class1->Person1->Group2 + Class2->Student0->Group2 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Person1->Group1
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2 + Person1->Class2
+    }
+  }
+}
+run test44 expect 0
+
+pred test45 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Person0, Person1, Person2: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Person0 + Person1 + Person2
+    }
+    {
+      Tutors = Person0->Person1 + Person0->Person2 + Person2->Person0
+      Groups = Class0->Person2->Group1 + Class0->Person2->Group2 + Class1->Person1->Group2 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Person2->Group0 + Class2->Person2->Group1
+      Teaches = Person0->Class2 + Person1->Class1 + Person2->Class0 + Person2->Class2
+    }
+  }
+}
+run test45 expect 0
+
+pred test46 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Teacher0->Student0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student1->Class1 + Student1->Class2
+    }
+  }
+}
+run test46 expect 1
+
+pred test47 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Student0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class0->Teacher0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group0 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test47 expect 0
+
+pred test48 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Teacher0 + Teacher1
+    }
+    {
+      Tutors = Teacher0->Teacher0
+      Groups = Class0->Teacher1->Group0 + Class0->Teacher1->Group1 + Class0->Teacher1->Group2 + Class1->Teacher0->Group2 + Class1->Teacher1->Group0 + Class1->Teacher1->Group1 + Class2->Teacher0->Group1 + Class2->Teacher1->Group0
+      Teaches = Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test48 expect 1
+
+pred test49 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student1->Student1
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Student1->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student1->Class1 + Student1->Class2
+    }
+  }
+}
+run test49 expect 1
+
+pred test50 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Student0->Group2
+      Teaches = Student0->Class1 + Student0->Class2 + Person0->Class0
+    }
+  }
+}
+run test50 expect 0
+
+pred test51 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Teacher0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group2 + Class0->Teacher0->Group2 + Class0->Student0->Group0 + Class0->Student0->Group1 + Class1->Person0->Group1 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group2 + Class2->Student0->Group1
+      Teaches = Person0->Class0 + Person0->Class1 + Person0->Class2 + Student0->Class1 + Student0->Class2
+    }
+  }
+}
+run test51 expect 0
+
+pred test52 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student1 + Student1->Student1 + Teacher0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group1 + Class2->Student1->Group0 + Class2->Student1->Group2 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class1 + Teacher0->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test52 expect 1
+
+pred test53 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Person0
+    }
+    {
+      Tutors = Student0->Person0 + Student1->Student1 + Student1->Person0 + Person0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Student1->Group2 + Class0->Person0->Group1 + Class1->Student0->Group1 + Class1->Student1->Group0 + Class1->Student1->Group2 + Class1->Person0->Group1 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Person0->Class1
+    }
+  }
+}
+run test53 expect 0
+
+pred test54 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Person0, Person1: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Person0 + Person1 + Teacher0
+    }
+    {
+      Tutors = Person0->Teacher0 + Person1->Person1 + Person1->Teacher0 + Teacher0->Person0
+      Groups = Class0->Person0->Group2 + Class0->Person1->Group0 + Class0->Person1->Group1 + Class0->Teacher0->Group2 + Class1->Person0->Group1 + Class1->Person1->Group1 + Class1->Person1->Group2 + Class1->Teacher0->Group0 + Class2->Person0->Group2 + Class2->Person1->Group0 + Class2->Person1->Group1
+      Teaches = Person0->Class1 + Person0->Class2 + Person1->Class0 + Teacher0->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test54 expect 0
+
+pred test55 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Teacher0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group1 + Class1->Person0->Group2 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group2 + Class2->Student0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2 + Student0->Class1 + Student0->Class2
+    }
+  }
+}
+run test55 expect 0
+
+pred test56 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student0->Teacher0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Student1->Group1 + Class1->Student1->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test56 expect 1
+
+pred test57 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student1 + Student1->Student0 + Student1->Student1 + Teacher0->Student1
+      Groups = Class0->Student0->Group2 + Class0->Student1->Group1 + Class0->Teacher0->Group0 + Class0->Teacher0->Group2 + Class1->Student0->Group1 + Class1->Student1->Group0 + Class1->Student1->Group2 + Class1->Teacher0->Group1 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test57 expect 1
+
+pred test58 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person0 + Person0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Person0->Group2 + Class1->Person0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group1
+      Teaches = Student0->Class1 + Student0->Class2 + Person0->Class0 + Person0->Class2
+    }
+  }
+}
+run test58 expect 0
+
+pred test59 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1
+      Student = Student0
+      Person = Student0 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0
+      Groups = Class0->Teacher0->Group0 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1
+      Teaches = Student0->Class0 + Student0->Class1 + Teacher0->Class1
+    }
+  }
+}
+run test59 expect 1
+
+pred test60 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student1->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student1->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class2->Student0->Group2 + Class2->Student1->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class1 + Teacher0->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test60 expect 1
+
+pred test61 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0 + Teacher0
+    }
+    {
+      Tutors = Student0->Teacher0 + Person0->Student0 + Person0->Person0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Person0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test61 expect 0
+
+pred test62 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Teacher0 + Teacher1
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student0->Teacher1
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher1->Group1 + Class0->Teacher1->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class1->Teacher1->Group1 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Teacher1->Group0 + Class2->Teacher1->Group1
+      Teaches = Student0->Class2 + Teacher0->Class1 + Teacher1->Class0 + Teacher1->Class2
+    }
+  }
+}
+run test62 expect 1
+
+pred test63 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group0 + Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Student0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2 + Person0->Class1 + Person0->Class2
+    }
+  }
+}
+run test63 expect 0
+
+pred test64 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Student1 + Student0->Teacher0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group2 + Class1->Student1->Group0 + Class1->Student1->Group1 + Class1->Student1->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test64 expect 1
+
+pred test65 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Teacher0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group1 + Class1->Person0->Group2 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group2 + Class2->Student0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2 + Student0->Class1 + Student0->Class2
+    }
+  }
+}
+run test65 expect 0
+
+pred test66 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Teacher0 + Teacher1
+    }
+    {
+      Tutors = Teacher0->Teacher0 + Teacher1->Teacher0
+      Groups = Class0->Teacher1->Group0 + Class0->Teacher1->Group1 + Class0->Teacher1->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Teacher0->Group2 + Class2->Teacher1->Group0 + Class2->Teacher1->Group1
+      Teaches = Teacher0->Class2
+    }
+  }
+}
+run test66 expect 1
+
+pred test67 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student1->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test67 expect 1
+
+pred test68 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Teacher0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group1 + Class1->Person0->Group2 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group2 + Class2->Student0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2 + Student0->Class1 + Student0->Class2
+    }
+  }
+}
+run test68 expect 0
+
+pred test69 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Teacher0 + Teacher0->Student0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student1->Group0 + Class2->Teacher0->Group1 + Class2->Teacher0->Group2
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test69 expect 1
+
+pred test70 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student1 + Student1->Student0 + Student1->Student1 + Teacher0->Student1
+      Groups = Class0->Student0->Group2 + Class0->Student1->Group1 + Class0->Teacher0->Group0 + Class0->Teacher0->Group2 + Class1->Student0->Group1 + Class1->Student1->Group0 + Class1->Student1->Group2 + Class1->Teacher0->Group1 + Class2->Student0->Group0 + Class2->Student0->Group2 + Class2->Student1->Group1 + Class2->Teacher0->Group0
+      Teaches = Student0->Class2 + Student1->Class0 + Student1->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test70 expect 1
+
+pred test71 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group0 + Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Student0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2 + Person0->Class1 + Person0->Class2
+    }
+  }
+}
+run test71 expect 0
+
+pred test72 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1
+      Student = Student0
+      Person = Student0 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0
+      Groups = Class0->Teacher0->Group0 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1
+      Teaches = Student0->Class0 + Student0->Class1 + Teacher0->Class1
+    }
+  }
+}
+run test72 expect 1
+
+pred test73 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student1->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student1->Group2 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class2->Student0->Group2 + Class2->Student1->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class1 + Teacher0->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test73 expect 1
+
+pred test74 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Teacher0->Student0 + Teacher0->Teacher0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Student0->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group0 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Student0->Class1 + Student0->Class2 + Student1->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test74 expect 1
+
+pred test75 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group0 + Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Student0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2 + Person0->Class1 + Person0->Class2
+    }
+  }
+}
+run test75 expect 0
+
+pred test76 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0
+    }
+    {
+      no Tutors
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class1->Student0->Group2 + Class2->Student0->Group0 + Class2->Student0->Group1 + Class2->Student0->Group2
+      no Teaches
+    }
+  }
+}
+run test76 expect 1
+
+pred test77 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Student0->Student0 + Student0->Teacher0 + Student1->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Teacher0->Group1 + Class0->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Student1->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group2 + Class2->Student0->Group1 + Class2->Student1->Group0 + Class2->Student1->Group2 + Class2->Teacher0->Group1
+      Teaches = Student0->Class2 + Student1->Class1 + Teacher0->Class0 + Teacher0->Class2
+    }
+  }
+}
+run test77 expect 1
+
+pred test78 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0, Teacher1: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0 + Teacher1
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Teacher0 + Student0 + Teacher1
+    }
+    {
+      Tutors = Student0->Teacher0 + Student0->Teacher1 + Teacher1->Student0
+      Groups = Class0->Teacher0->Group2 + Class0->Student0->Group0 + Class0->Student0->Group1 + Class0->Teacher1->Group2 + Class1->Teacher0->Group1 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class1->Teacher1->Group1 + Class2->Teacher0->Group1 + Class2->Student0->Group0 + Class2->Student0->Group2
+      Teaches = Teacher0->Class1 + Teacher0->Class2 + Student0->Class0 + Student0->Class2 + Teacher1->Class2
+    }
+  }
+}
+run test78 expect 1
+
+pred test79 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Teacher0 + Student0
+    }
+    {
+      Tutors = Person0->Student0 + Teacher0->Teacher0 + Teacher0->Student0 + Student0->Person0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class0->Teacher0->Group0 + Class0->Student0->Group1 + Class0->Student0->Group2 + Class1->Person0->Group0 + Class1->Teacher0->Group2 + Class1->Student0->Group0 + Class1->Student0->Group1 + Class2->Person0->Group0 + Class2->Person0->Group2 + Class2->Teacher0->Group0 + Class2->Teacher0->Group1
+      Teaches = Teacher0->Class0 + Teacher0->Class1 + Teacher0->Class2
+    }
+  }
+}
+run test79 expect 0
+
+pred test80 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0, Person1: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Person0 + Person1 + Student0
+    }
+    {
+      Tutors = Student0->Person0 + Student0->Student0
+      Groups = Class0->Person0->Group2 + Class0->Person1->Group2 + Class0->Student0->Group2 + Class1->Person1->Group1 + Class1->Student0->Group0 + Class1->Student0->Group2 + Class2->Person1->Group1 + Class2->Person1->Group2 + Class2->Student0->Group0
+      Teaches = Person0->Class2 + Person1->Class0 + Person1->Class1 + Student0->Class1
+    }
+  }
+}
+run test80 expect 0
+
+pred test81 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      no Student
+      Person = Person0
+    }
+    {
+      Tutors = Person0->Person0
+      Groups = Class0->Person0->Group0 + Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1 + Class1->Person0->Group2 + Class2->Person0->Group0 + Class2->Person0->Group1 + Class2->Person0->Group2
+      Teaches = Person0->Class0 + Person0->Class1 + Person0->Class2
+    }
+  }
+}
+run test81 expect 0
+
+pred test82 {
+  some disj Group0, Group1, Group2: Group, disj Class0, Class1, Class2: Class, disj Student0: Student, disj Person0: Person {
+    {
+      Group = Group0 + Group1 + Group2
+      no Teacher
+      Class = Class0 + Class1 + Class2
+      Student = Student0
+      Person = Student0 + Person0
+    }
+    {
+      Tutors = Student0->Student0
+      Groups = Class0->Person0->Group1 + Class0->Person0->Group2 + Class1->Student0->Group2 + Class1->Person0->Group0 + Class1->Person0->Group1 + Class2->Student0->Group1 + Class2->Person0->Group0
+      Teaches = Student0->Class0 + Student0->Class1 + Student0->Class2
+    }
+  }
+}
+run test82 expect 0
+
+pred test83 {
+  some disj Group0, Group1, Group2: Group, disj Teacher0: Teacher, disj Class0, Class1, Class2: Class, disj Student0, Student1: Student {
+    {
+      Group = Group0 + Group1 + Group2
+      Teacher = Teacher0
+      Class = Class0 + Class1 + Class2
+      Student = Student0 + Student1
+      Person = Student0 + Student1 + Teacher0
+    }
+    {
+      Tutors = Teacher0->Student0
+      Groups = Class0->Student0->Group1 + Class0->Student0->Group2 + Class0->Student1->Group0 + Class0->Student1->Group2 + Class0->Teacher0->Group1 + Class1->Teacher0->Group0 + Class1->Teacher0->Group1 + Class1->Teacher0->Group2 + Class2->Student0->Group2 + Class2->Student1->Group0 + Class2->Student1->Group1
+      Teaches = Student1->Class1 + Student1->Class2
+    }
+  }
+}
+run test83 expect 1
+
