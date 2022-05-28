@@ -3,6 +3,7 @@ import sys
 import subprocess
 import time
 import json
+import re
 
 model = None
 tests = None
@@ -27,13 +28,16 @@ while len(argv) > 0:
     elif arg == "--timeout":
         timeout = int(argv.pop(0))
 
-if model == None or tests == None:
+if model == None:
     print("--model or --test was not given as argument.", file=sys.stderr)
     print("Usage: " + cmd + " --model [FILE] --tests [FILE] --timeout [secs]", file=sys.stderr)
     exit(1)
 
+if tests == None:
+    tests = model + ".tests"
 
-subprocess.run("rm -f .hidden/*", shell=True)
+
+subprocess.run("mkdir -p .hidden || rm -f .hidden/*", shell=True)
 
 print("running command '" + arepair_cmd() + "'", file=sys.stderr)
 
@@ -45,10 +49,20 @@ with open(model + ".log", "w") as f:
 end = time.time()
 elapsed = int((end - begin) * 1000)
 
-subprocess.run("cp .hidden/fix.als '" + model + ".fix'", shell=True)
+with open(".hidden/fix.als", "r") as ffix:
+    with open(model + ".fix", "w") as fmodel:
+        def remove_fact(model):
+            srch = re.search("fact\s+___repair.*{", model)
+            start = srch.end() - 1
+            end = start + 1
+            depth = 1
+            while depth > 0:
+                if model[end] == "{": depth += 1
+                if model[end] == "}": depth -= 1
+                end += 1
+            return model[0:srch.start()] + model[end:]
 
-with open(model + ".elapsed", "w") as f:
-    f.write(str(elapsed))
+        fmodel.write(re.sub("\s_repair", " __repair", remove_fact(ffix.read())))
 
 atrresult = subprocess.run("./atr.sh atr.jar --depth 0 --timeout 10 --file '" + model + ".fix'"
     , shell=True
@@ -61,7 +75,7 @@ if atrresult.returncode == 0:
     result["solved"] = json.loads(atrresult.stdout)["solved"]
 else:
     result["solved"] = False
-result["fixed"] = subprocess.run("grep 'All tests pass.' '" + model + ".log'", shell=True, stderr=subprocess.DEVNULL).returncode == 0
+#result["fixed"] = subprocess.run("grep 'All tests pass.' '" + model + ".log'", shell=True, stderr=subprocess.DEVNULL).returncode == 0
 result["timeout"] = timeout
 
 print(json.dumps(result))
