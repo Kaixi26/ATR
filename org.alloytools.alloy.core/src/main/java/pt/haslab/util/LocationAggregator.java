@@ -3,6 +3,7 @@ package pt.haslab.util;
 import edu.mit.csail.sdg.alloy4.Err;
 import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.Location;
+import pt.haslab.mutation.mutator.Mutator;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import java.util.*;
@@ -83,7 +84,11 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprUnary x) throws Err {
+                int sz = ret.size();
                 visitThis(x.sub);
+                if (Mutator.uops_rel2bool.contains(x.op)) {
+                    ret.get(sz).canChangeArity = true;
+                }
                 add(x);
                 return null;
             }

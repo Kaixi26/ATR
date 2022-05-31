@@ -22,6 +22,7 @@ public class ReplaceBinaryMutator extends Mutator {
 
     public static void generate(List<Mutator> accumulator, Location original) {
         ExprBinary originalExpr = (ExprBinary) original.expr;
+
         if (Mutator.bops_boolbool2bool.contains(originalExpr.op)) {
             for (ExprBinary.Op op : Mutator.bops_boolbool2bool) {
                 if (op != originalExpr.op) {
@@ -31,6 +32,13 @@ public class ReplaceBinaryMutator extends Mutator {
         }
         if (Mutator.bops_setset2set.contains(originalExpr.op)) {
             for (ExprBinary.Op op : Mutator.bops_setset2set) {
+                if (op != originalExpr.op) {
+                    accumulator.add(new ReplaceBinaryMutator(original, op));
+                }
+            }
+        }
+        if (Mutator.bops_setset2bool.contains(originalExpr.op)){
+            for (ExprBinary.Op op : Mutator.bops_setset2bool) {
                 if (op != originalExpr.op) {
                     accumulator.add(new ReplaceBinaryMutator(original, op));
                 }

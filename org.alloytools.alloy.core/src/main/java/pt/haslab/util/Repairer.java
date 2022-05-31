@@ -21,6 +21,7 @@ import static edu.mit.csail.sdg.alloy4.A4Preferences.*;
 public class Repairer {
     static final A4Reporter rep = A4Reporter.NOP;
     static final A4Options opts = new A4Options();
+
     public final Module module;
     Command command;
     ArrayList<Func> repairTargets;
@@ -51,6 +52,7 @@ public class Repairer {
         Repairer.opts.inferPartialInstance = InferPartialInstance.get();
         Repairer.opts.coreGranularity = CoreGranularity.get();
         Repairer.opts.decompose_mode = DecomposePref.get().ordinal();
+        Repairer.opts.solver = A4Options.SatSolver.MiniSatJNI;
     }
 
     public static class CounterExample {

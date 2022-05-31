@@ -27,7 +27,7 @@ public class BinaryToUnaryMutator extends Mutator {
         ExprBinary originalExpr = (ExprBinary) original.expr;
         if (bops_setset2bool.contains(originalExpr.op)) {
             for (ExprBinary.Op bop : bops_setset2set) {
-                for (ExprUnary.Op uop : uops_set2bool) {
+                for (ExprUnary.Op uop : uops_rel2bool) {
                     Expr exprBin = ExprMaker.make(originalExpr.left, originalExpr.right, bop);
                     ExprUnary mutant = ExprMaker.make(exprBin, uop);
                     accumulator.add(new BinaryToUnaryMutator(mutant, original));

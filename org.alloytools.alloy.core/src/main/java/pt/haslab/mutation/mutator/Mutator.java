@@ -18,7 +18,7 @@ public class Mutator {
     public static final Set<ExprUnary.Op> uops_bool2bool =
             Stream.of(ExprUnary.Op.NOT, ExprUnary.Op.AFTER, ExprUnary.Op.ALWAYS, ExprUnary.Op.EVENTUALLY, ExprUnary.Op.BEFORE, ExprUnary.Op.HISTORICALLY, ExprUnary.Op.ONCE).collect(Collectors.toSet());
 
-    public static final Set<ExprUnary.Op> uops_set2bool =
+    public static final Set<ExprUnary.Op> uops_rel2bool =
             new HashSet<>(Arrays.asList(NO, SOME, LONE, ONE));
 
     public static final Set<ExprUnary.Op> uops_rel2rel =

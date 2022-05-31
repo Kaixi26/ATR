@@ -19,7 +19,8 @@ public class RemoveUnaryOperatorMutator extends Mutator {
 
     public static void generate(List<Mutator> accumulator, Location original) {
         ExprUnary originalExpr = (ExprUnary) original.expr;
-        if (originalExpr.op == ExprUnary.Op.NOOP || originalExpr.type() != originalExpr.sub.type()) {
+
+        if (originalExpr.op == ExprUnary.Op.NOOP || !originalExpr.type().intersects(originalExpr.sub.type())) {
             return;
         }
         accumulator.add(new RemoveUnaryOperatorMutator(original));

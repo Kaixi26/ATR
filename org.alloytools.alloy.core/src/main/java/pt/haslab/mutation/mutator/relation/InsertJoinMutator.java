@@ -1,10 +1,7 @@
 package pt.haslab.mutation.mutator.relation;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
-import edu.mit.csail.sdg.ast.Expr;
-import edu.mit.csail.sdg.ast.ExprBinary;
-import edu.mit.csail.sdg.ast.Sig;
-import edu.mit.csail.sdg.ast.Type;
+import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
@@ -19,21 +16,37 @@ public class InsertJoinMutator extends Mutator {
         this.name = original.expr + "->" + expr;
     }
 
-    public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
-        if (original.expr.type().arity() != 1) {
-            return;
+    private static void joinIfCompatible(List<Mutator> accumulator, Location original, Expr expr) {
+        Type orig_type = original.expr.type();
+        Type left_join = expr.type().join(orig_type);
+        if (!left_join.equals(Sig.NONE.type()) && (!original.insideDecl || orig_type.arity() == left_join.arity())) {
+            accumulator.add(new InsertJoinMutator(original, ExprMaker.make(expr, original.expr, ExprBinary.Op.JOIN)));
         }
-        for (Sig.Field field : fields) {
-            // check if types are compatible to join
-            Type left_join = field.type().join(original.expr.type());
-            if (!left_join.equals(Sig.NONE.type()) && left_join.arity() == 1) {
-                accumulator.add(new InsertJoinMutator(original, ExprMaker.make(field, original.expr, ExprBinary.Op.JOIN)));
-            }
 
-            Type right_join = original.expr.type().join(field.type());
-            if (!right_join.equals(Sig.NONE.type()) && left_join.arity() == 1) {
-                accumulator.add(new InsertJoinMutator(original, ExprMaker.make(original.expr, field, ExprBinary.Op.JOIN)));
-            }
+        Type right_join = original.expr.type().join(expr.type());
+        if (!right_join.equals(Sig.NONE.type()) && (!original.insideDecl || orig_type.arity() == right_join.arity())) {
+            accumulator.add(new InsertJoinMutator(original, ExprMaker.make(original.expr, expr, ExprBinary.Op.JOIN)));
+        }
+    }
+
+    public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
+
+        switch (original.expr.type().arity()) {
+            case 1:
+                for (Sig.Field field : fields) {
+                    joinIfCompatible(accumulator, original, field);
+                }
+                break;
+            default:
+                for (Sig sig : sigs) {
+                    joinIfCompatible(accumulator, original, sig);
+                }
+                for (ExprHasName var : original.vars) {
+                    if (var instanceof ExprVar) {
+                        joinIfCompatible(accumulator, original, var);
+                    }
+                }
+                break;
         }
     }
 }

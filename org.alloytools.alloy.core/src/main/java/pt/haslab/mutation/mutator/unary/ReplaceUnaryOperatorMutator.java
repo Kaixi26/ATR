@@ -22,8 +22,8 @@ public class ReplaceUnaryOperatorMutator extends Mutator {
 
     public static void generate(List<Mutator> accumulator, Location original) {
         ExprUnary originalExpr = (ExprUnary) original.expr;
-        if (Mutator.uops_set2bool.contains(originalExpr.op)) {
-            for (ExprUnary.Op op : Mutator.uops_set2bool) {
+        if (Mutator.uops_rel2bool.contains(originalExpr.op)) {
+            for (ExprUnary.Op op : Mutator.uops_rel2bool) {
                 if (op != originalExpr.op) {
                     accumulator.add(new ReplaceUnaryOperatorMutator(original, op));
                 }
