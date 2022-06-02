@@ -5,6 +5,7 @@ import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
+import pt.haslab.util.ExprToString;
 
 import java.util.List;
 
@@ -19,12 +20,12 @@ public class InsertJoinMutator extends Mutator {
     private static void joinIfCompatible(List<Mutator> accumulator, Location original, Expr expr) {
         Type orig_type = original.expr.type();
         Type left_join = expr.type().join(orig_type);
-        if (!left_join.equals(Sig.NONE.type()) && (!original.insideDecl || orig_type.arity() == left_join.arity())) {
+        if (!left_join.equals(Sig.NONE.type()) && (original.canChangeArity || orig_type.arity() == left_join.arity())) {
             accumulator.add(new InsertJoinMutator(original, ExprMaker.make(expr, original.expr, ExprBinary.Op.JOIN)));
         }
 
         Type right_join = original.expr.type().join(expr.type());
-        if (!right_join.equals(Sig.NONE.type()) && (!original.insideDecl || orig_type.arity() == right_join.arity())) {
+        if (!right_join.equals(Sig.NONE.type()) && (original.canChangeArity || orig_type.arity() == right_join.arity())) {
             accumulator.add(new InsertJoinMutator(original, ExprMaker.make(original.expr, expr, ExprBinary.Op.JOIN)));
         }
     }
@@ -37,7 +38,7 @@ public class InsertJoinMutator extends Mutator {
                     joinIfCompatible(accumulator, original, field);
                 }
                 break;
-            default:
+            case 2:
                 for (Sig sig : sigs) {
                     joinIfCompatible(accumulator, original, sig);
                 }
