@@ -1,0 +1,300 @@
+pred test0 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test0 expect 0
+
+pred test1 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node1->Node2 + Node2->Node1
+    }
+  }
+}
+run test1 expect 1
+
+pred test2 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test2 expect 0
+
+pred test3 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0
+    }
+  }
+}
+run test3 expect 1
+
+pred test4 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node1
+    }
+  }
+}
+run test4 expect 0
+
+pred test5 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test5 expect 0
+
+pred test6 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test6 expect 1
+
+pred test7 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test7 expect 1
+
+pred test8 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test8 expect 0
+
+pred test9 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0
+    }
+  }
+}
+run test9 expect 1
+
+pred test10 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node0->Node2 + Node1->Node0 + Node1->Node2 + Node2->Node0
+    }
+  }
+}
+run test10 expect 1
+
+pred test11 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test11 expect 0
+
+pred test12 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node1
+    }
+  }
+}
+run test12 expect 0
+
+pred test13 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node1->Node0 + Node2->Node0 + Node2->Node1
+    }
+  }
+}
+run test13 expect 1
+
+pred test14 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test14 expect 0
+
+pred test15 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node0->Node1 + Node0->Node2 + Node1->Node1 + Node2->Node0
+    }
+  }
+}
+run test15 expect 0
+
+pred test16 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test16 expect 0
+
+pred test17 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0
+    }
+  }
+}
+run test17 expect 1
+
+pred test18 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test18 expect 1
+
+pred test19 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node1->Node0
+    }
+  }
+}
+run test19 expect 1
+
+pred test20 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node1->Node0 + Node2->Node0 + Node2->Node1
+    }
+  }
+}
+run test20 expect 1
+
+pred test21 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      adj = Node0->Node0
+    }
+  }
+}
+run test21 expect 0
+
+pred test22 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test22 expect 0
+
+pred test23 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node1 + Node1->Node0
+    }
+  }
+}
+run test23 expect 1
+
+pred test24 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node0->Node2 + Node1->Node0 + Node1->Node2 + Node2->Node0 + Node2->Node1
+    }
+  }
+}
+run test24 expect 1
+

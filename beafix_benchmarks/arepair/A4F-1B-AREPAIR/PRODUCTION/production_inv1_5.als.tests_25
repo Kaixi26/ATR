@@ -1,0 +1,324 @@
+pred test0 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position0 + Component1->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component1->Component1
+    }
+  }
+}
+run test0 expect 0
+
+pred test1 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Product0: Product, disj Component0: Component, disj Robot0: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Product0 + Component0
+      Component = Component0
+      Robot = Robot0
+    }
+    {
+      cposition = Component0->Position2
+      rposition = Robot0->Position1
+      parts = Component0->Component0
+    }
+  }
+}
+run test1 expect 1
+
+pred test2 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position0 + Component1->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component1->Component1
+    }
+  }
+}
+run test2 expect 0
+
+pred test3 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Product0: Product, disj Component0: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Product0 + Component0
+      Component = Component0
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Component0
+    }
+  }
+}
+run test3 expect 1
+
+pred test4 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position0 + Component1->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Resource0 + Component1->Component1
+    }
+  }
+}
+run test4 expect 1
+
+pred test5 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Product0: Product, disj Component0: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Product0 + Component0
+      Component = Component0
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Component0
+    }
+  }
+}
+run test5 expect 1
+
+pred test6 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position1 + Component1->Position0
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Component0
+    }
+  }
+}
+run test6 expect 0
+
+pred test7 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2 + Component1->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Component1 + Component1->Component1
+    }
+  }
+}
+run test7 expect 1
+
+pred test8 {
+  some disj Position0, Position1, Position2: Position, disj Component0, Component1: Component, disj Robot0: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      no Resource
+      Product = Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0
+    }
+    {
+      cposition = Component0->Position2 + Component1->Position2
+      rposition = Robot0->Position2
+      parts = Component1->Component0 + Component1->Component1
+    }
+  }
+}
+run test8 expect 0
+
+pred test9 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position1 + Component1->Position0
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Component0
+    }
+  }
+}
+run test9 expect 0
+
+pred test10 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Product0: Product, disj Component0: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Product0 + Component0
+      Component = Component0
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Component0
+    }
+  }
+}
+run test10 expect 1
+
+pred test11 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2 + Component1->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Resource0 + Component1->Resource0 + Component1->Component1
+    }
+  }
+}
+run test11 expect 1
+
+pred test12 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2 + Component1->Position0
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Resource0 + Component1->Component1
+    }
+  }
+}
+run test12 expect 1
+
+pred test13 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Product0: Product, disj Component0: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Product0 + Component0
+      Component = Component0
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Resource0 + Component0->Component0
+    }
+  }
+}
+run test13 expect 1
+
+pred test14 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position0 + Component1->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component1->Component1
+    }
+  }
+}
+run test14 expect 0
+
+pred test15 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Product0: Product, disj Component0: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Product0 + Component0
+      Component = Component0
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Component0
+    }
+  }
+}
+run test15 expect 1
+
+pred test16 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Component0, Component1: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Component0 + Component1
+      Component = Component0 + Component1
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position0 + Component1->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Resource0 + Component1->Component1
+    }
+  }
+}
+run test16 expect 1
+
+pred test17 {
+  some disj Position0, Position1, Position2: Position, disj Resource0: Resource, disj Product0: Product, disj Component0: Component, disj Robot0, Robot1: Robot {
+    {
+      Position = Position0 + Position1 + Position2
+      Resource = Resource0
+      Product = Resource0 + Product0 + Component0
+      Component = Component0
+      Robot = Robot0 + Robot1
+    }
+    {
+      cposition = Component0->Position2
+      rposition = Robot0->Position1 + Robot1->Position0
+      parts = Component0->Product0 + Component0->Component0
+    }
+  }
+}
+run test17 expect 1
+

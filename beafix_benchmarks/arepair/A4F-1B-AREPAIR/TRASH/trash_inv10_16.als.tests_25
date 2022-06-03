@@ -1,0 +1,350 @@
+pred test0 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Protected1->Protected1 + Trash0->Protected1
+    }
+  }
+}
+run test0 expect 0
+
+pred test1 {
+  some disj Protected0: Protected, disj Trash0, Trash1: Trash {
+    {
+      Protected = Protected0
+      File = Protected0 + Trash0 + Trash1
+      Trash = Trash0 + Trash1
+    }
+    {
+      link = Protected0->Trash1 + Trash0->Protected0 + Trash1->Protected0
+    }
+  }
+}
+run test1 expect 0
+
+pred test2 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Trash0->Trash0
+    }
+  }
+}
+run test2 expect 1
+
+pred test3 {
+  some disj Protected0: Protected, disj File0: File, disj Trash0: Trash {
+    {
+      Protected = Protected0
+      File = File0 + Trash0 + Protected0
+      Trash = Trash0
+    }
+    {
+      link = File0->File0 + File0->Trash0 + Protected0->File0 + Protected0->Protected0
+    }
+  }
+}
+run test3 expect 1
+
+pred test4 {
+  some disj Protected0: Protected, disj File0: File, disj Trash0: Trash {
+    {
+      Protected = Protected0
+      File = File0 + Trash0 + Protected0
+      Trash = Trash0
+    }
+    {
+      link = File0->Protected0 + Protected0->File0 + Protected0->Protected0
+    }
+  }
+}
+run test4 expect 1
+
+pred test5 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Trash0->Trash0
+    }
+  }
+}
+run test5 expect 1
+
+pred test6 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Protected1 + Protected1->Protected0 + Trash0->Protected1 + Trash0->Trash0
+    }
+  }
+}
+run test6 expect 0
+
+pred test7 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Protected1 + Protected1->Protected0 + Protected1->Trash0 + Trash0->Trash0
+    }
+  }
+}
+run test7 expect 1
+
+pred test8 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Protected1 + Protected1->Protected0 + Trash0->Trash0
+    }
+  }
+}
+run test8 expect 1
+
+pred test9 {
+  some disj Protected0: Protected, disj File0: File, disj Trash0: Trash {
+    {
+      Protected = Protected0
+      File = File0 + Trash0 + Protected0
+      Trash = Trash0
+    }
+    {
+      link = File0->Protected0 + Protected0->File0 + Protected0->Protected0
+    }
+  }
+}
+run test9 expect 1
+
+pred test10 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Protected1->Protected1
+    }
+  }
+}
+run test10 expect 1
+
+pred test11 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Trash0->Trash0
+    }
+  }
+}
+run test11 expect 1
+
+pred test12 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Protected1->Protected1 + Trash0->Protected1
+    }
+  }
+}
+run test12 expect 0
+
+pred test13 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Protected1->Protected1
+    }
+  }
+}
+run test13 expect 1
+
+pred test14 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Trash0->Trash0
+    }
+  }
+}
+run test14 expect 1
+
+pred test15 {
+  some disj Protected0: Protected, disj Trash0, Trash1: Trash {
+    {
+      Protected = Protected0
+      File = Protected0 + Trash0 + Trash1
+      Trash = Trash0 + Trash1
+    }
+    {
+      link = Protected0->Protected0 + Protected0->Trash1 + Trash0->Protected0 + Trash0->Trash1 + Trash1->Protected0
+    }
+  }
+}
+run test15 expect 0
+
+pred test16 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Protected1->Protected1 + Trash0->Protected1
+    }
+  }
+}
+run test16 expect 0
+
+pred test17 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Protected0 + Protected0->Trash0 + Protected1->Protected0 + Protected1->Protected1
+    }
+  }
+}
+run test17 expect 1
+
+pred test18 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected1 + Trash0->Protected0
+    }
+  }
+}
+run test18 expect 0
+
+pred test19 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Protected1 + Protected1->Protected0 + Trash0->Protected1 + Trash0->Trash0
+    }
+  }
+}
+run test19 expect 0
+
+pred test20 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Protected1->Protected1
+    }
+  }
+}
+run test20 expect 1
+
+pred test21 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Trash0 + Protected1->Protected0 + Trash0->Trash0
+    }
+  }
+}
+run test21 expect 1
+
+pred test22 {
+  some disj Protected0, Protected1: Protected, disj Trash0: Trash {
+    {
+      Protected = Protected0 + Protected1
+      File = Protected0 + Protected1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = Protected0->Protected1 + Protected1->Protected0 + Trash0->Trash0
+    }
+  }
+}
+run test22 expect 1
+
+pred test23 {
+  some disj Protected0: Protected, disj File0: File, disj Trash0: Trash {
+    {
+      Protected = Protected0
+      File = File0 + Trash0 + Protected0
+      Trash = Trash0
+    }
+    {
+      link = File0->File0 + File0->Trash0 + Protected0->File0 + Protected0->Protected0
+    }
+  }
+}
+run test23 expect 1
+
+pred test24 {
+  some disj File0, File1: File, disj Trash0: Trash {
+    {
+      no Protected
+      File = File0 + File1 + Trash0
+      Trash = Trash0
+    }
+    {
+      link = File0->Trash0 + File1->File0 + File1->File1
+    }
+  }
+}
+run test24 expect 1
+

@@ -1,0 +1,350 @@
+pred test0 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State1 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State1 + State1->Event1->State0 + State1->Event2->State0
+    }
+  }
+}
+run test0 expect 1
+
+pred test1 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0
+    }
+  }
+}
+run test1 expect 0
+
+pred test2 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0 + State1->Event2->State0
+    }
+  }
+}
+run test2 expect 1
+
+pred test3 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event1->State0 + State0->Event2->State0 + State1->Event1->State0 + State1->Event2->State0
+    }
+  }
+}
+run test3 expect 1
+
+pred test4 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0 + State1->Event2->State0
+    }
+  }
+}
+run test4 expect 1
+
+pred test5 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event0->State1 + State1->Event1->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test5 expect 1
+
+pred test6 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0
+    }
+  }
+}
+run test6 expect 0
+
+pred test7 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State1 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0 + State1->Event1->State1
+    }
+  }
+}
+run test7 expect 0
+
+pred test8 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test8 expect 1
+
+pred test9 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0
+    }
+  }
+}
+run test9 expect 0
+
+pred test10 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0 + State1->Event2->State0
+    }
+  }
+}
+run test10 expect 1
+
+pred test11 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test11 expect 1
+
+pred test12 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0
+    }
+  }
+}
+run test12 expect 0
+
+pred test13 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State1 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test13 expect 1
+
+pred test14 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event1->State1 + State0->Event2->State1 + State1->Event0->State0 + State1->Event0->State1 + State1->Event2->State1
+    }
+  }
+}
+run test14 expect 0
+
+pred test15 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0
+    }
+  }
+}
+run test15 expect 0
+
+pred test16 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State0 + State1->Event2->State0
+    }
+  }
+}
+run test16 expect 1
+
+pred test17 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event1->State1 + State0->Event2->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test17 expect 1
+
+pred test18 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event0->State1 + State1->Event1->State1
+    }
+  }
+}
+run test18 expect 0
+
+pred test19 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event1->State0 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event0->State1 + State1->Event1->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test19 expect 0
+
+pred test20 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test20 expect 1
+
+pred test21 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event2->State0
+    }
+  }
+}
+run test21 expect 0
+
+pred test22 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test22 expect 1
+
+pred test23 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event2->State0
+    }
+  }
+}
+run test23 expect 0
+
+pred test24 {
+  some disj State0, State1: State, disj Event0, Event1, Event2: Event {
+    {
+      Init = State1
+      State = State0 + State1
+      Event = Event0 + Event1 + Event2
+    }
+    {
+      trans = State0->Event0->State0 + State0->Event1->State0 + State0->Event1->State1 + State0->Event2->State0 + State0->Event2->State1 + State1->Event0->State0 + State1->Event1->State1 + State1->Event2->State0
+    }
+  }
+}
+run test24 expect 1
+
