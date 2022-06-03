@@ -27,8 +27,8 @@ cmd = sys.argv.pop(0)
 show_graph_plot = False
 show_venn = None
 
-if sys.argv == 0:
-    print("Usage: " + sys.argv[0] + " --graph --venn2 --venn3 [FILE]")
+if len(sys.argv) == 0:
+    print("Usage: " + cmd + " --graph --venn2 --venn3 [FILE]")
     exit(-1)
 
 while re.match("--.*", sys.argv[0]):

@@ -40,7 +40,7 @@ pred test3 {
       Node = Node0 + Node1 + Node2
     }
     {
-      adj = Node0->Node0 + Node0->Node2 + Node1->Node0 + Node1->Node1 + Node2->Node1 + Node2->Node2
+      adj = Node0->Node0 + Node0->Node2 + Node1->Node0 + Node1->Node1 + Node2->Node0 + Node2->Node2
     }
   }
 }
@@ -83,18 +83,6 @@ pred test6 {
 run test6 expect 0
 
 pred test7 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node0->Node2 + Node1->Node0
-    }
-  }
-}
-run test7 expect 0
-
-pred test8 {
   some disj Node0, Node1: Node {
     {
       Node = Node0 + Node1
@@ -104,12 +92,24 @@ pred test8 {
     }
   }
 }
-run test8 expect 1
+run test7 expect 1
+
+pred test8 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node0->Node2 + Node1->Node0 + Node1->Node1 + Node2->Node2
+    }
+  }
+}
+run test8 expect 0
 
 pred test9 {
-  some disj Node0: Node {
+  some disj Node0, Node1: Node {
     {
-      Node = Node0
+      Node = Node0 + Node1
     }
     {
       no adj

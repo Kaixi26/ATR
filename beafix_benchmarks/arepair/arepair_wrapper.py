@@ -75,7 +75,7 @@ if atrresult.returncode == 0:
     result["solved"] = json.loads(atrresult.stdout)["solved"]
 else:
     result["solved"] = False
-#result["fixed"] = subprocess.run("grep 'All tests pass.' '" + model + ".log'", shell=True, stderr=subprocess.DEVNULL).returncode == 0
+result["fixed"] = subprocess.run("grep 'All tests pass.' '" + model + ".log'", shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL).returncode == 0
 result["timeout"] = timeout
 
 print(json.dumps(result))

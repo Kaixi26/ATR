@@ -1,4 +1,23 @@
 pred test0 {
+  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
+    {
+      User = User0
+      Work = Work0 + Work1 + Work2
+      Institution = Institution0
+      Id = Id0 + Id1 + Id2
+      Source = User0 + Institution0
+    }
+    {
+      visible = User0->Work0 + User0->Work1 + User0->Work2
+      profile = User0->Work0 + User0->Work1 + User0->Work2
+      ids = Work0->Id2 + Work1->Id0 + Work1->Id1 + Work2->Id0 + Work2->Id1
+      source = Work0->User0 + Work1->User0 + Work2->User0
+    }
+  }
+}
+run test0 expect 0
+
+pred test1 {
   some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
     {
       User = User0
@@ -11,25 +30,6 @@ pred test0 {
       visible = User0->Work0 + User0->Work1 + User0->Work2
       profile = User0->Work0 + User0->Work1 + User0->Work2
       ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test0 expect 0
-
-pred test1 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
       source = Work0->User0 + Work1->User0 + Work2->User0
     }
   }
@@ -48,26 +48,26 @@ pred test2 {
     {
       visible = User0->Work0 + User0->Work1 + User0->Work2
       profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
+      ids = Work0->Id1 + Work0->Id2 + Work1->Id0 + Work1->Id2 + Work2->Id0 + Work2->Id1 + Work2->Id2
+      source = Work0->User0 + Work1->User0 + Work2->Institution0
     }
   }
 }
-run test2 expect 1
+run test2 expect 0
 
 pred test3 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
+  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
     {
       User = User0
       Work = Work0 + Work1 + Work2
       Institution = Institution0
-      Id = Id0 + Id1 + Id2
+      Id = Id0 + Id1
       Source = User0 + Institution0
     }
     {
       visible = User0->Work0 + User0->Work1 + User0->Work2
       profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
+      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
       source = Work0->User0 + Work1->User0 + Work2->Institution0
     }
   }
@@ -94,18 +94,18 @@ pred test4 {
 run test4 expect 0
 
 pred test5 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
+  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
     {
       User = User0
       Work = Work0 + Work1 + Work2
       Institution = Institution0
-      Id = Id0 + Id1 + Id2
+      Id = Id0 + Id1
       Source = User0 + Institution0
     }
     {
       visible = User0->Work0 + User0->Work1 + User0->Work2
       profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
+      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
       source = Work0->User0 + Work1->User0 + Work2->Institution0
     }
   }
@@ -124,7 +124,7 @@ pred test6 {
     {
       visible = User0->Work0 + User0->Work1 + User0->Work2
       profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
+      ids = Work0->Id2 + Work1->Id0 + Work1->Id1 + Work2->Id0 + Work2->Id1 + Work2->Id2
       source = Work0->User0 + Work1->User0 + Work2->User0
     }
   }
@@ -132,18 +132,18 @@ pred test6 {
 run test6 expect 0
 
 pred test7 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
+  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
     {
       User = User0
       Work = Work0 + Work1 + Work2
       Institution = Institution0
-      Id = Id0 + Id1 + Id2
+      Id = Id0 + Id1
       Source = User0 + Institution0
     }
     {
       visible = User0->Work0 + User0->Work1 + User0->Work2
       profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work0->Id2 + Work1->Id0 + Work1->Id2 + Work2->Id0 + Work2->Id1
+      ids = Work0->Id1 + Work1->Id1 + Work2->Id0 + Work2->Id1
       source = Work0->User0 + Work1->User0 + Work2->Institution0
     }
   }
@@ -151,82 +151,6 @@ pred test7 {
 run test7 expect 0
 
 pred test8 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test8 expect 0
-
-pred test9 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test9 expect 1
-
-pred test10 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test10 expect 0
-
-pred test11 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test11 expect 1
-
-pred test12 {
   some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
     {
       User = User0
@@ -243,9 +167,9 @@ pred test12 {
     }
   }
 }
-run test12 expect 0
+run test8 expect 0
 
-pred test13 {
+pred test9 {
   some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
     {
       User = User0
@@ -262,689 +186,5 @@ pred test13 {
     }
   }
 }
-run test13 expect 0
-
-pred test14 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id0 + Work1->Id1 + Work2->Id0 + Work2->Id1 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test14 expect 1
-
-pred test15 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test15 expect 0
-
-pred test16 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test16 expect 1
-
-pred test17 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work0->Id2 + Work1->Id0 + Work1->Id2 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test17 expect 0
-
-pred test18 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test18 expect 0
-
-pred test19 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test19 expect 0
-
-pred test20 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work0->Id2 + Work1->Id0 + Work1->Id2 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test20 expect 0
-
-pred test21 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test21 expect 1
-
-pred test22 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test22 expect 0
-
-pred test23 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test23 expect 0
-
-pred test24 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test24 expect 1
-
-pred test25 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test25 expect 1
-
-pred test26 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test26 expect 0
-
-pred test27 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test27 expect 1
-
-pred test28 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test28 expect 0
-
-pred test29 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test29 expect 1
-
-pred test30 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test30 expect 0
-
-pred test31 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test31 expect 1
-
-pred test32 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test32 expect 0
-
-pred test33 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test33 expect 1
-
-pred test34 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test34 expect 1
-
-pred test35 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test35 expect 0
-
-pred test36 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test36 expect 0
-
-pred test37 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test37 expect 1
-
-pred test38 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test38 expect 0
-
-pred test39 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test39 expect 1
-
-pred test40 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test40 expect 0
-
-pred test41 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test41 expect 0
-
-pred test42 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test42 expect 0
-
-pred test43 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test43 expect 0
-
-pred test44 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test44 expect 1
-
-pred test45 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0 + Work2->Id1
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test45 expect 0
-
-pred test46 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test46 expect 1
-
-pred test47 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id1 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test47 expect 0
-
-pred test48 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id0 + Work1->Id0 + Work2->Id0
-      source = Work0->User0 + Work1->User0 + Work2->User0
-    }
-  }
-}
-run test48 expect 0
-
-pred test49 {
-  some disj User0: User, disj Work0, Work1, Work2: Work, disj Institution0: Institution, disj Id0, Id1, Id2: Id {
-    {
-      User = User0
-      Work = Work0 + Work1 + Work2
-      Institution = Institution0
-      Id = Id0 + Id1 + Id2
-      Source = User0 + Institution0
-    }
-    {
-      visible = User0->Work0 + User0->Work1 + User0->Work2
-      profile = User0->Work0 + User0->Work1 + User0->Work2
-      ids = Work0->Id2 + Work1->Id1 + Work2->Id0 + Work2->Id2
-      source = Work0->User0 + Work1->User0 + Work2->Institution0
-    }
-  }
-}
-run test49 expect 1
+run test9 expect 0
 

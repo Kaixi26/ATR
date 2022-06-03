@@ -28,13 +28,73 @@ pred test2 {
       Node = Node0 + Node1
     }
     {
-      adj = Node1->Node1
+      adj = Node0->Node1 + Node1->Node0
     }
   }
 }
-run test2 expect 0
+run test2 expect 1
 
 pred test3 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node1
+    }
+  }
+}
+run test3 expect 0
+
+pred test4 {
+  some disj Node0: Node {
+    {
+      Node = Node0
+    }
+    {
+      no adj
+    }
+  }
+}
+run test4 expect 1
+
+pred test5 {
+  some disj Node0, Node1: Node {
+    {
+      Node = Node0 + Node1
+    }
+    {
+      adj = Node0->Node0 + Node1->Node0 + Node1->Node1
+    }
+  }
+}
+run test5 expect 1
+
+pred test6 {
+  {
+    {
+      no Node
+    }
+    {
+      no adj
+    }
+  }
+}
+run test6 expect 1
+
+pred test7 {
+  some disj Node0, Node1, Node2: Node {
+    {
+      Node = Node0 + Node1 + Node2
+    }
+    {
+      adj = Node0->Node1 + Node0->Node2 + Node1->Node1 + Node2->Node2
+    }
+  }
+}
+run test7 expect 1
+
+pred test8 {
   some disj Node0: Node {
     {
       Node = Node0
@@ -44,129 +104,9 @@ pred test3 {
     }
   }
 }
-run test3 expect 1
-
-pred test4 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node1->Node0 + Node2->Node0
-    }
-  }
-}
-run test4 expect 1
-
-pred test5 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test5 expect 1
-
-pred test6 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node1->Node0 + Node1->Node1
-    }
-  }
-}
-run test6 expect 1
-
-pred test7 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test7 expect 1
-
-pred test8 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node0->Node1 + Node1->Node1
-    }
-  }
-}
 run test8 expect 1
 
 pred test9 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node0->Node0 + Node1->Node1
-    }
-  }
-}
-run test9 expect 0
-
-pred test10 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node1->Node0
-    }
-  }
-}
-run test10 expect 1
-
-pred test11 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node1->Node0 + Node2->Node0
-    }
-  }
-}
-run test11 expect 1
-
-pred test12 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node1->Node0
-    }
-  }
-}
-run test12 expect 1
-
-pred test13 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test13 expect 1
-
-pred test14 {
   some disj Node0, Node1, Node2: Node {
     {
       Node = Node0 + Node1 + Node2
@@ -176,425 +116,5 @@ pred test14 {
     }
   }
 }
-run test14 expect 1
-
-pred test15 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test15 expect 0
-
-pred test16 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node0->Node1 + Node1->Node1
-    }
-  }
-}
-run test16 expect 1
-
-pred test17 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test17 expect 1
-
-pred test18 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test18 expect 0
-
-pred test19 {
-  {
-    {
-      no Node
-    }
-    {
-      no adj
-    }
-  }
-}
-run test19 expect 1
-
-pred test20 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node0->Node0 + Node1->Node1
-    }
-  }
-}
-run test20 expect 0
-
-pred test21 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node1->Node0 + Node2->Node0
-    }
-  }
-}
-run test21 expect 1
-
-pred test22 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node2->Node0 + Node2->Node1
-    }
-  }
-}
-run test22 expect 1
-
-pred test23 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test23 expect 0
-
-pred test24 {
-  {
-    {
-      no Node
-    }
-    {
-      no adj
-    }
-  }
-}
-run test24 expect 1
-
-pred test25 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test25 expect 1
-
-pred test26 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test26 expect 0
-
-pred test27 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node2->Node0 + Node2->Node1
-    }
-  }
-}
-run test27 expect 1
-
-pred test28 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node0->Node2 + Node1->Node1 + Node2->Node1
-    }
-  }
-}
-run test28 expect 1
-
-pred test29 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test29 expect 0
-
-pred test30 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test30 expect 0
-
-pred test31 {
-  {
-    {
-      no Node
-    }
-    {
-      no adj
-    }
-  }
-}
-run test31 expect 1
-
-pred test32 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test32 expect 1
-
-pred test33 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node2->Node0 + Node2->Node1
-    }
-  }
-}
-run test33 expect 1
-
-pred test34 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test34 expect 0
-
-pred test35 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node0->Node2 + Node1->Node1 + Node2->Node1
-    }
-  }
-}
-run test35 expect 1
-
-pred test36 {
-  {
-    {
-      no Node
-    }
-    {
-      no adj
-    }
-  }
-}
-run test36 expect 1
-
-pred test37 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node1->Node0 + Node2->Node0
-    }
-  }
-}
-run test37 expect 1
-
-pred test38 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node0->Node1 + Node1->Node1
-    }
-  }
-}
-run test38 expect 1
-
-pred test39 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test39 expect 0
-
-pred test40 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node1->Node0 + Node1->Node1
-    }
-  }
-}
-run test40 expect 1
-
-pred test41 {
-  {
-    {
-      no Node
-    }
-    {
-      no adj
-    }
-  }
-}
-run test41 expect 1
-
-pred test42 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node1->Node1
-    }
-  }
-}
-run test42 expect 0
-
-pred test43 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test43 expect 1
-
-pred test44 {
-  some disj Node0, Node1, Node2: Node {
-    {
-      Node = Node0 + Node1 + Node2
-    }
-    {
-      adj = Node2->Node0 + Node2->Node1
-    }
-  }
-}
-run test44 expect 1
-
-pred test45 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      no adj
-    }
-  }
-}
-run test45 expect 0
-
-pred test46 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node0->Node0 + Node1->Node1
-    }
-  }
-}
-run test46 expect 0
-
-pred test47 {
-  some disj Node0: Node {
-    {
-      Node = Node0
-    }
-    {
-      no adj
-    }
-  }
-}
-run test47 expect 1
-
-pred test48 {
-  {
-    {
-      no Node
-    }
-    {
-      no adj
-    }
-  }
-}
-run test48 expect 1
-
-pred test49 {
-  some disj Node0, Node1: Node {
-    {
-      Node = Node0 + Node1
-    }
-    {
-      adj = Node0->Node1 + Node1->Node1
-    }
-  }
-}
-run test49 expect 1
+run test9 expect 1
 

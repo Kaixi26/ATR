@@ -93,11 +93,13 @@ public final class RepairCLI {
 
     private static String stats(Repairer repairer) {
         Map<String, String> json = new HashMap<>();
-        json.put("#cex", "" + repairer.counterexamples.size());
-        json.put("#attempted_candidates", "" + repairer.num_attempted_candidates);
-        json.put("#prunned_cex", "" + repairer.getPrunnedBy(PruneReason.PREVIOUS_CEX));
-        json.put("#prunned_ext", "" + repairer.getPrunnedBy(PruneReason.EXTENSIONALITY));
-        json.put("#generated", "" + repairer.mutationStepper.candidates.size());
+        if (repairer != null) {
+            json.put("#cex", "" + repairer.counterexamples.size());
+            json.put("#attempted_candidates", "" + repairer.num_attempted_candidates);
+            json.put("#prunned_cex", "" + repairer.getPrunnedBy(PruneReason.PREVIOUS_CEX));
+            json.put("#prunned_ext", "" + repairer.getPrunnedBy(PruneReason.EXTENSIONALITY));
+            json.put("#generated", "" + repairer.mutationStepper.candidates.size());
+        }
         return JSON.toJSON(json);
     }
 
@@ -152,7 +154,8 @@ public final class RepairCLI {
                 }
             }
         } catch (ErrorSyntax e) {
-            json.put("elapsed", "N/A");
+            json.put("elapsed", "\"N/A\"");
+            json.put("solved", "false");
             json.put("error", "\"" + e.toString().replace("\n", "\\n").replace("\"", "") + "\"");
         }
 
