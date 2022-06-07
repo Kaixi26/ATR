@@ -23,12 +23,14 @@ public final class RepairCLI {
     static String output_filepath = null;
     static boolean debug = false;
     static boolean enableVariabilization = false;
+
+    static boolean enableCexPrunning = true;
     static boolean enableStats = false;
     static boolean enableShowCexs = false;
 
     private static void usage() {
         System.err.println("usage: repairer [OPTION]...");
-        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]", "--out [FILE] (Optional)", "--show-cexs", "--stats")
+        Stream.of("--depth [INT]", "--timeout [SECS]", "--file [FILE]", "--out [FILE] (Optional)", "--show-cexs", "--stats", "--disable-cex-prunning")
                 .forEach(option -> System.err.println("\t" + option));
         System.exit(-1);
     }
@@ -71,6 +73,8 @@ public final class RepairCLI {
             case "--show-cexs":
                 enableShowCexs = true;
                 break;
+            case "--disable-cex-prunning":
+                enableCexPrunning = false;
             default:
                 usageError("Unknown option '" + arg + "'.");
         }
@@ -98,6 +102,7 @@ public final class RepairCLI {
             json.put("#attempted_candidates", "" + repairer.num_attempted_candidates);
             json.put("#prunned_cex", "" + repairer.getPrunnedBy(PruneReason.PREVIOUS_CEX));
             json.put("#prunned_ext", "" + repairer.getPrunnedBy(PruneReason.EXTENSIONALITY));
+            json.put("#prunned_type_error", "" + repairer.getPrunnedBy(PruneReason.TYPE_ERROR));
             json.put("#generated", "" + repairer.mutationStepper.candidates.size());
         }
         return JSON.toJSON(json);
@@ -131,7 +136,7 @@ public final class RepairCLI {
 
         Repairer repairer = null;
         try {
-            repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout, enableVariabilization);
+            repairer = RepairChecker.attemptRepair(filepath, depth, 1000 * timeout, enableVariabilization, enableCexPrunning);
             json.put("elapsed", "" + repairer.getElapsedMillis());
             if (repairer.solution.isPresent()) {
                 json.put("depth", "" + repairer.solution.get().mutators.size());

@@ -43,6 +43,8 @@ public class Repairer {
 
     public boolean variabilizationEnabled = false;
 
+    public boolean cexprunningEnabled = true;
+
     static {
         Repairer.opts.recordKodkod = RecordKodkod.get();
         Repairer.opts.noOverflow = NoOverflow.get();
@@ -83,32 +85,32 @@ public class Repairer {
         }
 
         @Nullable
-        public Expr getOracleExpr(Repairer repairer){
-            if(repairer.funcOriginalBody.values().size() != 1){
+        public Expr getOracleExpr(Repairer repairer) {
+            if (repairer.funcOriginalBody.values().size() != 1) {
                 return null;
             }
             Expr expr = repairer.command.formula.deNOP();
-            if(expr instanceof ExprList){
-                if(((ExprList)expr).args.size() == 1){
+            if (expr instanceof ExprList) {
+                if (((ExprList) expr).args.size() == 1) {
                     expr = ((ExprList) expr).args.get(0).deNOP();
                 } else {
                     return null;
                 }
             }
-            if(expr instanceof ExprUnary && ((ExprUnary) expr).op == ExprUnary.Op.NOT){
+            if (expr instanceof ExprUnary && ((ExprUnary) expr).op == ExprUnary.Op.NOT) {
                 expr = ((ExprUnary) expr).sub.deNOP();
             }
-            if(!(expr instanceof ExprBinary)){
+            if (!(expr instanceof ExprBinary)) {
                 return null;
             }
             ExprBinary command = (ExprBinary) expr;
 
-            if(command.left instanceof ExprCall){
-                if(((ExprCall)command.left).fun.equals(repairer.funcOriginalBody.keySet().iterator().next())){
+            if (command.left instanceof ExprCall) {
+                if (((ExprCall) command.left).fun.equals(repairer.funcOriginalBody.keySet().iterator().next())) {
                     return command.right;
                 }
-            } else if(command.right instanceof ExprCall){
-                if(((ExprCall)command.right).fun.equals(repairer.funcOriginalBody.keySet().iterator().next())){
+            } else if (command.right instanceof ExprCall) {
+                if (((ExprCall) command.right).fun.equals(repairer.funcOriginalBody.keySet().iterator().next())) {
                     return command.right;
                 }
             }
@@ -135,7 +137,7 @@ public class Repairer {
             /* can only be added if __repair is in the form { mod <=> solution } */
             {
                 Expr oracle = getOracleExpr(repairer);
-                if(oracle != null) {
+                if (oracle != null) {
                     List<Expr> facts = new ArrayList<>();
                     repairer.module.getAllFacts().iterator().forEachRemaining(f -> facts.add(f.b));
                     facts.add(oracle);
@@ -234,6 +236,9 @@ public class Repairer {
 
     @Nullable
     public CounterExample attemptPruneWithPreviousCounterexample() {
+        if (!cexprunningEnabled) {
+            return null;
+        }
         CounterExample ret = null;
         if (prevCounterexample != -1) {
             ret = attemptPruneWithPreviousCounterexample(prevCounterexample);
