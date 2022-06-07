@@ -75,6 +75,7 @@ public final class RepairCLI {
                 break;
             case "--disable-cex-prunning":
                 enableCexPrunning = false;
+                break;
             default:
                 usageError("Unknown option '" + arg + "'.");
         }
