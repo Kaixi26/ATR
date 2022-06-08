@@ -236,9 +236,6 @@ public class Repairer {
 
     @Nullable
     public CounterExample attemptPruneWithPreviousCounterexample() {
-        if (!cexprunningEnabled) {
-            return null;
-        }
         CounterExample ret = null;
         if (prevCounterexample != -1) {
             ret = attemptPruneWithPreviousCounterexample(prevCounterexample);
@@ -305,7 +302,9 @@ public class Repairer {
                     return Optional.of(candidate);
                 }
 
-                counterexamples.add(new CounterExample(ans, 1));
+                if (cexprunningEnabled) {
+                    counterexamples.add(new CounterExample(ans, 1));
+                }
                 if (canPruneWithVariabilization(candidate, ans)) {
                     mutationStepper.pruneByVariabilization(candidate);
                 }
