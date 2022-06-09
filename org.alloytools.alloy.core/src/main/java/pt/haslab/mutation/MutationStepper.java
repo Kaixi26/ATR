@@ -66,7 +66,9 @@ public class MutationStepper {
             if (currentToGenerate > current) {
                 return false;
             }
-            candidates.addAll(candidates.get(currentToGenerate).generateChildren(this.baseMutators));
+            if (!candidates.get(currentToGenerate).prunned.filter(x -> x == PruneReason.EXTENSIONALITY).isPresent()) {
+                candidates.addAll(candidates.get(currentToGenerate).generateChildren(this.baseMutators));
+            }
             currentToGenerate++;
         }
         current++;
