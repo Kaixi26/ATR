@@ -19,8 +19,16 @@ RUN (echo "#!/bin/sh"; \
     echo "for f in \$(find A4F-1B-ATR -type f | sort); do"; \
     echo "  echo \$f"; \
     echo "  ./atr.sh atr.jar --depth 3 --timeout 60 --show-cexs --stats --file \$f >> results.json"; \
+    echo "done") >> run-all-beafix.sh; \
+    chmod +x run-all-beafix.sh;
+
+RUN (echo "#!/bin/sh"; \
+    echo "for f in \$(find alloy4fun_models -type f | grep -v 'main\\.als' | grep '\\.als$' | sort); do"; \
+    echo "  echo \$f"; \
+    echo "  ./atr.sh atr.jar --depth 3 --timeout 60 --show-cexs --stats --file \$f >> results.json"; \
     echo "done") >> run-all-a4f.sh; \
-    chmod +x run-all-a4f.sh; \
-    rm -rf build
+    chmod +x run-all-a4f.sh;
+
+RUN rm -rf build; find . | rm $(grep "\.json$")
 
 CMD /bin/bash
