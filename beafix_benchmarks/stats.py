@@ -6,7 +6,9 @@ import re
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.ticker import ScalarFormatter
 from matplotlib_venn import venn2, venn3
+from venn import venn
 
 def str_is_int(str):
     try:
@@ -35,10 +37,8 @@ while re.match("--.*", sys.argv[0]):
     arg = sys.argv.pop(0)
     if arg == "--graph":
         show_graph_plot = True
-    elif arg == "--venn2":
-        show_venn = 2
-    elif arg == "--venn3":
-        show_venn = 3
+    elif arg == "--venn":
+        show_venn = True
 
 
 results = {}
@@ -81,13 +81,19 @@ def plot_graphs():
         y = list(map(lambda v: solved_perc_below(v*1000) * 100, x))
 
         plt.plot(x, y)
-        plt.xscale("log")
     
     for file in results:
         plot_graph(results[file])
 
-    plt.xlabel("time elapsed (s)")
-    plt.ylabel("solved below time (%)")
+    plt.xscale("log")
+    ticks = [0.25, 0.5, 1, 2, 5, 10, 30, 60]
+    plt.xticks(ticks, map(lambda x: str(x), ticks))
+
+    matplotlib.rcParams.update({'font.size': 18})
+    plt.tick_params(axis='both', which='major', labelsize=18)
+
+    plt.xlabel("time elapsed (s)", fontsize=18)
+    plt.ylabel("solved below time (%)", fontsize=18)
     plt.legend(list(results.keys()))
 
     plt.show()
@@ -102,24 +108,19 @@ def plot_venn():
     solved = {}
     for file in results:
         solved[file] = set(map(lambda x: os.path.basename(x["file"]), 
-                            filter(lambda x: x["elapsed"] < 1000000,
+                            filter(lambda x: x["elapsed"] < 1000,
                             filter(lambda x: x["solved"], results[file]))))
     
 
-    sets = [ ]
-    names = [ ]
+    sets = { }
 
     for file in solved:
-        sets.append(solved[file])
-        names.append(file)
-    if show_venn == 2:
-        venn2(sets, names)
-    else:
-        sets.insert(0, all)
-        names.insert(0, "all")
-        venn3(sets, names)
+        sets[file] = solved[file]
 
+    venn(sets)
+    matplotlib.rcParams.update({'font.size': 18})
     plt.show()
+
 
 if show_graph_plot:
     plot_graphs()
@@ -127,8 +128,3 @@ if show_graph_plot:
 if show_venn:
     plot_venn()
 
-#set1 = set(['A', 'B', 'C'])
-#set2 = set(['A', 'B'])
-#set3 = set(['B', 'C'])
-#venn3([set1, set2, set3], ('Set1', 'Set2', 'Set3'))
-#plt.show()
