@@ -53,15 +53,20 @@ for file in sys.argv:
 
     solved = list(filter(lambda x: x["solved"], results[file]))
     unsolved = list(filter(lambda x: not x["solved"], results[file]))
+    solved_perc = "{:.2f}".format(100 * len(solved) / len(results[file]))
 
     print("For file '" + file + "'")
     print("Total results parsed: " + str(len(results[file])))
-    print("Total results solved: " + str(len(solved)))
+    print("Total results solved: " + str(len(solved)) + " (" + solved_perc + "%)")
     print("Total results unsolved: " + str(len(unsolved)))
     print("Total results timedout: " + str(total_timeout(results[file])))
     print("Solved percentage: " + str(len(solved) / len(results[file])))
     print("Avg. elapsed for all: " + str(avg_elapsed(results[file])))
     print("Avg. elapsed for solved: " + str(avg_elapsed(solved)))
+
+    print(str(len(solved)) + " (" + solved_perc + "%)" + " & " + \
+        str(total_timeout(results[file])) + " & " + \
+          str(len(unsolved)) + " & ")
 
 
 def plot_graphs():
@@ -77,7 +82,7 @@ def plot_graphs():
             below = list(filter(lambda x: x["solved"] and int(x["elapsed"]) < msecs, res))
             return len(below) / len(res)
 
-        x = list(np.arange(0, 0.99, 0.025)) + list(np.arange(1, 65, 1))
+        x = list(np.arange(0, 0.99, 0.025)) + list(np.arange(1, 65, 0.5))
         y = list(map(lambda v: solved_perc_below(v*1000) * 100, x))
 
         plt.plot(x, y)
