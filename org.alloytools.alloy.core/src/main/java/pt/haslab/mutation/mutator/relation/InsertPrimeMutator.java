@@ -6,6 +6,7 @@ import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Mutator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class InsertPrimeMutator extends Mutator {
     /*
@@ -22,5 +23,10 @@ public class InsertPrimeMutator extends Mutator {
         }
 
         accumulator.add(new InsertPrimeMutator(original, original.expr.prime()));
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Insert a \"'\" operator.");
     }
 }

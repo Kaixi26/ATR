@@ -6,6 +6,7 @@ import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
+import java.util.Optional;
 
 public class InsertUnaryMutator extends Mutator {
     private InsertUnaryMutator(Location original, ExprUnary expr) {
@@ -21,5 +22,10 @@ public class InsertUnaryMutator extends Mutator {
                 accumulator.add(new InsertUnaryMutator(original, ExprMaker.make(original.expr, op)));
             }
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Try inserting an unary operator.");
     }
 }

@@ -7,6 +7,7 @@ import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ReplaceUnaryOperatorMutator extends Mutator {
     private ReplaceUnaryOperatorMutator(Location original, ExprUnary.Op op) {
@@ -39,4 +40,8 @@ public class ReplaceUnaryOperatorMutator extends Mutator {
         }
     }
 
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Replace to a different operator.");
+    }
 }

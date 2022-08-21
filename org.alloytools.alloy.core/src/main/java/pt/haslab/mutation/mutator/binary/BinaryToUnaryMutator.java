@@ -8,6 +8,7 @@ import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
+import java.util.Optional;
 
 public class BinaryToUnaryMutator extends Mutator {
     /*
@@ -36,4 +37,8 @@ public class BinaryToUnaryMutator extends Mutator {
         }
     }
 
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Replace the binary operator and add an unary one.");
+    }
 }

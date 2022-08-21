@@ -9,6 +9,7 @@ import pt.haslab.util.ExprMaker;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class ReplaceRelationMutator extends Mutator {
 
@@ -45,5 +46,10 @@ public class ReplaceRelationMutator extends Mutator {
                 addIfCompatible(accumulator, original, var);
             }
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Replace the set/relation with another one.");
     }
 }

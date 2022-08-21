@@ -5,6 +5,7 @@ import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Mutator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RemoveUnaryOperatorMutator extends Mutator {
     /*
@@ -24,5 +25,10 @@ public class RemoveUnaryOperatorMutator extends Mutator {
             return;
         }
         accumulator.add(new RemoveUnaryOperatorMutator(original));
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Remove this operator");
     }
 }

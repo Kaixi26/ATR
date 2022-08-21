@@ -1,6 +1,5 @@
 FROM adoptopenjdk/openjdk8:ubuntu
 
-#RUN apk update && apk add --no-cache git git-lfs freetype
 RUN apt update && apt install -y wget
 
 COPY . /home/atr/build

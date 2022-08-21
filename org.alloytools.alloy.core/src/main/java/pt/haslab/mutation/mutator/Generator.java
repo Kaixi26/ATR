@@ -77,7 +77,7 @@ public class Generator {
     }
 
     public static void generateMutators(List<Mutator> accumulator, Location location, ConstList<Sig> sigs) {
-        if (location.expr instanceof Sig || location.expr instanceof ExprVar) {
+        if (location.expr instanceof Sig || location.expr instanceof ExprVar || location.expr instanceof Sig.Field) {
             return;
         }
 

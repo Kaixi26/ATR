@@ -104,6 +104,10 @@ public class Mutator {
                 "}";
     }
 
+    public Optional<String> hint() {
+        return Optional.empty();
+    }
+
     public String describe() {
         return this.getClass().getSimpleName() + "\n"
                 + this.original.expr.pos + "\n"

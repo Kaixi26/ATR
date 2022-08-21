@@ -8,6 +8,7 @@ import pt.haslab.util.ExprMaker;
 import pt.haslab.util.ExprToString;
 
 import java.util.List;
+import java.util.Optional;
 
 public class InsertJoinMutator extends Mutator {
 
@@ -49,5 +50,10 @@ public class InsertJoinMutator extends Mutator {
                 }
                 break;
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Insert a join ('.') operator.");
     }
 }

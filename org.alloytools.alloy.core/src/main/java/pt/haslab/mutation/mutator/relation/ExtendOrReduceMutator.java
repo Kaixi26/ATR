@@ -8,6 +8,7 @@ import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ExtendOrReduceMutator extends Mutator {
 
@@ -49,5 +50,10 @@ public class ExtendOrReduceMutator extends Mutator {
                     }
                 }
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Extend or reduce the set/relation.");
     }
 }

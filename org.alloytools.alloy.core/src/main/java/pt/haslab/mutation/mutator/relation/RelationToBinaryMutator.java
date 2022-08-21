@@ -11,6 +11,7 @@ import pt.haslab.util.ExprMaker;
 import pt.haslab.util.LocationAggregator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RelationToBinaryMutator extends Mutator {
     /*
@@ -35,5 +36,10 @@ public class RelationToBinaryMutator extends Mutator {
                 }
             }
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Something extra is required, try using a binary operator.");
     }
 }

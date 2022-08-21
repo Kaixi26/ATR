@@ -11,6 +11,7 @@ import pt.haslab.util.ExprMaker;
 import pt.haslab.util.LocationAggregator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class QtToUnaryMutator extends Mutator {
     /*
@@ -54,5 +55,10 @@ public class QtToUnaryMutator extends Mutator {
             default:
                 return null;
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Replace with unary quantifier.");
     }
 }

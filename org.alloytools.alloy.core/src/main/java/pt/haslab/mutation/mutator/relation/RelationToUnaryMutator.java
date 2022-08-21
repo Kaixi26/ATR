@@ -9,6 +9,7 @@ import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RelationToUnaryMutator extends Mutator {
     private RelationToUnaryMutator(Location original, Expr expr) {
@@ -29,5 +30,10 @@ public class RelationToUnaryMutator extends Mutator {
         for (ExprUnary.Op op : Mutator.uops_rel2rel) {
             accumulator.add(new RelationToUnaryMutator(original, ExprMaker.make(original.expr, op)));
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Try adding an unary operator (transpose, closure, etc).");
     }
 }

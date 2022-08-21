@@ -10,6 +10,7 @@ import pt.haslab.util.LocationAggregator;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class ReplaceSetUnderUnaryMutator extends Mutator {
@@ -53,6 +54,10 @@ public class ReplaceSetUnderUnaryMutator extends Mutator {
                 addIfCompatible(accumulator, original, field, sigs);
             }
         }
+    }
 
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Replace the set/relation under the operator.");
     }
 }

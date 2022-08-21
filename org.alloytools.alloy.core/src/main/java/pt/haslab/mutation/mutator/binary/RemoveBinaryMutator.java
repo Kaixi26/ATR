@@ -6,6 +6,7 @@ import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.LocationAggregator;
 
 import java.util.List;
+import java.util.Optional;
 
 public class RemoveBinaryMutator extends Mutator {
     /*
@@ -42,5 +43,10 @@ public class RemoveBinaryMutator extends Mutator {
         if (originalExpr.type() == originalExpr.right.type()) {
             accumulator.add(new RemoveBinaryMutator(original, RemoveBinaryMutator.Branch.RIGHT));
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Remove this operator and take only one of the sides.");
     }
 }

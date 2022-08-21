@@ -6,6 +6,7 @@ import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
 
 import java.util.List;
+import java.util.Optional;
 
 public class ReplaceQtOperator extends Mutator {
     /*
@@ -28,5 +29,10 @@ public class ReplaceQtOperator extends Mutator {
                 accumulator.add(new ReplaceQtOperator(original, op));
             }
         }
+    }
+
+    @Override
+    public Optional<String> hint() {
+        return Optional.of("Replace with a different quantifier.");
     }
 }

@@ -94,17 +94,14 @@ public class LocationAggregator {
             }
 
             public Void visit(ExprVar x) throws Err {
-                add(x);
                 return null;
             }
 
             public Void visit(Sig x) throws Err {
-                add(x);
                 return null;
             }
 
             public Void visit(Sig.Field x) throws Err {
-                add(x);
                 return null;
             }
 
