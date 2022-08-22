@@ -1,10 +1,7 @@
 package pt.haslab.mutation.mutator.relation;
 
 import edu.mit.csail.sdg.alloy4.ConstList;
-import edu.mit.csail.sdg.ast.Expr;
-import edu.mit.csail.sdg.ast.ExprBinary;
-import edu.mit.csail.sdg.ast.ExprUnary;
-import edu.mit.csail.sdg.ast.Sig;
+import edu.mit.csail.sdg.ast.*;
 import pt.haslab.mutation.Location;
 import pt.haslab.mutation.mutator.Mutator;
 import pt.haslab.util.ExprMaker;
@@ -24,17 +21,33 @@ public class RelationToBinaryMutator extends Mutator {
         this.setBlacklisted(LocationAggregator.BreadthBottomUp(original.expr).stream().map(l -> l.expr));
     }
 
-    public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs) {
-        if (original.expr.type().arity() != 1) {
-            return;
+    private static void addIfCompatible(List<Mutator> accumulator, Location original, Expr expr) {
+        if (original.expr.type().intersects(expr.type()) && !expr.equals(original.expr.deNOP())) {
+            accumulator.add(new RelationToBinaryMutator(original, ExprMaker.make(original.expr, expr, ExprBinary.Op.PLUS)));
+            accumulator.add(new RelationToBinaryMutator(original, ExprMaker.make(original.expr, expr, ExprBinary.Op.MINUS)));
+            accumulator.add(new RelationToBinaryMutator(original, ExprMaker.make(original.expr, expr, ExprBinary.Op.INTERSECT)));
         }
-        for (Sig sig : sigs) {
-            if (original.expr.type() == sig.type() && !original.expr.equals(sig)) {
-                Expr right = ExprMaker.make(sig, ExprUnary.Op.NOOP);
-                for (ExprBinary.Op op : Mutator.bops_setset2set) {
-                    accumulator.add(new RelationToBinaryMutator(original, ExprMaker.make(original.expr, right, op)));
+    }
+
+    public static void generate(List<Mutator> accumulator, Location original, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
+        switch (original.expr.type().arity()) {
+            case 0:
+                return;
+            case 1:
+                for (Sig sig : sigs) {
+                    addIfCompatible(accumulator, original, sig);
                 }
-            }
+                for (ExprHasName var : original.vars) {
+                    if (var instanceof ExprVar) {
+                        addIfCompatible(accumulator, original, var);
+                    }
+                }
+            default:
+                for (Sig.Field field : fields) {
+                    if (field.type().intersects(original.expr.type())) {
+                        addIfCompatible(accumulator, original, field);
+                    }
+                }
         }
     }
 

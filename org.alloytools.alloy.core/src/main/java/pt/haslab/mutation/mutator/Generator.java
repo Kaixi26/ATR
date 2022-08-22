@@ -11,7 +11,6 @@ import pt.haslab.mutation.mutator.quantifier.QtToUnaryMutator;
 import pt.haslab.mutation.mutator.quantifier.ReplaceQtOperator;
 import pt.haslab.mutation.mutator.relation.*;
 import pt.haslab.mutation.mutator.unary.RemoveUnaryOperatorMutator;
-import pt.haslab.mutation.mutator.unary.ReplaceSetUnderUnaryMutator;
 import pt.haslab.mutation.mutator.unary.ReplaceUnaryOperatorMutator;
 
 import java.util.ArrayList;
@@ -41,14 +40,12 @@ public class Generator {
     }
 
     public static boolean isGeneratableAsChild(Mutator m) {
-        return !(m instanceof ReplaceSetUnderUnaryMutator
-                || m instanceof RemoveUnaryOperatorMutator
+        return !(m instanceof RemoveUnaryOperatorMutator
                 || m instanceof RemoveBinaryMutator);
     }
 
     public static void generateMutatorsExprUnary(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
         RemoveUnaryOperatorMutator.generate(accumulator, location);
-        ReplaceSetUnderUnaryMutator.generate(accumulator, location, sigs, fields);
         ReplaceUnaryOperatorMutator.generate(accumulator, location);
     }
 
@@ -68,10 +65,8 @@ public class Generator {
     }
 
     public static void generateMutatorsRelation(List<Mutator> accumulator, Location location, ConstList<Sig> sigs, ConstList<Sig.Field> fields) {
-        ExtendOrReduceMutator.generate(accumulator, location, sigs, fields);
         InsertJoinMutator.generate(accumulator, location, sigs, fields);
-        InsertPrimeMutator.generate(accumulator, location);
-        RelationToBinaryMutator.generate(accumulator, location, sigs);
+        RelationToBinaryMutator.generate(accumulator, location, sigs, fields);
         RelationToUnaryMutator.generate(accumulator, location);
         ReplaceRelationMutator.generate(accumulator, location, sigs);
     }

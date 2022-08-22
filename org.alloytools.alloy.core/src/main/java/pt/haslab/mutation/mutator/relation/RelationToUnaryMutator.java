@@ -30,6 +30,7 @@ public class RelationToUnaryMutator extends Mutator {
         for (ExprUnary.Op op : Mutator.uops_rel2rel) {
             accumulator.add(new RelationToUnaryMutator(original, ExprMaker.make(original.expr, op)));
         }
+        accumulator.add(new RelationToUnaryMutator(original, original.expr.prime()));
     }
 
     @Override
