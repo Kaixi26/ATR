@@ -86,7 +86,7 @@ public class LocationAggregator {
             public Void visit(ExprUnary x) throws Err {
                 int sz = ret.size();
                 visitThis(x.sub);
-                if (Mutator.uops_rel2bool.contains(x.op)) {
+                if (Mutator.uops_rel2bool.contains(x.op) && ret.size() > sz) {
                     ret.get(sz).canChangeArity = true;
                 }
                 add(x);
