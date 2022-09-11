@@ -1,6 +1,6 @@
-# ATR
+# TAR
 
-Alloy Temporal Repair is a tool that extends Alloy6 to allow mutation-based automatic repair of specifications.
+Temporal Alloy Repair is a tool that extends Alloy6 to allow mutation-based automatic repair of specifications.
 
 # Requirements and Building
 
