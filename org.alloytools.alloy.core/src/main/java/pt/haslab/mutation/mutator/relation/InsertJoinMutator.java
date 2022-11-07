@@ -54,6 +54,6 @@ public class InsertJoinMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Insert a join ('.') operator.");
+        return Optional.of("Add a binary or unary operator.");
     }
 }

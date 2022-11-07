@@ -47,6 +47,6 @@ public class RemoveBinaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Remove this operator and take only one of the sides.");
+        return Optional.of("Binary operator has to be changed or removed.");
     }
 }

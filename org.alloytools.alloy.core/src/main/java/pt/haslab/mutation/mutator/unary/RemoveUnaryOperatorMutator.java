@@ -29,6 +29,6 @@ public class RemoveUnaryOperatorMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Remove this operator");
+        return Optional.of("Unary operator has to be changed or removed.");
     }
 }

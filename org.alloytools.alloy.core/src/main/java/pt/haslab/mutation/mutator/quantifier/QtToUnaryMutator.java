@@ -59,6 +59,6 @@ public class QtToUnaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Replace with unary quantifier.");
+        return Optional.of("Quantifier has to be changed.");
     }
 }

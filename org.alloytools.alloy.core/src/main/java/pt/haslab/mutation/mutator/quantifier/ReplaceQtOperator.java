@@ -33,6 +33,6 @@ public class ReplaceQtOperator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Replace with a different quantifier.");
+        return Optional.of("Quantifier has to be changed.");
     }
 }

@@ -50,6 +50,6 @@ public class ReplaceRelationMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Replace the set/relation with another one.");
+        return Optional.of("A different relation is required.");
     }
 }

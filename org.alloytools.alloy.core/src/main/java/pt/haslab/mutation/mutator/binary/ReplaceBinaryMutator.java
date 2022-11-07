@@ -49,6 +49,6 @@ public class ReplaceBinaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Replace to another binary operator.");
+        return Optional.of("Binary operator has to be changed or removed.");
     }
 }

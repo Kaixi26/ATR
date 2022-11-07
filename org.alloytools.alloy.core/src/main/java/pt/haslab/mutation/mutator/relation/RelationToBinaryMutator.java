@@ -40,6 +40,6 @@ public class RelationToBinaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Something extra is required, try using a binary operator.");
+        return Optional.of("Add a binary or unary operator.");
     }
 }

@@ -34,6 +34,6 @@ public class RelationToUnaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Try adding an unary operator (transpose, closure, etc).");
+        return Optional.of("Add a binary or unary operator.");
     }
 }

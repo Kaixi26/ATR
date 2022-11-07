@@ -39,6 +39,6 @@ public class BinaryToUnaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Replace the binary operator and add an unary one.");
+        return Optional.of("Transform into a unary expression.");
     }
 }

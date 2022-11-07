@@ -42,6 +42,6 @@ public class ReplaceUnaryOperatorMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Replace to a different operator.");
+        return Optional.of("Unary operator has to be changed or removed.");
     }
 }

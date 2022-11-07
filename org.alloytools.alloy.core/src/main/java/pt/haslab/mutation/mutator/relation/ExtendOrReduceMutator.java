@@ -54,6 +54,6 @@ public class ExtendOrReduceMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Extend or reduce the set/relation.");
+        return Optional.of("A different relation is required.");
     }
 }

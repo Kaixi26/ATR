@@ -27,6 +27,6 @@ public class InsertPrimeMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Insert a \"'\" operator.");
+        return Optional.of("Insert an operator.");
     }
 }

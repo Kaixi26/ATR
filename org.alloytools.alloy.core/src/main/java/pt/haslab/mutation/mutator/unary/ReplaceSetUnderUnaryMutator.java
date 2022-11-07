@@ -58,6 +58,6 @@ public class ReplaceSetUnderUnaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Replace the set/relation under the operator.");
+        return Optional.of("Expression under unary operator has to be changed.");
     }
 }

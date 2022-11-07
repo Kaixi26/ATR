@@ -26,6 +26,6 @@ public class InsertUnaryMutator extends Mutator {
 
     @Override
     public Optional<String> hint() {
-        return Optional.of("Try inserting an unary operator.");
+        return Optional.of("Insert an operator.");
     }
 }
